@@ -11,7 +11,21 @@ function cadastrarUsuario($conexao, $nome, $usuario, $senha, $email) {}
 
 
 
-function listarProdutos($conexao) {}
+function listarProdutos($conexao) {
+    $sql = "SELECT * FROM tb_cliente";
+    $comando = mysqli_prepare($conexao, $sql);
+
+    mysqli_stmt_execute($comando);
+    $resultado = mysqli_stmt_get_result($comando);
+
+    $lista_clientes = [];
+    while ($cliente = mysqli_fetch_assoc($resultado)) {
+        $lista_clientes[] = $cliente;
+    }
+
+    mysqli_stmt_close($comando);
+    return $lista_clientes;
+}
 
 function listarVendas($conexao) {}
 
@@ -74,7 +88,6 @@ function pesquisarFuncionario($conexao) {}
 
 function agendarvenda($conexao, $idpliente, $idproduto, $idvenda) {}
 
-function loginUsuario($conexao, $email, $senha) 
-
+function loginUsuario($conexao, $email, $senha) {}
 
 ?>
