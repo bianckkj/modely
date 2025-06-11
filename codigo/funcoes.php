@@ -12,22 +12,36 @@ function cadastrarUsuario($conexao, $nome, $usuario, $senha, $email) {}
 
 
 function listarProdutos($conexao) {
-    $sql = "SELECT * FROM tb_cliente";
+    $sql = "SELECT * FROM tb_produto";
     $comando = mysqli_prepare($conexao, $sql);
 
     mysqli_stmt_execute($comando);
     $resultado = mysqli_stmt_get_result($comando);
 
-    $lista_clientes = [];
-    while ($cliente = mysqli_fetch_assoc($resultado)) {
-        $lista_clientes[] = $cliente;
+    $lista_produtos = [];
+    while ($produto = mysqli_fetch_assoc($resultado)) {
+        $lista_produtos[] = $produto;
     }
 
     mysqli_stmt_close($comando);
-    return $lista_clientes;
+    return $lista_produtos;
 }
 
-function listarVendas($conexao) {}
+function listarVendas($conexao) {
+    $sql = "SELECT * FROM tb_vendas";
+    $comando = mysqli_prepare($conexao, $sql);
+
+    mysqli_stmt_execute($comando);
+    $resultado = mysqli_stmt_get_result($comando);
+
+    $lista_vendas = [];
+    while ($vendas = mysqli_fetch_assoc($resultado)) {
+        $lista_vendas[] = $vendas;
+    }
+
+    mysqli_stmt_close($comando);
+    return $lista_vendas;
+}
 
 function listarClientes($conexao, ) {}
 
