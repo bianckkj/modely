@@ -45,7 +45,21 @@ function listarVendas($conexao) {
 
 function listarClientes($conexao, ) {}
 
-function listarFuncionarios($conexao) {}
+function listarFuncionarios($conexao) {
+    $sql = "SELECT * FROM tb_funcionario";
+    $comando = mysqli_prepare($conexao, $sql);
+
+    mysqli_stmt_execute($comando);
+    $resultado = mysqli_stmt_get_result($comando);
+
+    $lista_funcionarios = [];
+    while ($funcionario = mysqli_fetch_assoc($resultado)) {
+        $lista_funcionarios[] = $funcionario;
+    }
+
+    mysqli_stmt_close($comando);
+    return $lista_funcionarios;
+}
 
 function listarUsuarios($conexao) {}
 
