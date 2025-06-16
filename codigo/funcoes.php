@@ -43,7 +43,21 @@ function listarVendas($conexao) {
     return $lista_vendas;
 }
 
-function listarClientes($conexao, ) {}
+function listarClientes($conexao, ) {
+    $sql = "SELECT * FROM tb_cliente";
+    $comando = mysqli_prepare($conexao, $sql);
+
+    mysqli_stmt_execute($comando);
+    $resultado = mysqli_stmt_get_result($comando);
+
+    $lista_cliente = [];
+    while ($cliente = mysqli_fetch_assoc($resultado)) {
+        $lista_cliente[] = $cliente;
+    }
+
+    mysqli_stmt_close($comando);
+    return $lista_cliente;
+}
 
 function listarFuncionarios($conexao) {
     $sql = "SELECT * FROM tb_funcionario";
@@ -79,9 +93,29 @@ function listarUsuarios($conexao) {
 
 
 
-function deletarCliente($conexao, $idcliente) {}
+function deletarCliente($conexao, $idcliente) {
+    $sql = "DELETE FROM tb_cliente WHERE id_cliente = ?";
+    $comando = mysqli_prepare($conexao, $sql);
 
-function deletarVenda($conexao, $idvenda) {}
+    mysqli_stmt_bind_param($comando, 'i', $idcliente);
+    $funcionou = mysqli_stmt_execute($comando);
+
+    mysqli_stmt_close($comando);
+    
+    return $funcionou;
+}
+
+function deletarVenda($conexao, $idvenda) {
+    $sql = "DELETE FROM tb_vendas WHERE id_venda = ?";
+    $comando = mysqli_prepare($conexao, $sql);
+
+    mysqli_stmt_bind_param($comando, 'i', $id_venda);
+    $funcionou = mysqli_stmt_execute($comando);
+
+    mysqli_stmt_close($comando);
+    
+    return $funcionou;
+}
 
 function deletarFuncionario($conexao, $idfuncionario) {}
 
