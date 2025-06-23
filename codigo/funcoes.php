@@ -117,7 +117,17 @@ function deletarVenda($conexao, $id_vendas) {
     return $funcionou;
 }
 
-function deletarFuncionario($conexao, $idfuncionario) {}
+function deletarFuncionario($conexao, $id_funcionario) {
+    $sql = "DELETE FROM tb_funcionario WHERE id_funcionario = ?";
+    $comando = mysqli_prepare($conexao, $sql);
+
+    mysqli_stmt_bind_param($comando, 'i', $id_funcionario);
+    $funcionou = mysqli_stmt_execute($comando);
+
+    mysqli_stmt_close($comando);
+    
+    return $funcionou;
+}
 
 function deletarUsuario($conexao, $id_usuario) {
     $sql = "DELETE FROM tb_usuario WHERE id_usuario = ?";
