@@ -117,7 +117,17 @@ function deletarVenda($conexao, $id_vendas) {
     return $funcionou;
 }
 
-function deletarFuncionario($conexao, $idfuncionario) {}
+function deletarFuncionario($conexao, $id_funcionario) {
+    $sql = "DELETE FROM tb_funcionario WHERE id_funcionario = ?";
+    $comando = mysqli_prepare($conexao, $sql);
+
+    mysqli_stmt_bind_param($comando, 'i', $id_funcionario);
+    $funcionou = mysqli_stmt_execute($comando);
+
+    mysqli_stmt_close($comando);
+    
+    return $funcionou;
+}
 
 function deletarUsuario($conexao, $id_usuario) {
     $sql = "DELETE FROM tb_usuario WHERE id_usuario = ?";
@@ -182,7 +192,20 @@ function registrarComissao($conexao, $idfuncionario) {}
 function aprovarUsuario($conexao, $usuario, $senha) {}
 
 
-function pesquisarProduto($conexao) {}
+function pesquisarProduto($conexao, $id_produto) {
+     $sql = "SELECT * FROM tb_produto WHERE id_produto = ?";
+    $comando = mysqli_prepare($conexao, $sql);
+
+    mysqli_stmt_bind_param($comando, 'i', $id_produto);
+
+    mysqli_stmt_execute($comando);
+    $resultado = mysqli_stmt_get_result($comando);
+
+    $produto = mysqli_fetch_assoc($resultado);
+
+    mysqli_stmt_close($comando);
+    return $produto;
+}
 
 function pesquisarVenda($conexao) {}
 
