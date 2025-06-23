@@ -155,7 +155,7 @@ function deletarProduto($conexao, $id_produto) {
 
 
 
-function editarProduto($conexao, $id_produto) {
+function editarProduto($conexao, $quantidade, $material, $preco, $modelo, $cor, $tamanho, $marca, $imagem, $id_produto) {
     $sql = "UPDATE tb_produto SET quantidade=?, material=?, preco=? modelo=? cor=? tamanho=? marca=? imagem=? WHERE id_produto=?";
     $comando = mysqli_prepare($conexao, $sql);
     
@@ -168,7 +168,18 @@ function editarProduto($conexao, $id_produto) {
     return $funcionou;
 }
 
-function ediatarvendas($conexao) {}
+function editarvendas($conexao, $tb_cliente_id_cliente, $tb_funcionario_id_funcionario, $horario, $data, $comissao, $id_vendas) {
+    $sql = "UPDATE tb_vendas SET tb_cliente_id_cliente=?, tb_funcionario_id_funcionario=?, horario=?, data=?, comissao=? WHERE id_vendas=?";
+    $comando = mysqli_prepare($conexao, $sql);
+    
+    mysqli_stmt_bind_param($comando, 'iissdi', $tb_cliente_id_cliente, $tb_funcionario_id_funcionario, $horario, $data, $comissao, $id_vendas);
+    
+
+    $funcionou = mysqli_stmt_execute($comando);
+    
+    mysqli_stmt_close($comando);
+    return $funcionou;
+}
 
 function ediatarFuncionarios($conexao) {}
 
