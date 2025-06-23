@@ -181,7 +181,20 @@ function registrarComissao($conexao, $idfuncionario) {}
 function aprovarUsuario($conexao, $usuario, $senha) {}
 
 
-function pesquisarProduto($conexao) {}
+function pesquisarProduto($conexao, $id_produto) {
+     $sql = "SELECT * FROM tb_produto WHERE id_produto = ?";
+    $comando = mysqli_prepare($conexao, $sql);
+
+    mysqli_stmt_bind_param($comando, 'i', $id_produto);
+
+    mysqli_stmt_execute($comando);
+    $resultado = mysqli_stmt_get_result($comando);
+
+    $produto = mysqli_fetch_assoc($resultado);
+
+    mysqli_stmt_close($comando);
+    return $produto;
+}
 
 function pesquisarVenda($conexao) {}
 
