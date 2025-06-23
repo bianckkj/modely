@@ -196,7 +196,20 @@ function pesquisarProduto($conexao, $id_produto) {
     return $produto;
 }
 
-function pesquisarVenda($conexao) {}
+function pesquisarVenda($conexao, $id_vendas) {
+    $sql = "SELECT * FROM tb_vendas WHERE id_vendas = ?";
+    $comando = mysqli_prepare($conexao, $sql);
+
+    mysqli_stmt_bind_param($comando, 'i', $id_vendas);
+
+    mysqli_stmt_execute($comando);
+    $resultado = mysqli_stmt_get_result($comando);
+
+    $vendas = mysqli_fetch_assoc($resultado);
+
+    mysqli_stmt_close($comando);
+    return $vendas;
+}
 
 function pesquisarCliente($conexao) {}
 
