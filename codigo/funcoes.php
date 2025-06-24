@@ -209,7 +209,19 @@ function editarClientes($conexao, $nome, $cpf, $telefone, $email, $endereco, $id
     return $funcionou;
 }
 
-function editarUsuario($conexao) {}
+function editarUsuario($conexao, $nome, $senha, $email, $endereco, $id_usuario) {
+    $sql = "UPDATE tb_usuario SET nome=?, senha=?, email=?, endereco=? WHERE id_usuario=?";
+
+    $comando = mysqli_prepare($conexao, $sql);
+    
+    mysqli_stmt_bind_param($comando, 'ssssi', $nome, $senha, $email, $endereco, $id_usuario);
+    
+
+    $funcionou = mysqli_stmt_execute($comando);
+    
+    mysqli_stmt_close($comando);
+    return $funcionou;
+}
 
 
 
