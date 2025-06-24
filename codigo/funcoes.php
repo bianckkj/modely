@@ -181,9 +181,21 @@ function editarvendas($conexao, $tb_cliente_id_cliente, $tb_funcionario_id_funci
     return $funcionou;
 }
 
-function ediatarFuncionarios($conexao) {}
+function editarFuncionarios($conexao, $cpf, $email, $telefone, $data_nascimento, $carga_horaria, $salario, $endereco, $id_funcionario) {
+    $sql = "UPDATE tb_funcionario SET cpf=?, email=?, telefone=?, data_nascimento=?, carga_horaria=?, salario=?, endereco=? WHERE id_funcionario=?";
 
-function ediatarClientes($conexao) {}
+    $comando = mysqli_prepare($conexao, $sql);
+    
+    mysqli_stmt_bind_param($comando, 'sssssdsi', $cpf, $email, $telefone, $data_nascimento, $carga_horaria, $salario, $endereco, $id_funcionario);
+    
+
+    $funcionou = mysqli_stmt_execute($comando);
+    
+    mysqli_stmt_close($comando);
+    return $funcionou;
+}
+
+function editarClientes($conexao) {}
 
 function editarUsuario($conexao) {}
 
