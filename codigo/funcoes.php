@@ -369,6 +369,17 @@ function agendarvenda($conexao, $id_cliente, $data, $horario, $status) {
     return $funcionou;
 }
 
-function loginUsuario($conexao, $email, $senha) {}
+function loginUsuario($conexao, $email, $senha) {
+    $sql = "SELECT id_usuario, nome, senha FROM tb_usuario WHERE email = ?";
+    
+    $stmt = mysqli_prepare($conexao, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $email);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $id_usuario, $nome, $senhaHash);
+    mysqli_stmt_fetch($stmt);
+    mysqli_stmt_close($stmt);
+
+    return password_verify($senha, $senhaHash);
+}
 
 ?>
