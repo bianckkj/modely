@@ -253,12 +253,26 @@ function editarUsuario($conexao, $nome, $senha, $email, $endereco, $id_usuario) 
 
 
 
-function registrarVenda($conexao, $idcliente, $idfuncionario) {}
+function registrarVenda($conexao, $tb_cliente_id_cliente, $tb_funcionario_id_funcionario, $horario, $data, $comissao) {
+    $sql = "INSERT INTO tb_vendas (tb_cliente_id_cliente, tb_funcionario_id_funcionario, horario, data, comissao) VALUES (?, ?, ?, ?, ?)";
+    $comando = mysqli_prepare($conexao, $sql);
+
+    mysqli_stmt_bind_param($comando, 'iissd', $tb_cliente_id_cliente, $tb_funcionario_id_funcionario, $horario, $data, $comissao);
+
+    $funcionou = mysqli_stmt_execute($comando);
+
+    // retorna o valor do id que acabou de ser inserido
+    $id_vendas = mysqli_stmt_insert_id($comando);
+    
+    mysqli_stmt_close($comando);
+    
+    return $id_vendas;
+}
 
 function baixanoEstoque($conexao, $idroduto, $quantidade) {}
 
 function detalharVenda($conexao, $idvenda) {}
-
+ 
 function totalvenda($conexao) {}
 
 function registrarComissao($conexao, $idfuncionario) {}
