@@ -277,7 +277,15 @@ function totalvenda($conexao) {}
 function registrarComissao($conexao, $idfuncionario) {}
 
 
-function aprovarUsuario($conexao, $usuario, $senha) {}
+function aprovarUsuario($conexao, $nome, $usuario, $senha) {
+    $hash = password_hash($senha);
+
+    $sql = "INSERT INTO tb_usuario (nome, email, senha, endereco) VALUES (?, ?, ?, ?)";
+    $stmt = mysqli_prepare($conexao, $sql);
+    mysqli_stmt_bind_param($stmt, "ssss", $usuario['nome'], $usuario['email'], $hash);
+
+    return mysqli_stmt_execute($stmt) 
+}
 
 
 function pesquisarProduto($conexao, $id_produto) {
