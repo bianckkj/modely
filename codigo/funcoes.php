@@ -184,11 +184,10 @@ function deletarProduto($conexao, $id_produto) {
 
 
 function editarProduto($conexao, $quantidade, $material, $preco, $modelo, $cor, $tamanho, $marca, $imagem, $id_produto) {
-    $sql = "UPDATE tb_produto SET quantidade=?, material=?, preco=? modelo=? cor=? tamanho=? marca=? imagem=? WHERE id_produto=?";
+    $sql = "UPDATE tb_produto SET quantidade=?, material=?, preco=?, modelo=?, cor=?, tamanho=?, marca=?, imagem=? WHERE id_produto=?";
     $comando = mysqli_prepare($conexao, $sql);
     
     mysqli_stmt_bind_param($comando, 'sssssssbi', $quantidade, $material, $preco, $modelo, $cor, $tamanho, $marca, $imagem, $id_produto);
-    
 
     $funcionou = mysqli_stmt_execute($comando);
     
