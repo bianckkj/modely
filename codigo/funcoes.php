@@ -327,7 +327,20 @@ function pesquisarUsuario($conexao, $id_usuario ) {
     return $usuario;
 }
 
-function pesquisarFuncionario($conexao) {}
+function pesquisarFuncionario($conexao, $id_funcionario) {
+    $sql = "SELECT * FROM tb_funcionario WHERE id_funcionario = ?";
+    $comando = mysqli_prepare($conexao, $sql);
+
+    mysqli_stmt_bind_param($comando, 'i', $id_funcionario);
+
+    mysqli_stmt_execute($comando);
+    $resultado = mysqli_stmt_get_result($comando);
+
+    $funcionario = mysqli_fetch_assoc($resultado);
+
+    mysqli_stmt_close($comando);
+    return $funcionario;
+}
 
 
 function agendarvenda($conexao, $idpliente, $idproduto, $idvenda) {}
