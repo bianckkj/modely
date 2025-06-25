@@ -1,7 +1,15 @@
 <?php
 function cadastrarProduto($conexao, $nome, $preco, $quantidade, $material, $modelo, $cor, $tamanho, $marca) {}
 
-function cadastrarCliente($conexao, $nome, $cpf, $telefone, $email) {}
+function cadastrarCliente($conexao, $nome, $cpf, $telefone, $email, $endereco) {
+    $sql = "INSERT INTO tb_cliente (nome, cpf, telefone, email, endereco) VALUES (?, ?, ?, ?, ?)";
+    $comando = mysqli_prepare($conexao, $sql);
+
+    mysqli_stmt_bind_param($comando, "sssss", $nome, $cpf, $telefone, $email, $endereco);
+    $resultado = mysqli_stmt_execute($comando);
+
+    return $resultado;
+}
 
 function cadastrarFuncionario($conexao, $nome, $cpf, $email, $telefone, $data_nascimento, $salario) {}
 
