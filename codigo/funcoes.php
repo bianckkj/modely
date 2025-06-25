@@ -18,7 +18,12 @@ function cadastrarFuncionario($conexao, $nome, $cpf, $email, $telefone, $data_na
     return mysqli_stmt_execute($comando);
 }
 
-function cadastrarVenda($conexao, $idvenda, $idcliente, $idfuncionario, $idproduto) {}
+function cadastrarVenda($conexao, $idvenda, $idcliente, $idfuncionario, $idproduto) {
+    $sql = "INSERT INTO tb_vendas (tb_cliente_id_cliente, tb_funcionario_id_funcionario, horario, data, comissao) VALUES (?, ?, ?, ?, ?)";
+    $comando = mysqli_prepare($conexao, $sql);
+    mysqli_stmt_bind_param($comando, "iissd", $idcliente, $idfuncionario, $horario, $data, $comissao);
+    return mysqli_stmt_execute($comando);
+}
 
 function cadastrarUsuario($conexao, $nome, $usuario, $senha, $email) {}
 
