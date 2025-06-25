@@ -302,7 +302,20 @@ function pesquisarCliente($conexao, $id_cliente) {
     return $cliente;
 }
 
-function pesquisarUsuario($conexao) {}
+function pesquisarUsuario($conexao, $id_usuario ) {
+    $sql = "SELECT * FROM tb_usuario WHERE id_usuario = ?";
+    $comando = mysqli_prepare($conexao, $sql);
+
+    mysqli_stmt_bind_param($comando, 'i', $id_usuario);
+
+    mysqli_stmt_execute($comando);
+    $resultado = mysqli_stmt_get_result($comando);
+
+    $usuario = mysqli_fetch_assoc($resultado);
+
+    mysqli_stmt_close($comando);
+    return $usuario;
+}
 
 function pesquisarFuncionario($conexao) {}
 
