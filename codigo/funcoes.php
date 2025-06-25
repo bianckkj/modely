@@ -1,5 +1,10 @@
 <?php
-function cadastrarProduto($conexao, $nome, $preco, $quantidade, $material, $modelo, $cor, $tamanho, $marca) {}
+function cadastrarProduto($conexao, $nome, $preco, $quantidade, $material, $modelo, $cor, $tamanho, $marca) {
+    $sql = "INSERT INTO tb_produto (quantidade, material, preco, modelo, cor, tamanho, marca, imagem) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $comando = mysqli_prepare($conexao, $sql);
+    mysqli_stmt_bind_param($comando, "ssdsssss", $quantidade, $material, $preco, $modelo, $cor, $tamanho, $marca, $imagem);
+    return mysqli_stmt_execute($comando);
+}
 
 function cadastrarCliente($conexao, $nome, $cpf, $telefone, $email, $endereco) {
     $sql = "INSERT INTO tb_cliente (nome, cpf, telefone, email, endereco) VALUES (?, ?, ?, ?, ?)";
@@ -25,7 +30,12 @@ function cadastrarVenda($conexao, $idvenda, $idcliente, $idfuncionario, $idprodu
     return mysqli_stmt_execute($comando);
 }
 
-function cadastrarUsuario($conexao, $nome, $usuario, $senha, $email) {}
+function cadastrarUsuario($conexao, $nome, $usuario, $senha, $email) {
+    $sql = "INSERT INTO tb_usuario (nome, senha, email, endereco) VALUES (?, ?, ?, ?)";
+    $comando = mysqli_prepare($conexao, $sql);
+    mysqli_stmt_bind_param($comando, "ssss", $nome, $senha, $email, $endereco);
+    return mysqli_stmt_execute($comando);
+}
 
 
 
