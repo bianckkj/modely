@@ -277,6 +277,7 @@ function totalvenda($conexao) {}
 function registrarComissao($conexao, $idfuncionario) {}
 
 
+
 function aprovarUsuario($conexao, $nome, $usuario, $senha) {
     $hash = password_hash($senha);
 
@@ -286,6 +287,8 @@ function aprovarUsuario($conexao, $nome, $usuario, $senha) {
 
     return mysqli_stmt_execute($stmt) 
 }
+
+
 
 
 function pesquisarProduto($conexao, $id_produto) {
