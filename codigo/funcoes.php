@@ -274,7 +274,7 @@ function detalharVenda($conexao, $idvenda) {}
  
 function totalvenda($conexao) {}
 
-function registrarComissao($conexao, $idfuncionario) {}
+function registrarComissao($conexao, $id_funcionario, $valor, $data) {}
 
 
 function aprovarUsuario($conexao, $usuario, $senha) {}
