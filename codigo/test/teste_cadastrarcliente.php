@@ -11,4 +11,4 @@ $telefone = "(11)91234-5678";
 $email = "carlos@email.com";
 $endereco = "Rua das Palmeiras, 150";
 
-$resultado = cadastrarCliente($conexao, $nome, $cpf, $telefone, $email, $endereco);
+cadastrarCliente($conexao, $nome, $cpf, $telefone, $email, $endereco);
