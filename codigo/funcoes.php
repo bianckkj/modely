@@ -356,7 +356,18 @@ function pesquisarFuncionario($conexao, $id_funcionario) {
 }
 
 
-function agendarvenda($conexao, $idpliente, $idproduto, $idvenda) {}
+function agendarvenda($conexao, $id_cliente, $data, $horario, $status) {
+    $sql = "UPDATE tb_agendamento SET id_cliente=?, data=?, horario=?, status=?";
+    $comando = mysqli_prepare($conexao, $sql);
+    
+    mysqli_stmt_bind_param($comando, 'isss', $id_cliente, $data, $horario, $status);
+    
+
+    $funcionou = mysqli_stmt_execute($comando);
+    
+    mysqli_stmt_close($comando);
+    return $funcionou;
+}
 
 function loginUsuario($conexao, $email, $senha) {}
 
