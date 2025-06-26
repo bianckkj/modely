@@ -268,7 +268,25 @@ function registrarVenda($conexao, $tb_cliente_id_cliente, $tb_funcionario_id_fun
     return $id_vendas;
 }
 
-function baixanoEstoque($conexao, $idroduto, $quantidade) {}
+function baixanoEstoque($conexao, $idroduto, $quantidade) {
+    $sql = "INSERT INTO tb_estoque (nome, cpf, endereco, foto) VALUES (?, ?, ?, ?)";
+    $comando = mysqli_prepare($conexao, $sql);
+    
+    mysqli_stmt_bind_param($comando, 'ssss', $nome, $cpf, $endereco, $foto);
+    
+
+    // CRIAR UMA TABELA ESTOQUE
+
+
+    mysqli_stmt_execute($comando);
+    
+    // retorna o valor do id que acabou de ser inserido
+    $idcliente = mysqli_stmt_insert_id($comando);
+
+    mysqli_stmt_close($comando);
+
+    return $idcliente;
+}
 
 function detalharVenda($conexao, $idvenda) {}
  
@@ -279,13 +297,13 @@ function registrarComissao($conexao, $id_funcionario, $valor, $data) {}
 
 
 function aprovarUsuario($conexao, $nome, $usuario, $senha) {
-    $hash = password_hash($senha);
+    $hash = password_hash($senha, PASSWORD_DEFAULT);
 
     $sql = "INSERT INTO tb_usuario (nome, email, senha, endereco) VALUES (?, ?, ?, ?)";
     $stmt = mysqli_prepare($conexao, $sql);
-    mysqli_stmt_bind_param($stmt, "ssss", $usuario['nome'], $usuario['email'], $hash);
+    mysqli_stmt_bind_param($stmt, "sss", $usuario['nome'], $usuario['email'], $hash);
 
-    return mysqli_stmt_execute($stmt) 
+    return mysqli_stmt_execute($stmt);
 }
 
 
