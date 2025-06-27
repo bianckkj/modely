@@ -6,7 +6,6 @@ INSERT INTO tb_cliente (nome, cpf, telefone, email, endereco) VALUES
 ('Maria Santos', '444.555.666-77', '(11)94567-8901', 'maria@email.com', 'Travessa Verde, 50'),
 ('Pedro Oliveira', '555.666.777-88', '(11)95678-9012', 'pedro@email.com', 'Alameda das Árvores, 300');
 
-
 -- Inserir funcionários
 INSERT INTO tb_funcionario (cpf, email, telefone, data_nascimento, carga_horaria, salario, endereco) VALUES
 ('777.888.999-00', 'func1@email.com', '(11)91200-0001', '1990-05-10', '08:00:00', 2500.00, 'Rua A, 100'),
