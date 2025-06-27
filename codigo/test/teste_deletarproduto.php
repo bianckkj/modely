@@ -2,5 +2,5 @@
 require_once "../conexao.php";
 require_once "../funcoes.php";
 
-deletarProduto($conexao, 5);
+deletarProduto($conexao, 3);
 ?>

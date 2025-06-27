@@ -6,21 +6,6 @@ INSERT INTO tb_cliente (nome, cpf, telefone, email, endereco) VALUES
 ('Maria Santos', '444.555.666-77', '(11)94567-8901', 'maria@email.com', 'Travessa Verde, 50'),
 ('Pedro Oliveira', '555.666.777-88', '(11)95678-9012', 'pedro@email.com', 'Alameda das Árvores, 300');
 
--- Inserir agendamentos
-INSERT INTO tb_agendamento (id_cliente, data, horario, status) VALUES
-(1, '2025-07-01', '10:00:00', 'Confirmado'),
-(2, '2025-07-02', '14:30:00', 'Pendente'),
-(3, '2025-07-03', '16:00:00', 'Cancelado'),
-(4, '2025-07-04', '09:00:00', 'Confirmado'),
-(5, '2025-07-05', '11:30:00', 'Confirmado');
-
--- Inserir carrinhos
-INSERT INTO tb_carrinho (id_cliente) VALUES
-(1),
-(2),
-(3),
-(4),
-(5);
 
 -- Inserir funcionários
 INSERT INTO tb_funcionario (cpf, email, telefone, data_nascimento, carga_horaria, salario, endereco) VALUES
