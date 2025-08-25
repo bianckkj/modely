@@ -21,7 +21,7 @@ if (isset($_SESSION['logado'])) {
     <h2>Login do Usuario</h2>
     <form action="../controle/login.php" method="post">
         E-mail: <br>
-        <input type="email" name="login"> <br><br>
+        <input type="email" name="email"> <br><br>
         Senha: <br>
         <input type="password" name="senha"> <br><br>
         <div class="oxe">
