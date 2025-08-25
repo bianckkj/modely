@@ -1,0 +1,137 @@
+/* Estilos gerais */
+body {
+    background: linear-gradient(to bottom right, #110127, #053a4a);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Formulário */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 400px;
+    padding: 25px;
+    border-radius: 15px;
+    background-color: rgba(20, 20, 20, 0.343);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 0 auto;
+    height: auto;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.message {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 15px;
+}
+
+/* Labels e inputs */
+.form label {
+    position: relative;
+}
+
+.form label .input {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 15px 10px;
+    outline: 0;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    font-size: 16px;
+    width: 120%;
+    caret-color: #ffffff;
+}
+
+.form label .input + span {
+    color: rgba(255, 255, 255, 0.7);
+    position: absolute;
+    left: 10px;
+    top: 12px;
+    font-size: 0.9em;
+    cursor: text;
+    transition: 0.3s ease;
+}
+
+.form label .input:focus + span,
+.form label .input:valid + span {
+    color: #ffd900;
+    top: 5px;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+/* Botão de envio */
+.submit {
+    border: none;
+    padding: 10px 0;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    background-color: #00c4ff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit:hover {
+    background-color: #0095cc;
+}
+
+/* Flexbox para elementos */
+.flex {
+    display: flex;
+    gap: 15px;
+}
+
+/* Mensagem de signin */
+.signin {
+    text-align: center;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 10px;
+}
+
+.signin a {
+    color: #ffd900;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.signin a:hover {
+    text-decoration: underline;
+}
+
+/* Animações */
+@keyframes pulse {
+    from {
+        transform: scale(0.9);
+        opacity: 1;
+    }
+    to {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+}
+
+/* Rodapé */
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    position: relative;
+    bottom: 0;
+    z-index: 1;
+    width: 100%;
+}

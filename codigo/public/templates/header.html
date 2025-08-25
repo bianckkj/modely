@@ -1,0 +1,82 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<!-- Sidebar -->
+<div id="sidebar" class="sidebar">
+    <button id="close-btn" class="close-btn"><i class="fa fa-times"></i></button> <!-- Botão para fechar -->
+    <h2>Menu</h2>
+    <ul>
+        <li><a href="../../public/home.php" class="active"><i class="fa fa-home"></i> Página Inicial</a></li>
+        <!-- Cadastros em ordem alfabética -->
+        <li><a href="../../public/cadastro_cliente.php" class="active"><i class="fa fa-user-plus"></i> Cadastro do
+                Cliente</a></li>
+        <li><a href="../../public/cadastro_emprestimo.php" class="active"><i class="fa fa-bookmark-o"></i> Cadastro do
+                Empréstimo</a>
+        </li>
+        <li><a href="../../public/cadastro_funcionario.php" class="active"><i class="fa fa-user-secret"></i> Cadastro do
+                Funcionário</a></li>
+        <li><a href="../../public/cadastro_livro.php" class="active"><i class="fa fa-book"></i> Cadastro do Livro</a>
+        </li>
+        <li><a href="../../public/cadastro_usuario.php" class="active"><i class="fa fa-user-plus"></i> Cadastro do
+                Usuario</a></li>
+
+        <!-- Listas em ordem alfabética -->
+        <li><a href="../../public/lista_cliente.php" class="active"><i class="fa fa-user"></i> Lista Clientes</a></li>
+        <li><a href="../../public/lista_emprestimo.php" class="active"><i class="fa fa-bookmark"></i> Lista
+                Empréstimos</a></li>
+        <li><a href="../../public/lista_funcionario.php" class="active"><i class="fa fa-users"></i> Lista
+                Funcionários</a></li>
+        <li><a href="../../public/lista_livros.php" class="active"><i class="fa fa-book"></i> Lista Livros</a></li>
+
+        <!-- Página de Estatísticas -->
+        <li><a href="../../public/pagina_estatisticas.php" class="active"><i class="fa fa-chart-bar"></i> Página
+                Estatísticas</a></li>
+
+        <!-- Desenvolvedores e Sair -->
+        <li><a href="../../public/desenvolvedores.php" target="_blank" rel="noopener noreferrer"><i
+                    class="fa fa-code"></i> Desenvolvedores</a></li>
+        <li><a href="../../controle/deslogar.php" class="active"><i class="fa fa-sign-out"></i> Sair</a></li>
+    </ul>
+</div>
+
+<!-- Off-menu Button -->
+<button id="off-menu-btn" class="off-menu-btn"><i class="fa fa-bars"></i></button>
+
+<script>
+    // Função para abrir e fechar a sidebar
+    document.getElementById('off-menu-btn').onclick = function () {
+        var sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('active');
+        // Salva o estado no localStorage
+        localStorage.setItem('sidebarState', sidebar.classList.contains('active'));
+    };
+
+    // Função para fechar a sidebar
+    document.getElementById('close-btn').onclick = function () {
+        var sidebar = document.getElementById('sidebar');
+        sidebar.classList.remove('active');
+        // Salva o estado no localStorage
+        localStorage.setItem('sidebarState', 'false');
+    };
+    // Carregar o estado salvo ao carregar a página
+    window.onload = function () {
+        var sidebar = document.getElementById('sidebar');
+        // Verifica se o estado foi salvo no localStorage
+        if (localStorage.getItem('sidebarState') === 'true') {
+            sidebar.classList.add('active');
+        }
+    };
+
+    // Fechar a sidebar ao clicar fora dela
+    document.addEventListener('click', function (event) {
+        var sidebar = document.getElementById('sidebar');
+        var isClickInside = sidebar.contains(event.target) || document.getElementById('off-menu-btn').contains(event.target);
+        if (!isClickInside) {
+            sidebar.classList.remove('active');
+            localStorage.setItem('sidebarState', 'false'); // Atualiza o estado no localStorage
+        }
+    });
+
+
+</script>
