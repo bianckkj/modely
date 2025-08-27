@@ -1,6 +1,6 @@
 /* Estilos gerais */
 .fa {
-    color: white;
+    color: #000000;
 }
 
 /* Sidebar */
@@ -10,7 +10,7 @@
     position: fixed;
     top: 0;
     left: -250px;
-    background-color: #282c34;
+    background-color: #e8e7e7;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
     overflow-x: hidden;
     transition: 0.3s ease;
@@ -23,7 +23,7 @@
 }
 
 .sidebar h2 {
-    color: #fff;
+    color: #000000;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -37,14 +37,14 @@
     padding: 15px 20px;
     text-decoration: none;
     font-size: 18px;
-    color: #818181;
+    color: #000000;
     display: block;
     transition: 0.3s;
 }
 
 .sidebar ul li a:hover {
-    background-color: #444;
-    color: #f1f1f1;
+    background-color: #8d2a2a;
+    color: #a82f2f;
 }
 
 /* Botões */
@@ -52,7 +52,7 @@
     background: none;
     border: none;
     font-size: 24px;
-    color: #333;
+    color: #b81414;
     cursor: pointer;
     position: absolute;
     top: 10px;
@@ -63,8 +63,8 @@
     position: fixed;
     top: 20px;
     left: 20px;
-    background-color: #282c34;
-    color: white;
+    background-color: #000000;
+    color: rgb(0, 0, 0);
     border: none;
     padding: 12px;
     font-size: 24px;
@@ -75,14 +75,14 @@
 }
 
 .off-menu-btn:hover {
-    background-color: #444;
+    background-color: #000000;
 }
 
 /* Header */
 header {
     padding: 20px;
-    background-color: rgba(243, 243, 243, 0.1);
-    color: black;
+    background-color: rgba(238, 5, 5, 0.1);
+    color: rgb(202, 23, 23);
     display: flex;
     justify-content: center;
     align-items: center;

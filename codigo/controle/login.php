@@ -18,10 +18,8 @@
         if (password_verify($senha, $senhaHash) == true) {
             session_start();
             $_SESSION['logado'] = 1;
-             echo "funcionou";
             header("Location: ../public/home.php");
         } else {
-            echo " nao funcionou";
             header("Location: ../public/index.php");
         }
     }

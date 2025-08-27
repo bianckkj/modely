@@ -71,7 +71,7 @@ function listarVendas($conexao) {
     return $lista_vendas;
 }
 
-function listarClientes($conexao, ) {
+function listarClientes($conexao) {
     $sql = "SELECT * FROM tb_cliente";
     $comando = mysqli_prepare($conexao, $sql);
 

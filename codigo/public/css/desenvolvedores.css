@@ -1,7 +1,7 @@
 /* Estilos Gerais */
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #e0e4e8;
+    background-color: #e8e7e7;
     color: #333;
     margin: 0;
     padding: 0;
@@ -16,7 +16,7 @@ h2 {
     text-transform: uppercase;
     letter-spacing: 0.1rem;
     text-align: center;
-    border-bottom: 4px solid #3498db;
+    border-bottom: 4px solid #e8e7e7;
     display: inline-block;
     padding-bottom: 0.3rem;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
@@ -50,10 +50,10 @@ h2 {
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
-    border-right: 0.15em solid #3498db;
+    border-right: 0.15em solid #e8e7e7;
     animation: typing 4s steps(25, end), blink 0.75s step-end infinite;
     font-size: 2.8rem;
-    color: #2c3e50;
+    color: #e8e7e7;
     text-transform: uppercase;
     margin-bottom: 2rem;
     text-align: center;
@@ -98,7 +98,7 @@ pre:hover{
     height: 320px;
     object-fit: cover;
     transition: transform 0.4s ease-in-out;
-    border-bottom: 3px solid #3498db;
+    border-bottom: 3px solid #e8e7e7db;
 }
 
 .overlay-container:hover .image {
@@ -129,7 +129,7 @@ pre:hover{
     font-weight: 700;
     font-size: 1.6rem;
     margin-bottom: 0.5rem;
-    color: #2c3e50;
+    color: #e8e7e7;
 }
 
 .card-text {
@@ -144,7 +144,7 @@ pre:hover{
     color: #fff;
     display: inline-block;
     margin-top: 0.5rem;
-    background-color: #3498db;
+    background-color: #e8e7e7;
     border-radius: 0.3rem;
     padding: 0.5rem 1rem;
     font-weight: bold;
@@ -152,7 +152,7 @@ pre:hover{
 }
 
 .link_instagram:hover {
-    background-color: #2980b9;
+    background-color: #e8e7e7;
     color: #ecf0f1;
 }
 
@@ -160,7 +160,7 @@ pre:hover{
     color: #fff;
     display: inline-block;
     margin-top: 0.5rem;
-    background-color: #3498db;
+    background-color: #e8e7e7;
     border-radius: 0.3rem;
     padding: 0.5rem 1rem;
     font-weight: bold;
@@ -186,7 +186,7 @@ p:hover {
 
 /* Estilos Adicionais para Destaques */
 p span.highlight {
-    color: #3498db;
+    color: #e8e7e7;
     font-weight: 700;
     background-color: #ecf0f1;
     padding: 0.1rem 0.3rem;
