@@ -7,11 +7,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Listar clientes</title>
 </head>
 
 <body>
-    <h1>Lista de clientes</h1>
+    <h1>Listar clientes</h1>
 
     <?php
     require_once "../controle/conexao.php";

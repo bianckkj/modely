@@ -24,7 +24,11 @@ require_once '../controle/verificar_login.php'
     <main>
         <!-- Seções com animação de subida no scroll -->
         <section class="painel" data-aos="fade-up">
-        OLA MUNDO
+        <a href="listar_cliente.php">Listar Cliente</a><br><br>
+        <a href="listar_produto.php">Listar Produtos</a><br><br>
+        <a href="listar_venda.php">Listar Vendas</a><br><br>
+        <a href="listar_funcionario.php">Listar Funcionarios</a><br><br>
+        <a href="listar_usuario.php">Listar Usuarios</a>
         </section>
 
        
