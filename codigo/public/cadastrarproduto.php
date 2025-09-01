@@ -34,7 +34,7 @@
         <label for="marca">Marca:</label><br>
         <input type="text" id="marca" name="marca" maxlength="45" required><br><br>
 
-        <label for="imagem">Cor:</label><br>
+        <label for="imagem">Imagem:</label><br>
         <input type="text" id="imagem" name="imagem" maxlength="45" required><br><br>
         
         <input type="submit" value="Cadastrar">
