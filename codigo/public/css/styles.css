@@ -255,3 +255,15 @@ footer {
         height: auto;
     }
 }
+
+
+
+
+
+.imagem_home {
+    width: 100%;     /* ocupa toda a largura disponível */
+    height: auto;    /* mantém a proporção da imagem */
+    max-width: 1200px; /* opcional: define um limite máximo */
+    display: block;   /* garante comportamento de bloco */
+    margin: 0 auto;   /* centraliza a imagem */
+}

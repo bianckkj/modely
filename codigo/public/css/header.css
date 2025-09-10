@@ -43,8 +43,8 @@
 }
 
 .sidebar ul li a:hover {
-    background-color: #8d2a2a;
-    color: #a82f2f;
+    background-color: #ffffff;
+    color: #ffffff;
 }
 
 /* Botões */
@@ -52,7 +52,7 @@
     background: none;
     border: none;
     font-size: 24px;
-    color: #b81414;
+    color: #ebd5d5;
     cursor: pointer;
     position: absolute;
     top: 10px;
@@ -81,8 +81,8 @@
 /* Header */
 header {
     padding: 20px;
-    background-color: rgba(238, 5, 5, 0.1);
-    color: rgb(202, 23, 23);
+    background-color: rgba(244, 235, 235, 0.1);
+    color: rgb(233, 217, 217);
     display: flex;
     justify-content: center;
     align-items: center;

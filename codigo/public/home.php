@@ -9,6 +9,9 @@ require_once '../controle/verificar_login.php'
     <title>MODELY</title>
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="../public/css/header.css">
+    <img src="../public/assets/logo.png" alt="logo do site" id="logo">
+
+    <img src="../public/assets/imagem_home.png" class="imagem_home">
     
     <!-- Link Animate.css e AOS.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
@@ -18,22 +21,13 @@ require_once '../controle/verificar_login.php'
 </head>
 
 <body>
+
+
+
 <?php
         require_once './templates/header.html'
     ?>
     <main>
-        <!-- Seções com animação de subida no scroll -->
-        <section class="painel" data-aos="fade-up">
-        <a href="listar_cliente.php">Listar Cliente</a><br><br>
-        <a href="listar_produto.php">Listar Produtos</a><br><br>
-        <a href="listar_venda.php">Listar Vendas</a><br><br>
-        <a href="listar_funcionario.php">Listar Funcionarios</a><br><br>
-        <a href="listar_usuario.php">Listar Usuarios</a>
-        </section>
-
-       
-
-    
 
 
     </main>

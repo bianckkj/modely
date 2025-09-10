@@ -18,6 +18,8 @@ if (isset($_SESSION['logado'])) {
 </head>
 
 <body>
+    <img src="../public/logo.png" alt="logo do site" id="logo">
+    
     <h2>Login</h2>
     <form action="../controle/login.php" method="post">
         E-mail: <br>
