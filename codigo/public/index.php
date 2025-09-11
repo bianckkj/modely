@@ -1,9 +1,4 @@
-<?php
-session_start();
-if (isset($_SESSION['logado'])) {
-    header("Location: home.php");
-}
-?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -13,22 +8,23 @@ if (isset($_SESSION['logado'])) {
     <title>Pagina login</title>
     <link rel="stylesheet" href="../public/css/styles_form.css">
     <link rel="shortcut icon" href="./assets/download.png" type="image/png">
+    <img src="../public/assets/logo.png" alt="logo do site" id="logo">
 
 
 </head>
 
 <body>
-    <img src="../public/logo.png" alt="logo do site" id="logo">
+
     
     <h2>Login</h2>
-    <form action="../controle/login.php" method="post">
+    <form action= "../controle/verificar_login.php" method="post">
         E-mail: <br>
         <input type="email" name="email"> <br><br>
         Senha: <br>
         <input type="password" name="senha"> <br><br>
         <div class="oxe">
             <input type="submit" value="Acessar">
-            <a href="cadastro_usuario.php" class="cadastrar">Cadastrar</a>
+            <a href="cadastrar_usuario.php" class="cadastrar">Cadastrar</a>
         </div>
 
     </form>

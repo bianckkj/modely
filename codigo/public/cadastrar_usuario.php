@@ -19,23 +19,37 @@
 
 <?php require_once './templates/header.html'; ?>
 
-<form action="../controle/banco_usuario.php" method="post" class="form">
-    <p class="title">Cadastro de Usuário</p>
-    <p class="message">Preencha os dados abaixo para cadastrar um novo usuário.</p>
+<form action="../public/salvarusuario.php" method="post">
+    <h1>Cadastro de Usuário</h1>
+    <p class="message">Preencha os dados abaixo para se cadastrar</p>
 
-    <!-- Email -->
+
     <div class="flex">
         <label>
-            <input type="email" class="input" name="email" required title="Digite o email do usuário">
-            <span>Email:</span>
+            Nome: <br>
+            <input type="text" class="input" name="nome" required title="Digite o nome do usuário">
         </label>
     </div>
 
-    <!-- Senha -->
     <div class="flex">
         <label>
+            Email: <br>
+            <input type="email" class="input" name="email" required title="Digite o email do usuário">
+        </label>
+    </div>
+
+
+    <div class="flex">
+        <label>
+            Senha: <br>
             <input type="password" class="input" name="senha" required title="Escolha uma senha segura para o usuário">
-            <span>Senha:</span>
+        </label>
+    </div>
+
+    <div class="flex">
+        <label>
+            Endereço: <br>
+            <input type="text" class="input" name="endereco" required title="Digite o endereço do usuário">
         </label>
     </div>
 
