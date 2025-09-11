@@ -67,7 +67,7 @@
             echo "<td>$salario</td>";
             echo "<td>$endereco</td>";
             echo "<td><a href='formCliente.php?id=$id_funcionario'>Editar</a></td>";
-            echo "<td><a href='../controle/deletar_cliente.php?id=$id_funcionario'>Excluir</a></td>";
+            echo "<td><a href='../controle/deletarfuncionario.php?id=$id_funcionario'>Excluir</a></td>";
             echo "</tr>";
         }
     }

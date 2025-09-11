@@ -5,7 +5,7 @@
     $id = $_GET['id'];
 
     if (deletarCliente($conexao, $id)) {
-        header("Location: ../public/listarClientes.php");
+        header("Location: ../public/listar_Clientes.php");
     }
     else {
         header("Location: home.php");
