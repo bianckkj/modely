@@ -61,7 +61,7 @@
             echo "<td>$data</td>";
             echo "<td>$comissao</td>";
             echo "<td><a href='formCliente.php?id=$id_vendas'>Editar</a></td>";
-            echo "<td><a href='../controle/deletar/deletar_cliente.php?id=$id_vendas'>Excluir</a></td>";
+            echo "<td><a href='../controle/deletarvenda.php?id=$id_vendas'>Excluir</a></td>";
             echo "</tr>";
         }
     }
