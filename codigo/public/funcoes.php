@@ -411,4 +411,46 @@ function loginUsuario($conexao, $email, $senha) {
     return password_verify($senha, $senhaHash);
 }
 
+function pegarDadosUsuario($conexao, $id_usuario) {
+    $sql = "SELECT nome FROM tb_usuario WHERE id_usuario = ?";
+
+    $comando = mysqli_prepare($conexao, $sql);
+    mysqli_stmt_bind_param($comando, $id_usuario);
+
+    mysqli_stmt_execute($comando);
+    $resultado = mysqli_stmt_get_result($comando);
+    $quantidade = mysqli_num_rows($resultado);
+    
+    if ($quantidade != 0) {
+        $usuario = mysqli_fetch_assoc($resultado);
+        return $usuario;
+    }
+    else {
+        return 0;
+    }
+}
+
+function verificarLogin($conexao, $email, $senha) {
+    $sql = "SELECT * FROM tb_usuario WHERE email = ?";
+
+    $comando = mysqli_prepare($conexao, $sql);
+    mysqli_stmt_bind_param($comando, 's', $email);
+
+    mysqli_stmt_execute($comando);
+    
+    $resultado = mysqli_stmt_get_result($comando);
+    $quantidade = mysqli_num_rows($resultado);
+    
+    $iduser = 0;
+    if ($quantidade != 0) {
+        $usuario = mysqli_fetch_assoc($resultado);
+        $senha_banco = $usuario['senha'];
+
+        if (password_verify($senha, $senha_banco)) {
+            $iduser = $usuario['id_usuario'];
+        }
+    }
+    return $iduser;
+}
+
 ?>
