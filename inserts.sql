@@ -1,47 +1,85 @@
--- Inserindo clientes
+-- ==============================
+-- Tabela: tb_cliente
+-- ==============================
 INSERT INTO tb_cliente (nome, cpf, telefone, email, endereco) VALUES
-('Bianca Oliveira', '123.456.789-00', '(11) 99999-1111', 'bianca@email.com', 'Rua das Flores, 100'),
-('Marcos Silva', '987.654.321-00', '(11) 98888-2222', 'marcos@email.com', 'Av. Paulista, 200'),
-('Ana Costa', '111.222.333-44', '(11) 97777-3333', 'ana@email.com', 'Rua Central, 300');
+('Bianca Oliveira', '111.111.111-11', '(11) 99999-1111', 'bianca@email.com', 'Rua das Flores, 100'),
+('Marcos Silva', '222.222.222-22', '(11) 98888-2222', 'marcos@email.com', 'Av. Paulista, 200'),
+('Ana Souza', '333.333.333-33', '(21) 97777-3333', 'ana@email.com', 'Rua do Sol, 50'),
+('Carlos Mendes', '444.444.444-44', '(31) 96666-4444', 'carlos@email.com', 'Rua Minas, 123'),
+('Julia Santos', '555.555.555-55', '(41) 95555-5555', 'julia@email.com', 'Av. Brasil, 1500');
 
--- Inserindo funcionários
-INSERT INTO tb_funcionario (nome, cpf, email, telefone, data_nascimento, cargo, carga_horaria, salario, endereco) VALUES
-('João Santos', '555.666.777-88', 'joao@email.com', '(11) 96666-4444', '1990-05-10', 'Vendedor', 44.00, 2500.00, 'Rua A, 10'),
-('Carla Pereira', '999.888.777-66', 'carla@email.com', '(11) 95555-5555', '1988-03-22', 'Gerente', 44.00, 4500.00, 'Rua B, 20');
+-- ==============================
+-- Tabela: tb_funcionario
+-- ==============================
+INSERT INTO tb_funcionario (cpf, email, telefone, data_nascimento, carga_horaria, salario, endereco) VALUES
+('666.666.666-66', 'func1@email.com', '(11) 91111-6666', '1990-05-10', 8, 2500.00, 'Rua Verde, 10'),
+('777.777.777-77', 'func2@email.com', '(11) 92222-7777', '1985-09-12', 8, 3000.00, 'Rua Azul, 20'),
+('888.888.888-88', 'func3@email.com', '(21) 93333-8888', '1992-11-25', 6, 1800.00, 'Rua Amarela, 30'),
+('999.999.999-99', 'func4@email.com', '(31) 94444-9999', '1995-01-05', 8, 2200.00, 'Rua Preta, 40'),
+('101.010.101-01', 'func5@email.com', '(41) 95555-1010', '1980-07-18', 4, 1500.00, 'Rua Branca, 50');
 
--- Inserindo produtos
+-- ==============================
+-- Tabela: tb_usuario
+-- ==============================
+INSERT INTO tb_usuario (nome, senha, email, endereco, tipo) VALUES
+('Admin', '123456', 'admin@email.com', 'Av. Central, 1', 'A'),
+('Cliente1', 'senha1', 'cli1@email.com', 'Rua A, 2', 'C'),
+('Cliente2', 'senha2', 'cli2@email.com', 'Rua B, 3', 'C'),
+('Funcionario1', 'senha3', 'func1@email.com', 'Rua C, 4', 'F'),
+('Funcionario2', 'senha4', 'func2@email.com', 'Rua D, 5', 'F');
+
+-- ==============================
+-- Tabela: tb_produto
+-- ==============================
 INSERT INTO tb_produto (quantidade, material, preco, modelo, cor, tamanho, marca, imagem) VALUES
-(50, 'Algodão', 79.90, 'Camiseta Básica', 'Preta', 'M', 'Modely', 'img/camiseta_preta.jpg'),
-(30, 'Jeans', 129.90, 'Calça Skinny', 'Azul', '38', 'Modely', 'img/calca_jeans.jpg'),
-(20, 'Couro Sintético', 199.90, 'Jaqueta', 'Marrom', 'G', 'Modely', 'img/jaqueta.jpg');
+(50, 'Algodão', 79.90, 'Camiseta Básica', 'Preta', 'M', 'Modely', 'camiseta_preta.jpg'),
+(30, 'Jeans', 129.90, 'Calça Skinny', 'Azul', '42', 'Modely', 'calca_jeans.jpg'),
+(20, 'Couro', 199.90, 'Jaqueta', 'Marrom', 'G', 'Modely', 'jaqueta.jpg'),
+(100, 'Poliéster', 59.90, 'Short Esportivo', 'Cinza', 'M', 'Modely', 'short.jpg'),
+(15, 'Lã', 249.90, 'Blusa de Frio', 'Vermelha', 'P', 'Modely', 'blusa_frio.jpg');
 
--- Inserindo usuários (exemplo: clientes com login)
-INSERT INTO tb_usuario (nome, senha, email, endereco) VALUES
-('Bianca Oliveira', '12345', 'bianca@email.com', 'Rua das Flores, 100'),
-('Marcos Silva', '12345', 'marcos@email.com', 'Av. Paulista, 200');
+-- ==============================
+-- Tabela: tb_agendamento
+-- ==============================
+INSERT INTO tb_agendamento (id_cliente, data, horario, status) VALUES
+(1, '2025-09-20', '10:00:00', 'Confirmado'),
+(2, '2025-09-21', '11:00:00', 'Pendente'),
+(3, '2025-09-22', '15:00:00', 'Cancelado'),
+(4, '2025-09-23', '09:30:00', 'Confirmado'),
+(5, '2025-09-24', '14:00:00', 'Confirmado');
 
--- Inserindo carrinho para clientes
+-- ==============================
+-- Tabela: tb_carrinho
+-- ==============================
 INSERT INTO tb_carrinho (id_cliente) VALUES
-(1), (2);
+(1), (2), (3), (4), (5);
 
--- Inserindo itens no carrinho
+-- ==============================
+-- Tabela: tb_itens_carrinho
+-- ==============================
 INSERT INTO tb_itens_carrinho (id_carrinho, id_produto, quantidade) VALUES
-(1, 1, 2), -- Cliente 1 comprando 2 camisetas
-(1, 2, 1), -- Cliente 1 comprando 1 calça
-(2, 3, 1); -- Cliente 2 comprando 1 jaqueta
+(1, 1, 1),
+(2, 2, 2),
+(3, 3, 1),
+(4, 4, 2),
+(5, 5, 1);
 
--- Inserindo agendamento
-INSERT INTO tb_agendamento (id_cliente, data_hora, status) VALUES
-(1, '2025-08-30 14:00:00', 'Confirmado'),
-(2, '2025-08-31 10:30:00', 'Pendente');
+-- ==============================
+-- Tabela: tb_vendas
+-- ==============================
+INSERT INTO tb_vendas (id_cliente, id_funcionario, horario, data, comissao) VALUES
+(1, 1, '14:00:00', '2025-09-10', 50.00),
+(2, 2, '15:30:00', '2025-09-11', 30.00),
+(3, 3, '16:00:00', '2025-09-12', 40.00),
+(4, 4, '17:00:00', '2025-09-13', 25.00),
+(5, 5, '18:00:00', '2025-09-14', 60.00);
 
--- Inserindo vendas
-INSERT INTO tb_vendas (id_cliente, id_funcionario, data_hora, comissao) VALUES
-(1, 1, '2025-08-27 15:00:00', 25.00),
-(2, 2, '2025-08-27 16:00:00', 50.00);
-
--- Inserindo itens das vendas
+-- ==============================
+-- Tabela: tb_itens_vendas
+-- ==============================
 INSERT INTO tb_itens_vendas (id_vendas, id_produto, quantidade) VALUES
-(1, 1, 2), -- Venda 1: 2 camisetas
-(1, 2, 1), -- Venda 1: 1 calça
-(2, 3, 1); -- Venda 2: 1 jaqueta
+(1, 1, 2),
+(1, 2, 1),
+(2, 3, 1),
+(3, 4, 3),
+(4, 5, 1);

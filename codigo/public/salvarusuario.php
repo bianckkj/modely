@@ -11,7 +11,7 @@ $endereco = $_POST['endereco'];
 
 $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
-$sql = "INSERT INTO tb_usuario (nome, email, senha, endereco) VALUES ('$nome', '$email', '$senha_hash', '$endereco')";
+$sql = "INSERT INTO tb_usuario (nome, email, senha, endereco, tipo) VALUES ('$nome', '$email', '$senha_hash', '$endereco', 'c')";
 
 mysqli_query($conexao, $sql);
 
