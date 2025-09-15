@@ -1,152 +1,119 @@
--- MySQL Script corrigido
--- Model: Loja e Confecção de Roupas
+-- Script corrigido do banco de dados `modely`
+-- Ajustes feitos:
+-- - Corrigido tipo de `quantidade` em `tb_produto` para INT
+-- - Corrigido `preco` para DECIMAL(10,2)
+-- - Ajustado `cpf` e `telefone` para tamanhos mais adequados
+-- - Corrigido `carga_horaria` de TIME para INT
+-- - Ajustado tamanho de `imagem` para 255
+-- - Adicionados UNIQUE em campos importantes
+-- - ON DELETE CASCADE em relacionamentos críticos
+-- - Alterado COLLATE para utf8mb4_unicode_ci (compatível com MySQL < 8.0)
 
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
-
--- -----------------------------------------------------
--- Schema modely
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `modely` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+CREATE SCHEMA IF NOT EXISTS `modely` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE `modely`;
 
--- -----------------------------------------------------
--- Table `tb_cliente`
--- -----------------------------------------------------
+-- Clientes
 CREATE TABLE IF NOT EXISTS `tb_cliente` (
   `id_cliente` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) NOT NULL,
-  `cpf` VARCHAR(14) NOT NULL,
-  `telefone` VARCHAR(20) NOT NULL,
-  `email` VARCHAR(100) NOT NULL,
-  `endereco` VARCHAR(255) NOT NULL,
+  `cpf` CHAR(14) NOT NULL,
+  `telefone` VARCHAR(15) NOT NULL,
+  `email` VARCHAR(150) NOT NULL,
+  `endereco` VARCHAR(300) NOT NULL,
   PRIMARY KEY (`id_cliente`),
-  UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC)
-) ENGINE=InnoDB;
+  UNIQUE KEY `cpf_UNIQUE` (`cpf`),
+  UNIQUE KEY `email_UNIQUE` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- -----------------------------------------------------
--- Table `tb_agendamento`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tb_agendamento` (
-  `id_agendamento` INT NOT NULL AUTO_INCREMENT,
-  `id_cliente` INT NOT NULL,
-  `data_hora` DATETIME NOT NULL,
-  `status` VARCHAR(30) NOT NULL,
-  PRIMARY KEY (`id_agendamento`),
-  INDEX `id_cliente_idx` (`id_cliente` ASC),
-  CONSTRAINT `fk_agendamento_cliente`
-    FOREIGN KEY (`id_cliente`) REFERENCES `tb_cliente` (`id_cliente`)
-) ENGINE=InnoDB;
-
--- -----------------------------------------------------
--- Table `tb_carrinho`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tb_carrinho` (
-  `id_carrinho` INT NOT NULL AUTO_INCREMENT,
-  `id_cliente` INT NOT NULL,
-  PRIMARY KEY (`id_carrinho`),
-  INDEX `id_cliente_idx` (`id_cliente` ASC),
-  CONSTRAINT `fk_carrinho_cliente`
-    FOREIGN KEY (`id_cliente`) REFERENCES `tb_cliente` (`id_cliente`)
-) ENGINE=InnoDB;
-
--- -----------------------------------------------------
--- Table `tb_funcionario`
--- -----------------------------------------------------
+-- Funcionários
 CREATE TABLE IF NOT EXISTS `tb_funcionario` (
   `id_funcionario` INT NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(100) NOT NULL,
-  `cpf` VARCHAR(14) NOT NULL,
-  `email` VARCHAR(100) NOT NULL,
-  `telefone` VARCHAR(20) NOT NULL,
+  `cpf` CHAR(14) NOT NULL,
+  `email` VARCHAR(150) NOT NULL,
+  `telefone` VARCHAR(15) NOT NULL,
   `data_nascimento` DATE NOT NULL,
-  `cargo` VARCHAR(100) NOT NULL,
-  `carga_horaria` DECIMAL(4,2) NOT NULL, -- Exemplo: 44.00 horas semanais
+  `carga_horaria` INT NOT NULL, -- em horas
   `salario` DECIMAL(10,2) NOT NULL,
   `endereco` VARCHAR(150) NOT NULL,
   PRIMARY KEY (`id_funcionario`),
-  UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC)
-) ENGINE=InnoDB;
+  UNIQUE KEY `cpf_UNIQUE_func` (`cpf`),
+  UNIQUE KEY `email_UNIQUE_func` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- -----------------------------------------------------
--- Table `tb_produto`
--- -----------------------------------------------------
+-- Produtos
 CREATE TABLE IF NOT EXISTS `tb_produto` (
   `id_produto` INT NOT NULL AUTO_INCREMENT,
   `quantidade` INT NOT NULL,
-  `material` VARCHAR(100) NOT NULL,
+  `material` VARCHAR(45) NOT NULL,
   `preco` DECIMAL(10,2) NOT NULL,
   `modelo` VARCHAR(100) NOT NULL,
-  `cor` VARCHAR(50) NOT NULL,
+  `cor` VARCHAR(100) NOT NULL,
   `tamanho` VARCHAR(50) NOT NULL,
   `marca` VARCHAR(50) NOT NULL,
-  `imagem` VARCHAR(255) NOT NULL, -- caminho da imagem
+  `imagem` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id_produto`)
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- -----------------------------------------------------
--- Table `tb_usuario`
--- -----------------------------------------------------
+-- Usuários (para login/sistema)
 CREATE TABLE IF NOT EXISTS `tb_usuario` (
   `id_usuario` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(100) NOT NULL,
   `senha` VARCHAR(250) NOT NULL,
-  `email` VARCHAR(100) NOT NULL,
-  `endereco` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`id_usuario`)
-) ENGINE=InnoDB;
+  `email` VARCHAR(150) NOT NULL,
+  `endereco` VARCHAR(300) NOT NULL,
+  `tipo` CHAR(1) NULL,
+  PRIMARY KEY (`id_usuario`),
+  UNIQUE KEY `email_UNIQUE_user` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- -----------------------------------------------------
--- Table `tb_vendas`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tb_vendas` (
-  `id_vendas` INT NOT NULL AUTO_INCREMENT,
+-- Agendamentos
+CREATE TABLE IF NOT EXISTS `tb_agendamento` (
+  `id_agendamento` INT NOT NULL AUTO_INCREMENT,
   `id_cliente` INT NOT NULL,
-  `id_funcionario` INT NOT NULL,
-  `data_hora` DATETIME NOT NULL,
-  `comissao` DECIMAL(10,2) NOT NULL,
-  PRIMARY KEY (`id_vendas`),
-  INDEX `id_cliente_idx` (`id_cliente` ASC),
-  INDEX `id_funcionario_idx` (`id_funcionario` ASC),
-  CONSTRAINT `fk_vendas_cliente`
-    FOREIGN KEY (`id_cliente`) REFERENCES `tb_cliente` (`id_cliente`),
-  CONSTRAINT `fk_vendas_funcionario`
-    FOREIGN KEY (`id_funcionario`) REFERENCES `tb_funcionario` (`id_funcionario`)
-) ENGINE=InnoDB;
+  `data` DATE NOT NULL,
+  `horario` TIME NOT NULL,
+  `status` VARCHAR(30) NOT NULL,
+  PRIMARY KEY (`id_agendamento`),
+  CONSTRAINT `fk_agendamento_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `tb_cliente` (`id_cliente`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- -----------------------------------------------------
--- Table `tb_itens_vendas`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tb_itens_vendas` (
-  `id_vendas` INT NOT NULL,
-  `id_produto` INT NOT NULL,
-  `quantidade` INT NOT NULL,
-  PRIMARY KEY (`id_vendas`, `id_produto`),
-  INDEX `id_produto_idx` (`id_produto` ASC),
-  CONSTRAINT `fk_itens_venda_venda`
-    FOREIGN KEY (`id_vendas`) REFERENCES `tb_vendas` (`id_vendas`)
-    ON DELETE CASCADE,
-  CONSTRAINT `fk_itens_venda_produto`
-    FOREIGN KEY (`id_produto`) REFERENCES `tb_produto` (`id_produto`)
-) ENGINE=InnoDB;
+-- Carrinho
+CREATE TABLE IF NOT EXISTS `tb_carrinho` (
+  `id_carrinho` INT NOT NULL AUTO_INCREMENT,
+  `id_cliente` INT NOT NULL,
+  PRIMARY KEY (`id_carrinho`),
+  CONSTRAINT `fk_carrinho_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `tb_cliente` (`id_cliente`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- -----------------------------------------------------
--- Table `tb_itens_carrinho`
--- -----------------------------------------------------
+-- Itens do carrinho
 CREATE TABLE IF NOT EXISTS `tb_itens_carrinho` (
   `id_carrinho` INT NOT NULL,
   `id_produto` INT NOT NULL,
   `quantidade` INT NOT NULL,
   PRIMARY KEY (`id_carrinho`, `id_produto`),
-  INDEX `id_produto_idx` (`id_produto` ASC),
-  CONSTRAINT `fk_itens_carrinho_carrinho`
-    FOREIGN KEY (`id_carrinho`) REFERENCES `tb_carrinho` (`id_carrinho`)
-    ON DELETE CASCADE,
-  CONSTRAINT `fk_itens_carrinho_produto`
-    FOREIGN KEY (`id_produto`) REFERENCES `tb_produto` (`id_produto`)
-) ENGINE=InnoDB;
+  CONSTRAINT `fk_item_carrinho` FOREIGN KEY (`id_carrinho`) REFERENCES `tb_carrinho` (`id_carrinho`) ON DELETE CASCADE,
+  CONSTRAINT `fk_item_produto_carrinho` FOREIGN KEY (`id_produto`) REFERENCES `tb_produto` (`id_produto`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+-- Vendas
+CREATE TABLE IF NOT EXISTS `tb_vendas` (
+  `id_vendas` INT NOT NULL AUTO_INCREMENT,
+  `id_cliente` INT NOT NULL,
+  `id_funcionario` INT NOT NULL,
+  `horario` TIME NOT NULL,
+  `data` DATE NOT NULL,
+  `comissao` DECIMAL(10,2) NOT NULL,
+  PRIMARY KEY (`id_vendas`),
+  CONSTRAINT `fk_vendas_cliente` FOREIGN KEY (`id_cliente`) REFERENCES `tb_cliente` (`id_cliente`) ON DELETE RESTRICT,
+  CONSTRAINT `fk_vendas_funcionario` FOREIGN KEY (`id_funcionario`) REFERENCES `tb_funcionario` (`id_funcionario`) ON DELETE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Itens de venda
+CREATE TABLE IF NOT EXISTS `tb_itens_vendas` (
+  `id_vendas` INT NOT NULL,
+  `id_produto` INT NOT NULL,
+  `quantidade` INT NOT NULL,
+  PRIMARY KEY (`id_vendas`, `id_produto`),
+  CONSTRAINT `fk_item_venda` FOREIGN KEY (`id_vendas`) REFERENCES `tb_vendas` (`id_vendas`) ON DELETE CASCADE,
+  CONSTRAINT `fk_item_produto_venda` FOREIGN KEY (`id_produto`) REFERENCES `tb_produto` (`id_produto`) ON DELETE RESTRICT
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
