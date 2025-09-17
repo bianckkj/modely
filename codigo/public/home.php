@@ -9,9 +9,7 @@ require_once '../controle/verificar_login.php'
     <title>MODELY</title>
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="../public/css/header.css">
-    <img src="../public/assets/logo.png" alt="logo do site" id="logo">
-
-    <img src="../public/assets/imagem_home.png" class="imagem_home">
+    
     
     <!-- Link Animate.css e AOS.css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
@@ -21,11 +19,24 @@ require_once '../controle/verificar_login.php'
 </head>
 
 <body>
+<img src="../public/assets/logo.png" alt="logo do site" id="logo">
 
+
+
+
+<nav class="categories">
+    <a href="#">DESCONTOS</a>
+    <a href="#">FEMININO</a>
+    <a href="#">MASCULINO</a>
+    <a href="#">NOVIDADES</a>
+</nav>
+<br><br>
+
+<img src="../public/assets/imagem_home.png" class="imagem_home">
 
 
 <?php
-        require_once './templates/header.html'
+        require_once '../public/templates/header.html'
     ?>
     <main>
 

@@ -261,9 +261,31 @@ footer {
 
 
 .imagem_home {
-    width: 1500px;     /* ocupa toda a largura disponível */
-    height: auto;    /* mantém a proporção da imagem */
-    max-width: 1200px; /* opcional: define um limite máximo */
-    display: block;   /* garante comportamento de bloco */
-    margin: 0 auto;   /* centraliza a imagem */
+    width: 100%;       /* imagem vai ocupar 100% da largura */
+    height: auto;      /* mantém a proporção */
+    display: block; 
+}
+
+
+
+
+/*tela da home*/
+.categories {
+    background: #e8e7e7;       /* fundo cinza claro */
+    display: flex;             /* coloca os itens lado a lado */
+    justify-content: center;   /* centraliza horizontalmente */
+    gap: 40px;                 /* espaço entre os links */
+    padding: 12px 0;           /* espaço em cima e embaixo */
+}
+
+.categories a {
+    text-decoration: none;     /* tira o sublinhado */
+    font-weight: bold;         /* deixa em negrito */
+    color: #333;               /* cor do texto */
+    font-size: 20px;
+    transition: color 0.3s;    /* animação suave na cor */
+}
+
+.categories a:hover {
+    color: black;              /* muda a cor no hover */
 }
