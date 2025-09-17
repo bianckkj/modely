@@ -53,6 +53,10 @@
 
     <h1>Listar clientes</h1>
 
+<div class="form-pesquisa">
+        <input type="text" placeholder="Pesquisar...">
+        <button>Buscar</button>
+    </div> <br>
 
     <?php
     require_once "../controle/conexao.php";
