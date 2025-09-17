@@ -415,7 +415,7 @@ function pegarDadosUsuario($conexao, $id_usuario) {
     $sql = "SELECT nome FROM tb_usuario WHERE id_usuario = ?";
 
     $comando = mysqli_prepare($conexao, $sql);
-    mysqli_stmt_bind_param($comando, $id_usuario);
+    mysqli_stmt_bind_param($comando,'i', $id);
 
     mysqli_stmt_execute($comando);
     $resultado = mysqli_stmt_get_result($comando);
