@@ -1,4 +1,35 @@
 <?php
+    if (isset($_GET['id'])) {
+        // echo "editar";
+        
+        require_once "../controle/conexao.php";
+        require_once "../public/funcoes.php";
+
+        $id = $_GET['id'];
+        
+        $cliente = pesquisarCliente($conexao, $id);
+        $nome = $cliente['nome'];
+        $cpf = $cliente['cpf'];
+        $telefone = $cliente['telefone'];
+        $email = $cliente['email'];
+        $endereco = $cliente['endereco'];
+
+        $botao = "Atualizar";
+    }
+    else {
+        // echo "novo";
+        $id = 0;
+        $nome = "";
+        $cpf = "";
+        $telefone = "";
+        $email = "";
+        $endereco = "";
+
+        $botao = "Cadastrar";
+    }
+?>
+
+<?php
     require_once '../controle/verificar_login.php';
 ?>
 <!DOCTYPE html>
@@ -22,7 +53,6 @@
 
     <h1>Listar clientes</h1>
 
-    
 
     <?php
     require_once "../controle/conexao.php";

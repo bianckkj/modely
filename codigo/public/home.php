@@ -30,7 +30,7 @@ require_once '../controle/verificar_login.php'
     <a href="#">MASCULINO</a>
     <a href="#">NOVIDADES</a>
 </nav>
-<br><br>
+<br>
 
 <img src="../public/assets/imagem_home.png" class="imagem_home">
 
