@@ -57,8 +57,8 @@
             echo "<td>$senha</td>";
             echo "<td>$email</td>";
             echo "<td>$endereco</td>";
-            echo "<td><a href='formCliente.php?id=$id_usuario'>Editar</a></td>";
-            echo "<td><a href='../controle/deletar/deletar_cliente.php?id=$id_usuario'>Excluir</a></td>";
+            echo "<td><a href='cadastrarusuario.php?id=$id_usuario'>Editar</a></td>";
+            echo "<td><a href='../controle/deletarusuario.php?id=$id_usuario'>Excluir</a></td>";
             echo "</tr>";
         }
     }
