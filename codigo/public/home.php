@@ -35,6 +35,55 @@ require_once '../controle/verificar_login.php'
 <img src="../public/assets/imagem_home.png" class="imagem_home">
 
 
+  <div class="vitrine">
+    <div class="produto">
+      <img src="../public/assets/vestidorosa.png" alt="Vestido Le Lis Lise Seda Feminino">
+      <div class="marca">LE LIS</div>
+      <div class="titulo">Vestido Le Lis Katia | Feminino</div>
+      <div class="preco-antigo">R$ 989,90</div>
+      <div class="preco">R$ 296,97</div>
+      <div class="desconto">-70%</div>
+    </div>
+
+    <div class="produto">
+      <img src="../public/assets/vestidorosaxdrez.png" alt="Vestido Le Lis Kim Midi Feminina">
+      <div class="marca">LE LIS</div>
+      <div class="titulo">Vestido Le Lis Donatela Feminino</div>
+      <div class="preco-antigo">R$ 1.980,00</div>
+      <div class="preco">R$ 594,00</div>
+      <div class="desconto">-70%</div>
+    </div>
+
+    <div class="produto">
+      <img src="../public/assets/vestidoflor.png" alt="Vestido Le Lis Juju Seda Midi Feminino">
+      <div class="marca">LE LIS</div>
+      <div class="titulo">Vestido Le Lis Regata Leila Longo</div>
+      <div class="preco-antigo">R$ 789,90</div>
+      <div class="preco">R$ 315,96</div>
+      <div class="desconto">-60%</div>
+    </div>
+
+    <div class="produto">
+      <img src="../public/assets/vestidoverde.png" alt="Vestido Le Lis Caroline Midi Feminino">
+      <div class="marca">LE LIS</div>
+      <div class="titulo">Vestido Le Lis Midi Floral</div>
+      <div class="preco-antigo">R$ 699,90</div>
+      <div class="preco">R$ 279,96</div>
+      <div class="desconto">-60%</div>
+    </div>
+
+    <div class="produto">
+      <img src="../public/assets/oncaverde.png" alt="Chemise Le Lis Eve Seda Midi Feminina">
+      <div class="marca">LE LIS</div>
+      <div class="titulo">Vestido Le Lis Longo Azul</div>
+      <div class="preco-antigo">R$ 1.199,90</div>
+      <div class="preco">R$ 479,96</div>
+      <div class="desconto">-60%</div>
+    </div>
+  </div>
+
+
+
 <?php
         require_once '../public/templates/header.html'
     ?>
