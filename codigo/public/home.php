@@ -19,6 +19,9 @@ require_once '../controle/verificar_login.php'
 </head>
 
 <body>
+
+
+
 <img src="../public/assets/logo.png" alt="logo do site" id="logo">
 
 
@@ -101,5 +104,10 @@ require_once '../controle/verificar_login.php'
         once: false
       });
     </script>
+
+    <form action="../controle/deslogar.php" method="post">
+        <button type="submit" class="btn-logout">Deslogar</button>
+    </form>    
+
 </body>
 </html>
