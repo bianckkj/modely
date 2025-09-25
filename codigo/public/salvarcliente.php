@@ -10,5 +10,5 @@ $sql = "INSERT INTO tb_cliente (nome, cpf, telefone, email, endereco) VALUES ('$
 
 mysqli_query($conexao, $sql);
 
-header("Location: home.html");
+header("Location: home.php");
 ?>

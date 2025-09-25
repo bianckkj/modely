@@ -1,3 +1,41 @@
+<?php
+
+if (isset($_GET['id'])) {
+    // echo "editar...";
+
+    $id = $_GET['id'];
+
+    require_once "../controle/conexao.php";
+    $sql = "SELECT * FROM tb_cliente WHERE id_cliente = ?";
+    $comando = mysqli_prepare($conexao, $sql);
+
+    mysqli_stmt_bind_param($comando, "i", $id);
+    mysqli_stmt_execute($comando);
+
+    $resultados = mysqli_stmt_get_result($comando);
+
+    $cliente = mysqli_fetch_assoc($resultados);
+
+    $nome = $cliente['nome'];
+    $cpf = $cliente['cpf'];
+    $telefone = $cliente['telefone'];
+    $email = $cliente['email'];
+    $endereco = $cliente['endereco'];
+
+
+    mysqli_stmt_close($comando);
+}
+else {
+    // echo "novo...";
+
+    $id = 0;
+    $nome = "";
+    $endereco = "";
+    $email = "";
+    $nascimento = "";
+}
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

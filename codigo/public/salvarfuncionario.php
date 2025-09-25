@@ -14,5 +14,5 @@ $sql = "INSERT INTO tb_funcionario (nome, cpf, email, telefone, data_nascimento,
 
 mysqli_query($conexao, $sql);
 
-header("Location: home.html");
+header("Location: home.php");
 ?>
