@@ -34,7 +34,7 @@
             <tr>
                 <td>Id</td>
                 <td>Nome</td>
-                <td>Senha</td>
+
                 <td>Email</td>
                 <td>Endereço</td>
                 <td colspan="2">Ação</td>
@@ -44,14 +44,14 @@
         foreach ($lista_usuarios as $usuario) {
             $id_usuario = $usuario['id_usuario'];
             $nome = $usuario['nome'];
-            $senha = $usuario['senha'];
+
             $email = $usuario['email'];
             $endereco = $usuario['endereco'];
 
             echo "<tr>";
             echo "<td>$id_usuario</td>";
             echo "<td>$nome</td>";
-            echo "<td>$senha</td>";
+
             echo "<td>$email</td>";
             echo "<td>$endereco</td>";
             echo "<td><a href='cadastrarusuario.php?id=$id_usuario'>Editar</a></td>";
