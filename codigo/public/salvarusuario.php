@@ -15,5 +15,5 @@ $sql = "INSERT INTO tb_usuario (nome, email, senha, endereco, tipo) VALUES ('$no
 
 mysqli_query($conexao, $sql);
 
-header("Location: ../public/home.php");
+header("Location: ../public/index.php");
 ?>

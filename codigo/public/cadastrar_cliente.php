@@ -57,7 +57,7 @@ else {
     <h2>Cadastro de Cliente</h2>
 
     <div class="container-form">
-        <form class="form-cadastro" action="salvarcliente.php" method="GET">
+        <form class="form_client" action="salvarcliente.php" method="GET">
             
             <label for="nome">Nome:</label><br>
             <input type="text" id="nome" name="nome" maxlength="45" required><br><br>

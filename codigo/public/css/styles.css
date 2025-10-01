@@ -408,3 +408,58 @@ footer {
   display: inline-block; /* Mantém o desconto como uma "caixinha" ajustada ao texto */
   margin-top: 5px; /* Espaço de 5px acima do desconto */
 }
+
+
+
+/* imagem do canto  */
+
+    /* Container fixo no canto direito superior */
+    .icones {
+      position: fixed;
+      top: 10px;
+      right: 20px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .icones a img {
+      width: 40px;  /* tamanho dos ícones */
+      height: auto;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .icones a img:hover {
+      transform: scale(1.1);
+    }
+
+
+
+
+/*PESQUISAR*/
+.pesquisa {
+  position: fixed;
+  top: 15px;
+  left: 80px;
+}
+
+    .pesquisa input {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .pesquisa button {
+      padding: 5px 10px;
+      border: none;
+      background: #333;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .pesquisa button:hover {
+      background: #555;
+    }
+

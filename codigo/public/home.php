@@ -1,5 +1,6 @@
 <?php
-require_once '../controle/verificar_login.php'
+// require_once '../controle/verificar_login.php'
+require_once '../controle/verificarlogado.php'
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -19,6 +20,22 @@ require_once '../controle/verificar_login.php'
 </head>
 
 <body>
+  <form class="pesquisa" action="resultado.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar...">
+    <button type="submit">OK</button>
+  </form>
+
+
+<div class="icones">
+    <a href="login.html"><img src="../public/assets/foto_usuario.png" alt="Usuário"></a>
+      
+    <a href="carrinho.html"><img src="../public/assets/foto_carrinho.png" alt="Carrinho"></a>
+         
+</div>
+
+
+
+
 
 
 
