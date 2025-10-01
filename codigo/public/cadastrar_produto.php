@@ -17,31 +17,31 @@
     <?php require_once './templates/header.html'; ?>
 
     <h2>Cadastro de produtos</h2>
-    <form action="salvarproduto.php" method="GET">
+    <form action="salvarproduto.php" class="form" method="GET">
         
-        <label for="quantidade">Quantidade:</label><br>
-        <input type="text" id="quantidade" name="quantidade" maxlength="45" required><br><br>
+        Quantidade:<br>
+        <input type="text" id="quantidade" name="quantidade"><br><br>
         
-        <label for="material">Material:</label><br>
-        <input type="text" id="material" name="material" maxlength="45" required><br><br>
+        Material:<br>
+        <input type="text" id="material" name="material" ><br><br>
         
-        <label for="preco">Preço:</label><br>
-        <input type="decimal" id="preco" name="preco" maxlength="45" required><br><br>
+        Preço:<br>
+        <input type="decimal" id="preco" name="preco" ><br><br>
         
-        <label for="modelo">Modelo:</label><br>
-        <input type="text" id="modelo" name="modelo" maxlength="45" required><br><br>
+        Modelo:<br>
+        <input type="text" id="modelo" name="modelo" ><br><br>
         
-        <label for="cor">Cor:</label><br>
-        <input type="text" id="cor" name="cor" maxlength="45" required><br><br>
+        Cor:<br>
+        <input type="text" id="cor" name="cor" ><br><br>
 
-        <label for="tamanho">Tamanho:</label><br>
-        <input type="text" id="tamanho" name="tamanho" maxlength="45" required><br><br>
+        Tamanho:<br>
+        <input type="text" id="tamanho" name="tamanho" ><br><br>
 
-        <label for="marca">Marca:</label><br>
-        <input type="text" id="marca" name="marca" maxlength="45" required><br><br>
+        Marca:<br>
+        <input type="text" id="marca" name="marca" ><br><br>
 
-        <label for="imagem">Imagem:</label><br>
-        <input type="text" id="imagem" name="imagem" maxlength="45" required><br><br>
+        Imagem:<br>
+        <input type="text" id="imagem" name="imagem"><br><br>
         
         <input type="submit" value="Cadastrar">
     </form>

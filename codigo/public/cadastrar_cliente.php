@@ -57,22 +57,22 @@ else {
     <h2>Cadastro de Cliente</h2>
 
     <div class="container-form">
-        <form class="form_client" action="salvarcliente.php" method="GET">
+        <form class="form" action="salvarcliente.php" method="GET">
             
-            <label for="nome">Nome:</label><br>
-            <input type="text" id="nome" name="nome" maxlength="45" required><br><br>
+            Nome:<br>
+            <input type="text" id="nome" name="nome" ><br><br>
             
-            <label for="cpf">CPF:</label><br>
-            <input type="text" id="cpf" name="cpf" maxlength="45" required><br><br>
+            CPF:<br>
+            <input type="text" id="cpf" name="cpf" ><br><br>
             
-            <label for="telefone">Telefone:</label><br>
-            <input type="text" id="telefone" name="telefone" maxlength="45" required><br><br>
+            Telefone:<br>
+            <input type="text" id="telefone" name="telefone" ><br><br>
             
-            <label for="email">Email:</label><br>
-            <input type="text" id="email" name="email" maxlength="45" required><br><br>
+            Email:<br>
+            <input type="text" id="email" name="email" ><br><br>
             
-            <label for="endereco">Endereço:</label><br>
-            <input type="text" id="endereco" name="endereco" maxlength="45" required><br><br>
+            Endereço:<br>
+            <input type="text" id="endereco" name="endereco"><br><br>
 
             
             <input type="submit" value="Cadastrar">

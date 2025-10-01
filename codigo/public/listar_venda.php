@@ -1,6 +1,4 @@
-<?php
-    require_once '../controle/verificar_login.php';
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 

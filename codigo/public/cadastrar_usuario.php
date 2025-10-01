@@ -1,7 +1,3 @@
-<?php
- require_once '../controle/verificar_login.php'
-?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -21,37 +17,18 @@
 
 <form action="../public/salvarusuario.php" method="post">
     <h1>Cadastro de Usuário</h1>
-    <p class="message">Preencha os dados abaixo para se cadastrar</p>
 
-
-    <div class="flex">
-        <label>
             Nome: <br>
-            <input type="text" class="input" name="nome" required title="Digite o nome do usuário">
-        </label>
-    </div>
+            <input type="text" id="nome" name="nome">
 
-    <div class="flex">
-        <label>
             Email: <br>
-            <input type="email" class="input" name="email" required title="Digite o email do usuário">
-        </label>
-    </div>
+            <input type="email" id="email" name="email">
 
-
-    <div class="flex">
-        <label>
             Senha: <br>
-            <input type="password" class="input" name="senha" required title="Escolha uma senha segura para o usuário">
-        </label>
-    </div>
+            <input type="password" id="senha" name="senha">
 
-    <div class="flex">
-        <label>
             Endereço: <br>
-            <input type="text" class="input" name="endereco" required title="Digite o endereço do usuário">
-        </label>
-    </div>
+            <input type="text" id="endereco" name="endereco">
 
     <button type="submit" class="submit" title="Clique para cadastrar o usuário">Cadastrar Usuário</button>
 </form>

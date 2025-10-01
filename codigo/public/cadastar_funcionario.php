@@ -20,20 +20,27 @@
     <form action="salvarfuncionario.php?id=<?php echo $id; ?>" method="post" enctype="multipart/form-data">
          Nome: <br>
         <input type="text" name="nome" > <br><br>
+
         CPF: <br>
         <input type="text" name="cpf" > <br><br>
         Email <br>
         <input type="text" name="email"> <br><br>
+
         Telefone: <br>
         <input type="text" name="telefone" > <br><br>
+
         Data de nascimento: <br>
         <input type="date" name="data_nascimento" > <br><br>
+
          Cargo: <br>
         <input type="text" name="cargo" > <br><br>
+
         Carga horaria: <br>
         <input type="decimal" name="carga_horaria" > <br><br>
+
         Salario: <br>
         <input type="decimal" name="salario" > <br><br>
+        
         Endereço: <br>
         <input type="text" name="endereco" > <br><br>
 
