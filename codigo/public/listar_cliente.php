@@ -65,7 +65,7 @@
             echo "<td>$telefone</td>";
             echo "<td>$email</td>";
             echo "<td>$endereco</td>";
-            echo "<td><a href='../controle/editarcliente.php?id=$id_cliente'>Editar</a></td>";
+            echo "<td><a href='../public/cadastrar_cliente.php?id=$id_cliente'>Editar</a></td>";
             echo "<td><a href='../controle/deletarcliente.php?id=$id_cliente'>Excluir</a></td>";
 
             echo "</tr>";

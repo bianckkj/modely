@@ -250,6 +250,47 @@ h2 {
 
 
 
+/* Centraliza o container na tela toda */
+.container-form {
+    display: flex;
+    justify-content: center;  /* centro horizontal */
+    align-items: center;      /* centro vertical */
+    height: 100vh;            /* ocupa 100% da altura da tela */
+    background: #e8e7e7;      /* fundo só pra destacar */
+}
+
+/* Estilo do formulário */
+.form-cadastro {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Inputs e botão */
+.form-cadastro input, 
+.form-cadastro button {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+}
+
+.form-cadastro button {
+    background: black;
+    color: #e8e7e7;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.form-cadastro button:hover {
+    background: #333;
+}
 
 
 
