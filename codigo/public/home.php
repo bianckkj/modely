@@ -34,11 +34,6 @@ require_once '../controle/verificarlogado.php'
 </div>
 
 
-
-
-
-
-
 <img src="../public/assets/logo.png" alt="logo do site" id="logo">
 
 
@@ -48,7 +43,7 @@ require_once '../controle/verificarlogado.php'
     <a href="#">DESCONTOS</a>
     <a href="#">FEMININO</a>
     <a href="#">MASCULINO</a>
-    <a href="#">NOVIDADES</a>
+    <a href="../public/novidade.php">NOVIDADES</a>
 </nav>
 <br>
 

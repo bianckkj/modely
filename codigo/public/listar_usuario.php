@@ -17,7 +17,7 @@
     
     <?php require_once './templates/header.html'; ?>
     
-    <h1>Listar Uruarios</h1>
+    <h1>Listar Usuarios</h1>
 
     <?php
     require_once "../controle/conexao.php";

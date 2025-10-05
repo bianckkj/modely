@@ -19,16 +19,16 @@
     <h1>Cadastro de Usuário</h1>
 
             Nome: <br>
-            <input type="text" id="nome" name="nome">
+            <input type="text" id="nome" name="nome"> <br><br>
 
             Email: <br>
-            <input type="email" id="email" name="email">
+            <input type="email" id="email" name="email"><br><br>
 
             Senha: <br>
-            <input type="password" id="senha" name="senha">
+            <input type="password" id="senha" name="senha"><br><br>
 
             Endereço: <br>
-            <input type="text" id="endereco" name="endereco">
+            <input type="text" id="endereco" name="endereco"><br><br>
 
     <button type="submit" class="submit" title="Clique para cadastrar o usuário">Cadastrar Usuário</button>
 </form>
