@@ -1,29 +1,40 @@
 <?php
 
-    if (isset($_GET['id'])) {
-        // echo "editar";
-        
-        require_once "../controle/conexao.php";
-        require_once "../public/funcoes.php";
+if (isset($_GET['id'])) {
+    // echo "editar...";
 
-        $id = $_GET['id'];
-        
-        $cliente = pesquisarCliente($conexao, $id);
-        $nome = $cliente['nome'];
-        $cpf = $cliente['cpf'];
-        $endereco = $cliente['endereco'];
+    $id = $_GET['id'];
 
-        $botao = "Atualizar";
-    }
-    else {
-        // echo "novo";
-        $id = 0;
-        $nome = "";
-        $cpf = "";
-        $endereco = "";
+    require_once "../controle/conexao.php";
+    $sql = "SELECT * FROM tb_cliente WHERE id_cliente = ?";
+    $comando = mysqli_prepare($conexao, $sql);
 
-        $botao = "Cadastrar";
-    }
+    mysqli_stmt_bind_param($comando, "i", $id);
+    mysqli_stmt_execute($comando);
+
+    $resultados = mysqli_stmt_get_result($comando);
+
+    $cliente = mysqli_fetch_assoc($resultados);
+
+    $nome = $cliente['nome'];
+    $cpf = $cliente['cpf'];
+    $telefone = $cliente['telefone'];
+    $email = $cliente['email'];
+    $endereco = $cliente['endereco'];
+
+    mysqli_stmt_close($comando);
+}
+else {
+    // echo "novo...";
+
+    $id = 0;
+    $nome = "";
+    $cpf = "";
+    $telefone = "";
+    $email = "";
+    $endereco = "";
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

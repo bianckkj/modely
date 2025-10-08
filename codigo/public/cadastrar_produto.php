@@ -16,24 +16,25 @@
 
     <?php require_once './templates/header.html'; ?>
 
-    <h2>Cadastro de produtos</h2>
-    <form action="salvarproduto.php" class="form" method="GET">
-        
-        Quantidade:<br>
-        <input type="text" id="quantidade" name="quantidade"><br><br>
-        
-        Material:<br>
-        <input type="text" id="material" name="material" ><br><br>
-        
-        Preço:<br>
-        <input type="decimal" id="preco" name="preco" ><br><br>
-        
-        Modelo:<br>
-        <input type="text" id="modelo" name="modelo" ><br><br>
-        
-        Cor:<br>
-        <input type="text" id="cor" name="cor" ><br><br>
+    <form action="salvarproduto.php" method="post" enctype="multipart/form-data">
+        Quantidade: <br>
+        <input type="text" name="quantidade"> <br><br>
+        Material: <br>
+        <input type="text" name="material"> <br><br>
+        Preço: <br>
+        <input type="decimal" name="preco"> <br><br>
+        Modelo: <br>
+        <input type="text" name="modelo"> <br><br>
+        Cor: <br>
+        <input type="text" name="cor"> <br><br>
+        Tamanho: <br>
+        <input type="text" name="tamanho"> <br><br>
+        Marca: <br>
+        <input type="text" name="marca"> <br><br>
+        Imagem: <br>
+        <input type="file" name="imagem"> <br><br>
 
+<<<<<<< Updated upstream
         Tamanho:<br>
         <input type="text" id="tamanho" name="tamanho" ><br><br>
 
@@ -45,6 +46,10 @@
 
         
         <input type="submit" value="Cadastrar">
+=======
+        <input type="submit" value="Cadastrar Produto">
+    </form>
+>>>>>>> Stashed changes
     </form>
 </body>
 </html>
