@@ -453,4 +453,33 @@ function verificarLogin($conexao, $email, $senha) {
     return $iduser;
 }
 
+
+function salvarVenda($conexao, $id_cliente, $id_funcionario, $horario, $data, $comissao) {
+    $sql = "INSERT INTO tb_vendas (id_cliente, id_funcionario, horario, data, comissao) VALUES (?, ?, ?, ?, ?)";
+    $comando = mysqli_prepare($conexao, $sql);
+
+    mysqli_stmt_bind_param($comando, 'iissd', $id_cliente, $id_funcionario, $horario, $data, $comissao);
+
+    mysqli_stmt_execute($comando);
+    
+    $id_vendas = mysqli_stmt_insert_id($comando);
+    mysqli_stmt_close($comando);
+    
+    return $id_vendas;
+};
+
+function salvarItemVenda($conexao, $id_vendas, $id_produto, $quantidade) {
+    $sql = "INSERT INTO tb_itens_vendas (id_vendas, id_produto, quantidade) VALUES (?, ?, ?)";
+
+    $comando = mysqli_prepare($conexao, $sql);
+
+    mysqli_stmt_bind_param($comando, 'iii', $id_vendas, $id_produto, $quantidade);
+
+    $funcionou = mysqli_stmt_execute($comando);
+    mysqli_stmt_close($comando);
+
+    return $funcionou;
+}
+
+
 ?>

@@ -1,13 +1,25 @@
 <?php
+require_once "../controle/conexao.php";
+require_once "../public/funcoes.php";
+
 $id_cliente = $_GET['id_cliente'];
 $id_funcionario = $_GET['id_funcionario'];
-$data_hora = $_GET['data'];
+$horario = $_GET['horario'];
+$data = $_GET['data'];
 $comissao = $_GET['comissao'];
-require_once "../controle/conexao.php";
 
-$sql = "INSERT INTO tb_vendas (id_cliente, id_funcionario, data_hora, comissao) VALUES ('$id_cliente','$id_funcionario','$data_hora','$comissao')";
+$idprodutos = $_GET['idproduto'];
+$quantidades = $_GET['quantidade'];
 
-mysqli_query($conexao, $sql);
+foreach ($idprodutos as $id) {
+    $produtos[] = [$id, $quantidades[$id]];
+}
 
-header("Location: home.html");
+//gravar a venda
+/*$id_vendas = salvarVenda($id_cliente, $id_funcionario, $horario, $data, $comissao);*/
+
+//gravar os itens da venda
+foreach ($produtos as $p) {
+    salvarItemVenda($conexao, $id_vendas, $p[0], $p[1]);
+}
 ?>

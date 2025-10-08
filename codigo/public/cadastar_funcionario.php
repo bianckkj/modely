@@ -17,8 +17,8 @@
     <?php require_once './templates/header.html'; ?>
     
     <h1>Cadastro de funcionario</h1>
-    <form action="salvarfuncionario.php?id=<?php echo $id; ?>" method="post" enctype="multipart/form-data">
-         Nome: <br>
+    <form action="salvarfuncionario.php?id=<?php echo $id; ?>" method="GET" enctype="multipart/form-data">
+        Nome: <br>
         <input type="text" name="nome" > <br><br>
 
         CPF: <br>
@@ -32,7 +32,7 @@
         Data de nascimento: <br>
         <input type="date" name="data_nascimento" > <br><br>
 
-         Cargo: <br>
+        Cargo: <br>
         <input type="text" name="cargo" > <br><br>
 
         Carga horaria: <br>

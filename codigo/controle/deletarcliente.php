@@ -1,15 +1,14 @@
 <?php
-    require_once "../controle/
-    conexao.php";
+    require_once "../controle/conexao.php";
     require_once "../public/funcoes.php";
 
     $id = $_GET['id'];
 
     if (deletarCliente($conexao, $id)) {
-        header("Location: ../public/listar_Clientes.php");
+        header("Location: ../public/listar_cliente.php");
     }
     else {
-        header("Location: home.php");
+        header("Location: erro.php");
     }
 
 ?>
