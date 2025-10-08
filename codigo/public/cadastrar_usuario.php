@@ -13,7 +13,7 @@
 <body>
 <img src="../public/assets/logo.png" alt="logo do site" id="logo">
 
-<?php require_once './templates/header.html'; ?>
+
 
 <form action="../public/salvarusuario.php" method="post">
     <h1>Cadastro de Usuário</h1>

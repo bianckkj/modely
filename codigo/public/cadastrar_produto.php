@@ -41,7 +41,8 @@
         <input type="text" id="marca" name="marca" ><br><br>
 
         Imagem:<br>
-        <input type="text" id="imagem" name="imagem"><br><br>
+        <input type="file" id="imagem" name="imagem"> <br><br>
+
         
         <input type="submit" value="Cadastrar">
     </form>
