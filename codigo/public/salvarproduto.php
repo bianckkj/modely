@@ -1,6 +1,7 @@
 <?php
 require_once "../controle/conexao.php";
 
+$nome = $_GET['nome'];
 $quantidade = $_GET['quantidade'];
 $material = $_GET['material'];
 $preco = $_GET['preco'];
@@ -9,14 +10,14 @@ $cor = $_GET['cor'];
 $tamanho = $_GET['tamanho'];
 $marca = $_GET['marca'];
 $imagem = $_GET['imagem'];
-require_once "../controle/conexao.php";
+
 
 if ($id == 0) {
     // echo "novo";
-    $sql = "INSERT INTO tb_produto (quantidade, material, preco, modelo, cor, tamanho, marca) VALUES ('$nome', '$tipo', $preco_compra, $preco_venda, $margem_lucro, $quantidade)";
+    $sql = "INSERT INTO tb_produto (nome, quantidade, material, preco, modelo, cor, tamanho, marca, imagem) VALUES ('$nome', '$quantidade', $material, $preco, $modelo, $cor, $tamanho, $marca, $imagem)";
 } else {
     // echo "atualizar";
-    $sql = "UPDATE tb_produto SET nome = '$nome', tipo = '$tipo', preco_compra = $preco_compra, preco_venda = $preco_venda, margem_lucro = $margem_lucro, quantidade = $quantidade WHERE idproduto = $id";
+    $sql = "UPDATE tb_produto SET nome = '$nome', quantidade = '$quantidade', material = $material, preco = $preco, modelo = $modelo, cor = $cor, tamanho = $tamanho, marca = $marca, imagem = $imagem WHERE id_produto = $id";
 }
 
 
