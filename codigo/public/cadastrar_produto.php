@@ -34,22 +34,7 @@
         Imagem: <br>
         <input type="file" name="imagem"> <br><br>
 
-<<<<<<< Updated upstream
-        Tamanho:<br>
-        <input type="text" id="tamanho" name="tamanho" ><br><br>
-
-        Marca:<br>
-        <input type="text" id="marca" name="marca" ><br><br>
-
-        Imagem:<br>
-        <input type="file" id="foto" name="foto"> <br><br>
-
-        
-        <input type="submit" value="Cadastrar">
-=======
         <input type="submit" value="Cadastrar Produto">
-    </form>
->>>>>>> Stashed changes
     </form>
 </body>
 </html>
