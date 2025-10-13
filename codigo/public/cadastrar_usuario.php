@@ -18,19 +18,19 @@
 <form action="../public/salvarusuario.php" method="post">
     <h1>Cadastro de Usuário</h1>
 
-            Nome: <br>
-            <input type="text" id="nome" name="nome"> <br><br>
+        Nome: <br>
+        <input type="text" id="nome" name="nome" value="<?php echo $nome; ?>"> <br><br>
 
-            Email: <br>
-            <input type="email" id="email" name="email"><br><br>
+        Email: <br>
+        <input type="email" id="email" name="email" value="<?php echo $email; ?>"><br><br>
 
-            Senha: <br>
-            <input type="password" id="senha" name="senha"><br><br>
+        Senha: <br>
+        <input type="password" id="senha" name="senha" value="<?php echo $senha; ?>"><br><br>
 
-            Endereço: <br>
-            <input type="text" id="endereco" name="endereco"><br><br>
+        Endereço: <br>
+        <input type="text" id="endereco" name="endereco" value="a<?php echo $endereco; ?>"><br><br>
 
-    <button type="submit" class="submit" title="Clique para cadastrar o usuário">Cadastrar Usuário</button>
+    <input type="submit" value="Cadastrar usuario">
 </form>
 
 

@@ -60,19 +60,19 @@ else {
         <form class="form" action="salvarcliente.php" method="GET">
             
             Nome:<br>
-            <input type="text" id="nome" name="nome" ><br><br>
+            <input type="text" id="nome" name="nome" value="<?php echo $nome; ?>" ><br><br>
             
             CPF:<br>
-            <input type="text" id="cpf" name="cpf" ><br><br>
+            <input type="text" id="cpf" name="cpf" value="<?php echo $cpf; ?>" ><br><br>
             
             Telefone:<br>
-            <input type="text" id="telefone" name="telefone" ><br><br>
+            <input type="text" id="telefone" name="telefone" value="<?php echo $telefone; ?>"><br><br>
             
             Email:<br>
-            <input type="text" id="email" name="email" ><br><br>
+            <input type="text" id="email" name="email" value="<?php echo $email; ?>"><br><br>
             
             Endereço:<br>
-            <input type="text" id="endereco" name="endereco"><br><br>
+            <input type="text" id="endereco" name="endereco" value="<?php echo $endereco; ?>"><br><br>
 
             
             <input type="submit" value="Cadastrar">

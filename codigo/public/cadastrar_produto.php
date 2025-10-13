@@ -1,3 +1,46 @@
+<?php
+if (isset($_GET['id'])) {
+    // echo "editar";
+
+    require_once "../controle/conexao.php";
+
+    $id = $_GET['id'];
+
+    $sql = "SELECT * FROM tb_produto WHERE id_produto = $id";
+
+    $resultados = mysqli_query($conexao, $sql);
+
+    $linha = mysqli_fetch_array($resultados);
+
+    //porque não tem a variável do $id aqui?
+    $nome = $linha['nome'];
+    $quantidade = $linha['quantidade'];
+    $material = $linha['material'];
+    $preco = $linha['preco'];
+    $modelo = $linha['modelo'];
+    $cor = $linha['cor'];
+    $tamanho = $linha['tamanho'];
+    $marca = $linha['marca'];
+    $imagem = $linha['imagem'];
+
+    $botao = "Atualizar";
+} else {
+    // echo "novo";
+    $id = 0;
+    $nome = "";
+    $quantidade = "";
+    $material = "";
+    $preco = "";
+    $modelo = "";
+    $cor = "";
+    $tamanho = "";
+    $marca = "";
+    $imagem = "";
+
+    $botao = "Cadastrar";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -18,21 +61,21 @@
 
     <form action="salvarproduto.php" method="post" enctype="multipart/form-data">
         Quantidade: <br>
-        <input type="text" name="quantidade"> <br><br>
+        <input type="text" name="quantidade" value="<?php echo $quantidade; ?>"> <br><br>
         Material: <br>
-        <input type="text" name="material"> <br><br>
+        <input type="text" name="material" value="<?php echo $material; ?>"> <br><br>
         Preço: <br>
-        <input type="decimal" name="preco"> <br><br>
+        <input type="decimal" name="preco" value="<?php echo $preco; ?>"> <br><br>
         Modelo: <br>
-        <input type="text" name="modelo"> <br><br>
+        <input type="text" name="modelo" value="<?php echo $modelo; ?>"> <br><br>
         Cor: <br>
-        <input type="text" name="cor"> <br><br>
+        <input type="text" name="cor" value="<?php echo $cor; ?>"> <br><br>
         Tamanho: <br>
-        <input type="text" name="tamanho"> <br><br>
+        <input type="text" name="tamanho" value="<?php echo $tamanho; ?>"> <br><br>
         Marca: <br>
-        <input type="text" name="marca"> <br><br>
+        <input type="text" name="marca" value="<?php echo $marca; ?>"> <br><br>
         Imagem: <br>
-        <input type="file" name="imagem"> <br><br>
+        <input type="file" name="imagem" value="<?php echo $imagemn; ?>"> <br><br>
 
         <input type="submit" value="Cadastrar Produto">
     </form>

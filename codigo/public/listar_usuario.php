@@ -1,3 +1,38 @@
+<?php
+if (isset($_GET['id'])) {
+    // echo "editar";
+
+    require_once "../controle/conexao.php";
+
+    $id = $_GET['id'];
+
+    $sql = "SELECT * FROM tb_produto WHERE id_produto = $id";
+
+    $resultados = mysqli_query($conexao, $sql);
+
+    $linha = mysqli_fetch_array($resultados);
+
+    //porque não tem a variável do $id aqui?
+    $nome = $linha['nome'];
+    $senha = $linha['senha'];
+    $email = $linha['email'];
+    $endereco = $linha['endereco'];
+    $tipo = $linha['tipo'];
+
+    $botao = "Atualizar";
+} else {
+    // echo "novo";
+    $id = 0;
+    $nome = "";
+    $senha = "";
+    $email = "";
+    $endereco = "";
+    $tipo = "";
+
+    $botao = "Cadastrar";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,7 +89,7 @@
 
             echo "<td>$email</td>";
             echo "<td>$endereco</td>";
-            echo "<td><a href='cadastrarusuario.php?id=$id_usuario'>Editar</a></td>";
+            echo "<td><a href='cadastrar_usuario.php?id=$id_usuario'>Editar</a></td>";
             echo "<td><a href='../controle/deletarusuario.php?id=$id_usuario'>Excluir</a></td>";
             echo "</tr>";
         }

@@ -4,8 +4,8 @@
 
     $id = $_GET['id'];
 
-    if (deletarVenda($conexao, $id_vendas)) {
-        header("Location: ../public/listar_venda.php");
+    if (deletarProduto($conexao, $id)) {
+        header("Location: ../public/listar_produto.php");
     }
     else {
         header("Location: ../public/home.php");

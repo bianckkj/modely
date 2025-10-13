@@ -66,8 +66,8 @@
             echo "<td>$tamanho</td>";
             echo "<td>$marca</td>";
             echo "<td>$imagem</td>";
-            echo "<td><a href='formCliente.php?id=$id_produto'>Editar</a></td>";
-            echo "<td><a href='../controle/deletar/deletar_cliente.php?id=$id_produto'>Excluir</a></td>";
+            echo "<td><a href='cadastrar_produto.php?id=$id_produto'>Editar</a></td>";
+            echo "<td><a href='../controle/deletarproduto.php?id=$id_produto'>Excluir</a></td>";
             echo "</tr>";
         }
     }
