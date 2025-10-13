@@ -33,6 +33,7 @@
         <table border="1">
             <tr>
                 <td>Id</td>
+                <td>Nome</td>
                 <td>Cpf</td>
                 <td>email</td>
                 <td>Telefone</td>
@@ -56,6 +57,7 @@
 
             echo "<tr>";
             echo "<td>$id_funcionario</td>";
+            echo "<td>$nome</td>";
             echo "<td>$cpf</td>";
             echo "<td>$email</td>";
             echo "<td>$telefone</td>";
