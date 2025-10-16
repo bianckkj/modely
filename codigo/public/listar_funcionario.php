@@ -47,6 +47,7 @@
         <?php
         foreach ($lista_funcionarios as $funcionario) {
             $id_funcionario = $funcionario['id_funcionario'];
+            $nome = $funcionario['nome'];
             $cpf = $funcionario['cpf'];
             $email = $funcionario['email'];
             $telefone = $funcionario['telefone'];

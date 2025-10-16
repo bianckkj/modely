@@ -1,6 +1,10 @@
 <?php
+require_once "../controle/conexao.php";
+require_once "../public/funcoes.php";
 
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,10 +26,6 @@
 
     <h1>Listar clientes</h1>
 
-<div class="form-pesquisa">
-        <input type="text" placeholder="Pesquisar...">
-        <button>Buscar</button>
-    </div> <br>
 
     <?php
     require_once "../controle/conexao.php";
@@ -33,6 +33,7 @@
 
     $lista_clientes = listarClientes($conexao);
     
+
     //verificar se encontrou clientes antes de imprimir.
     if (count($lista_clientes) == 0) {
         echo "Não existem clientes cadastrados.";
