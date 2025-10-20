@@ -57,7 +57,7 @@ else {
     <h2>Cadastro de Cliente</h2>
 
     <div class="container-form">
-        <form class="form" action="salvarcliente.php" method="GET">
+        <form class="form" action="salvarcliente.php?id= <?php echo $id; ?> " method="post">
             
             Nome:<br>
             <input type="text" id="nome" name="nome" value="<?php echo $nome; ?>" ><br><br>
