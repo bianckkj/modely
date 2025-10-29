@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require_once "../conexao.php";
-require_once "../funcoes.php";
+require_once "../controle/conexao.php";
+require_once "../public/funcoes.php";
 ?>
 
 <!DOCTYPE html>
@@ -36,10 +36,10 @@ require_once "../funcoes.php";
             echo "<tr>";
             echo "<td>" . $produto['tipo'] . "</td>";
             echo "<td>" . $produto['nome'] . "</td>";
-            echo "<td> R$ " . $produto['preco_venda'] . "</td>";
+            echo "<td> R$ " . $produto['preco'] . "</td>";
             echo "<td>$quantidade</td>";
 
-            $total_unitario = $produto['preco_venda'] * $quantidade;
+            $total_unitario = $produto['preco'] * $quantidade;
             $total += $total_unitario;
 
             echo "<td> R$ $total_unitario</td>";

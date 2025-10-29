@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require_once "../conexao.php";
-require_once "../funcoes.php";
+require_once "../controle/conexao.php";
+require_once "../public/funcoes.php";
 ?>
 
 <!DOCTYPE html>
@@ -36,11 +36,11 @@ require_once "../funcoes.php";
             echo "<tr>";
             echo "<td>" . $produto['tipo'] . "</td>";
             echo "<td>" . $produto['nome'] . "</td>";
-            echo "<td> R$ <span class='preco_venda'>" . $produto['preco_venda'] . "</span></td>";
+            echo "<td> R$ <span class='preco'>" . $produto['preco'] . "</span></td>";
 
             echo "<td><input type='number' name='quantidade[$id]' class='quantidade' value='$quantidade' data-id='$id' min='1' size='2'</td>";
 
-            $total_unitario = $produto['preco_venda'] * $quantidade;
+            $total_unitario = $produto['preco'] * $quantidade;
             $total += $total_unitario;
 
             echo "<td> R$ <span class='total_unitario'>$total_unitario</span></td>";
@@ -70,7 +70,7 @@ require_once "../funcoes.php";
 
         function somar() {
             const linha = $(this).closest('tr');
-            const preco_unitario = linha.find('span.preco_venda').text();
+            const preco_unitario = linha.find('span.preco').text();
             const quantidade = $(this).val();
             const id = $(this).data('id');
 

@@ -493,6 +493,22 @@ function salvaVenda($id_cliente, $id_funcionario, $horario, $data, $comissao) {
     }
 }
 
+function pesquisarProdutoId($conexao, $idproduto)
+{
+    $sql = "SELECT * FROM tb_produto WHERE idproduto = ?";
+    $comando = mysqli_prepare($conexao, $sql);
+
+    mysqli_stmt_bind_param($comando, 'i', $idproduto);
+
+    mysqli_stmt_execute($comando);
+    $resultado = mysqli_stmt_get_result($comando);
+
+    $produto = mysqli_fetch_assoc($resultado);
+
+    mysqli_stmt_close($comando);
+    return $produto;
+};
+
 
 
 ?>
