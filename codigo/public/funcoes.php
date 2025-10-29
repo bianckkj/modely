@@ -479,7 +479,20 @@ function salvarItemVenda($conexao, $id_vendas, $id_produto, $quantidade) {
     mysqli_stmt_close($comando);
 
     return $funcionou;
+};
+
+
+function salvaVenda($id_cliente, $id_funcionario, $horario, $data, $comissao) {
+    global $conexao;
+    $sql = "INSERT INTO tb_venda (id_cliente, id_funcionario, horario, data, comissao)
+            VALUES ('$id_cliente', '$id_funcionario', '$horario', '$data', '$comissao')";
+    if ($conexao->query($sql)) {
+        return $conexao->insert_id;
+    } else {
+        return false;
+    }
 }
+
 
 
 ?>

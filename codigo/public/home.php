@@ -29,7 +29,7 @@ require_once '../controle/verificarlogado.php'
 <div class="icones">
     <a href="login.html"><img src="../public/assets/foto_usuario.png" alt="Usuário"></a>
       
-    <a href="carrinho.html"><img src="../public/assets/foto_carrinho.png" alt="Carrinho"></a>
+    <a href="../exemplo-carrinho/index.php"><img src="../public/assets/foto_carrinho.png" alt="Carrinho"></a>
          
 </div>
 
