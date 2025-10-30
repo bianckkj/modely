@@ -24,78 +24,138 @@
     <div>
         <h2>Cadastro de Vendas</h2>
 
-        <?php
-        // Conexão com o banco
-        require_once '../controle/conexao.php';
+    <?php
+    require_once '../controle/conexao.php';
 
-        // Busca clientes, funcionários e produtos
-        $clientes = $conexao->query("SELECT id_cliente, nome FROM tb_cliente ORDER BY nome ASC");
-        $funcionarios = $conexao->query("SELECT id_funcionario, nome FROM tb_funcionario ORDER BY nome ASC");
-        $produtos = $conexao->query("SELECT id_produto, nome, preco FROM tb_produto ORDER BY nome ASC");
-        ?>
+    // valores padrão (caso seja cadastro novo)
+    $id_vendas = null;
+    $id_cliente = null;
+    $id_funcionario = null;
+    $id_produto = null;
+    $quantidade = 1;
+    $data = date('Y-m-d');
+    $horario = date('H:i');
+    $comissao = 0.00;
 
-        <form action="salvarvenda.php" method="POST">
+    // Se veio id via GET, carrega os dados da venda para edição
+    if (isset($_GET['id'])) {
+        $id_vendas = (int) $_GET['id'];
+        if ($id_vendas > 0) {
+            $sql = "
+                SELECT 
+                    v.id_vendas,
+                    v.id_cliente,
+                    v.id_funcionario,
+                    v.data,
+                    v.horario,
+                    v.comissao,
+                    iv.id_produto,
+                    iv.quantidade
+                FROM tb_vendas v
+                LEFT JOIN tb_itens_vendas iv ON v.id_vendas = iv.id_vendas
+                WHERE v.id_vendas = ?
+                LIMIT 1
+            ";
+            if ($stmt = $conexao->prepare($sql)) {
+                $stmt->bind_param("i", $id_vendas);
+                $stmt->execute();
+                $res = $stmt->get_result();
+                if ($row = $res->fetch_assoc()) {
+                    $id_cliente = $row['id_cliente'];
+                    $id_funcionario = $row['id_funcionario'];
+                    // se houver vários itens, esse SELECT pega apenas o primeiro item.
+                    $id_produto = $row['id_produto'];
+                    $quantidade = $row['quantidade'] ?? 1;
+                    $data = $row['data'] ?? $data;
+                    $horario = $row['horario'] ?? $horario;
+                    $comissao = $row['comissao'] ?? $comissao;
+                }
+                $stmt->close();
+            }
+        }
+    }
 
-            <!-- Cliente -->
-            <label for="id_cliente">Cliente:</label><br>
-            <select id="id_cliente" name="id_cliente" value="<?php echo $id_cliente; ?>" required>
-                <option value="">Selecione o cliente</option>
-                <?php
+    // Busca listas (clientes, funcionarios, produtos)
+    $clientes = $conexao->query("SELECT id_cliente, nome FROM tb_cliente ORDER BY nome ASC");
+    $funcionarios = $conexao->query("SELECT id_funcionario, nome FROM tb_funcionario ORDER BY nome ASC");
+    $produtos = $conexao->query("SELECT id_produto, nome, preco FROM tb_produto ORDER BY nome ASC");
+    ?>
+
+    <!-- Ao submeter, o salvarvenda.php deve detectar se id_vendas foi enviado para atualizar -->
+    <form action="salvarvenda.php" method="POST">
+
+        <?php if ($id_vendas): ?>
+            <input type="hidden" name="id_vendas" value="<?php echo htmlspecialchars($id_vendas); ?>">
+        <?php endif; ?>
+
+        <!-- Cliente -->
+        <label for="id_cliente">Cliente:</label><br>
+        <select id="id_cliente" name="id_cliente" required>
+            <option value="">Selecione o cliente</option>
+            <?php
+            if ($clientes) {
                 while ($c = $clientes->fetch_assoc()) {
-                    echo "<option value='{$c['id_cliente']}'>{$c['nome']}</option>";
+                    $sel = ($c['id_cliente'] == $id_cliente) ? "selected" : "";
+                    echo "<option value='{$c['id_cliente']}' $sel>" . htmlspecialchars($c['nome']) . "</option>";
                 }
-                ?>
-            </select>
-            <br><br>
+            }
+            ?>
+        </select>
+        <br><br>
 
-            <!-- Funcionário -->
-            <label for="id_funcionario">Funcionário:</label><br>
-            <select id="id_funcionario" name="id_funcionario" value="<?php echo $id_funcionario; ?>" required>
-                <option value="">Selecione o funcionário</option>
-                <?php
+        <!-- Funcionário -->
+        <label for="id_funcionario">Funcionário:</label><br>
+        <select id="id_funcionario" name="id_funcionario" required>
+            <option value="">Selecione o funcionário</option>
+            <?php
+            if ($funcionarios) {
                 while ($f = $funcionarios->fetch_assoc()) {
-                    echo "<option value='{$f['id_funcionario']}'>{$f['nome']}</option>";
+                    $sel = ($f['id_funcionario'] == $id_funcionario) ? "selected" : "";
+                    echo "<option value='{$f['id_funcionario']}' $sel>" . htmlspecialchars($f['nome']) . "</option>";
                 }
-                ?>
-            </select>
-            <br><br>
+            }
+            ?>
+        </select>
+        <br><br>
 
-            <!-- Produto -->
-            <label for="id_produto">Produto:</label><br>
-            <select id="id_produto" name="id_produto" value="<?php echo $id_produto; ?>" required>
-                <option value="">Selecione o produto</option>
-                <?php
+        <!-- Produto -->
+        <label for="id_produto">Produto:</label><br>
+        <select id="id_produto" name="id_produto" required>
+            <option value="">Selecione o produto</option>
+            <?php
+            if ($produtos) {
                 while ($p = $produtos->fetch_assoc()) {
-                    echo "<option value='{$p['id_produto']}'>{$p['nome']} - R$ {$p['preco']}</option>";
+                    $sel = ($p['id_produto'] == $id_produto) ? "selected" : "";
+                    $preco = number_format($p['preco'], 2, ',', '.');
+                    echo "<option value='{$p['id_produto']}' $sel>" . htmlspecialchars($p['nome']) . " - R$ {$preco}</option>";
                 }
-                ?>
-            </select>
-            <br><br>
+            }
+            ?>
+        </select>
+        <br><br>
 
-            <!-- Quantidade -->
-            <label for="quantidade">Quantidade:</label><br>
-            <input type="number" id="quantidade" name="quantidade" value="<?php echo $quantidade; ?>" min="1" required>
-            <br><br><
+        <!-- Quantidade -->
+        <label for="quantidade">Quantidade:</label><br>
+        <input type="number" id="quantidade" name="quantidade" value="<?php echo htmlspecialchars($quantidade); ?>" min="1" required>
+        <br><br>
 
-            <!-- Data -->
-            <label for="data">Data:</label><br>
-            <input type="date" id="data" name="data" value="<?php echo $data; ?>" required>
-            <br><br>
+        <!-- Data -->
+        <label for="data">Data:</label><br>
+        <input type="date" id="data" name="data" value="<?php echo htmlspecialchars($data); ?>" required>
+        <br><br>
 
-            <!-- Horário -->
-            <label for="horario">Horário:</label><br>
-            <input type="time" id="horario" name="horario" value="<?php echo $harario; ?>" required>
-            <br><br>
+        <!-- Horário -->
+        <label for="horario">Horário:</label><br>
+        <input type="time" id="horario" name="horario" value="<?php echo htmlspecialchars($horario); ?>" required>
+        <br><br>
 
-            <!-- Comissão -->
-            <label for="comissao">Comissão (em R$):</label><br>
-            <input type="number" step="0.01" id="comissao" name="comissao" value="<?php echo $comissao; ?>" required>
-            <br><br>
+        <!-- Comissão -->
+        <label for="comissao">Comissão (em R$):</label><br>
+        <input type="number" step="0.01" id="comissao" name="comissao" value="<?php echo htmlspecialchars($comissao); ?>" required>
+        <br><br>
 
-            <!-- Botão -->
-            <button type="submit">Cadastrar Venda</button>
-        </form>
-
+        <button type="submit"><?php echo $id_vendas ? 'Atualizar Venda' : 'Cadastrar Venda'; ?></button>
+    </form>
 
 </body>
 
