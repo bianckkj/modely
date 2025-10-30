@@ -60,6 +60,8 @@ if (isset($_GET['id'])) {
     <?php require_once './templates/header.html'; ?>
 
     <form action="salvarproduto.php" method="post" enctype="multipart/form-data">
+        Nome: <br>
+        <input type="text" name="nome" value="<?php echo $nome; ?>"> <br><br>
         Quantidade: <br>
         <input type="text" name="quantidade" value="<?php echo $quantidade; ?>"> <br><br>
         Material: <br>
@@ -75,7 +77,7 @@ if (isset($_GET['id'])) {
         Marca: <br>
         <input type="text" name="marca" value="<?php echo $marca; ?>"> <br><br>
         Imagem: <br>
-        <input type="file" name="imagem" value="<?php echo $imagemn; ?>"> <br><br>
+        <input type="file" name="imagem" value="<?php echo $imagem; ?>"> <br><br>
 
         <input type="submit" value="Cadastrar Produto">
     </form>

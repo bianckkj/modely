@@ -1,8 +1,8 @@
 <?php
 function cadastrarProduto($conexao, $nome, $preco, $quantidade, $material, $modelo, $cor, $tamanho, $marca) {
-    $sql = "INSERT INTO tb_produto (quantidade, material, preco, modelo, cor, tamanho, marca, imagem) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO tb_produto (nome, quantidade, material, preco, modelo, cor, tamanho, marca, imagem) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $comando = mysqli_prepare($conexao, $sql);
-    mysqli_stmt_bind_param($comando, "ssdsssss", $quantidade, $material, $preco, $modelo, $cor, $tamanho, $marca, $imagem);
+    mysqli_stmt_bind_param($comando, "sssdsssss", $nome, $quantidade, $material, $preco, $modelo, $cor, $tamanho, $marca, $imagem);
     return mysqli_stmt_execute($comando);
 }
 
@@ -492,6 +492,20 @@ function salvaVenda($id_cliente, $id_funcionario, $horario, $data, $comissao) {
         return false;
     }
 }
+
+function salvarProduto($conexao, $nome, $quantidade, $material, $preco, $modelo, $cor, $tamanho, $marca, $imagem) {
+    $sql = "INSERT INTO tb_produto (nome, quantidade, material, preco, modelo, cor, tamanho, marca, imagem) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $comando = mysqli_prepare($conexao, $sql);
+
+    mysqli_stmt_bind_param($comando, 'sssdsssss', $nome, $quantidade, $material, $preco, $modelo, $cor, $tamanho, $marca, $imagem);
+
+    mysqli_stmt_execute($comando);
+    
+    $id_produto = mysqli_stmt_insert_id($comando);
+    mysqli_stmt_close($comando);
+    
+    return $id_produto;
+};
 
 function pesquisarProdutoId($conexao, $idproduto)
 {
