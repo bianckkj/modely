@@ -2,52 +2,43 @@
 require_once "../controle/conexao.php";
 require_once "../public/funcoes.php";
 
-// Recebe os dados da venda via GET
-$id_cliente = $_GET['id_cliente'] ?? null;
-$id_funcionario = $_GET['id_funcionario'] ?? null;
-$horario = $_GET['horario'] ?? null;
-$data = $_GET['data'] ?? null;
-$comissao = $_GET['comissao'] ?? null;
-
-// Recebe os produtos e quantidades
-$idprodutos = $_GET['idproduto'] ?? [];
-$quantidades = $_GET['quantidade'] ?? [];
-
-// Se vierem valores únicos, transforma em arrays
-if (!is_array($idprodutos)) $idprodutos = [$idprodutos];
-if (!is_array($quantidades)) $quantidades = [$quantidades];
-
-// Monta o array de produtos
-$produtos = [];
-foreach ($idprodutos as $i => $id) {
-    $qtd = $quantidades[$i] ?? 1;
-    $produtos[] = [$id, $qtd];
-}
+// Recebe os dados do formulário via POST
+$id_cliente     = $_POST['id_cliente']     ?? null;
+$id_funcionario = $_POST['id_funcionario'] ?? null;
+$id_produto     = $_POST['id_produto']     ?? null;
+$quantidade     = $_POST['quantidade']     ?? null;
+$horario        = $_POST['horario']        ?? null;
+$data           = $_POST['data']           ?? null;
+$comissao       = $_POST['comissao']       ?? 0;
 
 // --- Validação básica ---
-if (!$id_cliente || !$id_funcionario || !$data || !$horario) {
-    die("Erro: dados da venda incompletos!");
-}
-
-if (empty($produtos)) {
-    die("Erro: nenhum produto informado!");
+if (!$id_cliente || !$id_funcionario || !$id_produto || !$quantidade || !$data || !$horario) {
+    echo "<script>alert('Erro: dados da venda incompletos!'); history.back();</script>";
+    exit;
 }
 
 // --- Grava a venda ---
-$id_vendas = salvaVenda($id_cliente, $id_funcionario, $horario, $data, $comissao);
+$sql_venda = "INSERT INTO tb_vendas (id_cliente, id_funcionario, data, horario, comissao)
+              VALUES ('$id_cliente', '$id_funcionario', '$data', '$horario', '$comissao')";
 
-if (!$id_vendas) {
-    die("Erro ao salvar venda!");
+if (!$conexao->query($sql_venda)) {
+    echo "<script>alert('Erro ao registrar venda: " . addslashes($conexao->error) . "'); history.back();</script>";
+    exit;
 }
 
-// --- Grava os itens da venda ---
-foreach ($produtos as $p) {
-    salvarItemVenda($conexao, $id_vendas, $p[0], $p[1]);
-}
+$id_vendas = $conexao->insert_id;
 
-echo "Venda registrada com sucesso! ID da venda: " . $id_vendas;
-?>
+// --- Grava o item da venda ---
+$sql_item = "INSERT INTO tb_itens_vendas (id_vendas, id_produto, quantidade)
+             VALUES ('$id_vendas', '$id_produto', '$quantidade')";
 
+
+
+// --- Atualiza estoque ---
+$sql_estoque = "UPDATE tb_produto SET quantidade = quantidade - $quantidade WHERE id_produto = $id_produto";
+$conexao->query($sql_estoque);
 
 header("Location: ../public/listar_venda.php");
+
+
 ?>
