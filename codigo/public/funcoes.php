@@ -507,7 +507,7 @@ function salvarProduto($conexao, $nome, $quantidade, $material, $preco, $modelo,
     return $id_produto;
 };
 
-function pesquisarProdutoId($conexao, $idproduto)
+function pesquisarProdutoIiid($conexao, $idproduto)
 {
     $sql = "SELECT * FROM tb_produto WHERE idproduto = ?";
     $comando = mysqli_prepare($conexao, $sql);
@@ -522,6 +522,58 @@ function pesquisarProdutoId($conexao, $idproduto)
     mysqli_stmt_close($comando);
     return $produto;
 };
+
+
+// Evita redeclaração da função
+if (!function_exists('pesquisarProdutoId')) {
+
+    /**
+     * Busca um produto pelo ID no banco de dados
+     * 
+     * @param mysqli $conexao Conexão com o banco
+     * @param int $id ID do produto
+     * @return array|null Retorna os dados do produto ou null se não encontrado
+     */
+    function pesquisarProdutoId($conexao, $id) {
+        // Coloque aqui o nome correto da coluna do ID no seu banco
+        $nome_coluna_id = 'id_produto'; // ou 'id' se for diferente
+
+        // Prepara a consulta SQL
+        $sql = "SELECT * FROM tb_produto WHERE $nome_coluna_id = ?";
+        $stmt = mysqli_prepare($conexao, $sql);
+
+        if (!$stmt) {
+            error_log("Erro ao preparar consulta: " . mysqli_error($conexao));
+            return null;
+        }
+
+        // Liga o parâmetro
+        mysqli_stmt_bind_param($stmt, "i", $id);
+
+        // Executa a consulta
+        if (!mysqli_stmt_execute($stmt)) {
+            error_log("Erro ao executar consulta: " . mysqli_stmt_error($stmt));
+            return null;
+        }
+
+        // Pega o resultado
+        $resultado = mysqli_stmt_get_result($stmt);
+
+        // Retorna os dados do produto se encontrado
+        if ($resultado && mysqli_num_rows($resultado) > 0) {
+            return mysqli_fetch_assoc($resultado);
+        }
+
+        // Se não encontrou, retorna null
+        return null;
+    }
+}
+
+
+
+?>
+
+
 
 
 

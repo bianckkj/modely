@@ -15,15 +15,19 @@ require_once "../public/funcoes.php";
 </head>
 
 <body>
+
     <!-- ver carrinho atual -->
     <?php
+
+        require_once '../public/templates/header.html'
+
     if (empty($_SESSION['carrinho'])) {
         echo "carrinho vazio";
     } else {
         $total = 0;
         echo "<table border='1'>";
         echo "<tr>";
-        echo "<td>Tipo</td>";
+ 
         echo "<td>Nome</td>";
         echo "<td>Preço</td>";
         echo "<td>Quantidade</td>";
@@ -34,7 +38,7 @@ require_once "../public/funcoes.php";
             $produto = pesquisarProdutoId($conexao, $id);
 
             echo "<tr>";
-            echo "<td>" . $produto['tipo'] . "</td>";
+      
             echo "<td>" . $produto['nome'] . "</td>";
             echo "<td> R$ " . $produto['preco'] . "</td>";
             echo "<td>$quantidade</td>";

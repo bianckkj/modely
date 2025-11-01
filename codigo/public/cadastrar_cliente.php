@@ -78,6 +78,7 @@ else {
             <input type="submit" value="Cadastrar">
         </form>
     </div>
+    
 
 </body>
 </html>

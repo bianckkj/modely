@@ -16,39 +16,42 @@ require_once "../public/funcoes.php";
 </head>
 
 <body>
-    <?php
+        <?php
+
+        require_once '../public/templates/header.html'
+
     if (empty($_SESSION['carrinho'])) {
-        echo "carrinho vazio";
+        echo "Carrinho vazio";
     } else {
         $total = 0;
         echo "<table border='1'>";
         echo "<tr>";
-        echo "<td>Tipo</td>";
-        echo "<td>Nome</td>";
-        echo "<td>Preço</td>";
-        echo "<td>Quantidade</td>";
-        echo "<td>Total unitário</td>";
-        echo "<td>Remover</td>";
+        echo "<th>Nome</th>";
+        echo "<th>Preço</th>";
+        echo "<th>Quantidade</th>";
+        echo "<th>Total unitário</th>";
+        echo "<th>Remover</th>";
         echo "</tr>";
+
         foreach ($_SESSION['carrinho'] as $id => $quantidade) {
             $produto = pesquisarProdutoId($conexao, $id);
 
             echo "<tr>";
-            echo "<td>" . $produto['tipo'] . "</td>";
-            echo "<td>" . $produto['nome'] . "</td>";
-            echo "<td> R$ <span class='preco'>" . $produto['preco'] . "</span></td>";
+            echo "<td>" . htmlspecialchars($produto['nome']) . "</td>";
+            echo "<td>R$ <span class='preco'>" . number_format($produto['preco'], 2, ',', '.') . "</span></td>";
 
-            echo "<td><input type='number' name='quantidade[$id]' class='quantidade' value='$quantidade' data-id='$id' min='1' size='2'</td>";
+            // ✅ Corrigido: tag input estava sem fechamento
+            echo "<td><input type='number' name='quantidade[$id]' class='quantidade' value='$quantidade' data-id='$id' min='1' size='2'></td>";
 
             $total_unitario = $produto['preco'] * $quantidade;
             $total += $total_unitario;
 
-            echo "<td> R$ <span class='total_unitario'>$total_unitario</span></td>";
+            echo "<td>R$ <span class='total_unitario'>" . number_format($total_unitario, 2, ',', '.') . "</span></td>";
             echo "<td><a href='remover.php?id=$id'>[remover]</a></td>";
             echo "</tr>";
         }
         echo "</table>";
-        echo "<h3>Total da compra: R$ <span id='total'>$total</span></h3>";
+        echo "<h3>Total da compra: R$ <span id='total'>" . number_format($total, 2, ',', '.') . "</span></h3>";
     }
     ?>
 
@@ -56,42 +59,36 @@ require_once "../public/funcoes.php";
         <a href="index.php">Adicionar produtos</a> <br>
         <a href="gravar.php">Gravar compra</a>
     </p>
+
     <script>
+        // Função para atualizar o total geral
         function atualizar_total() {
             let total = 0;
 
             $('span.total_unitario').each(function() {
-                const valor = parseFloat($(this).text());
+                const valor = parseFloat($(this).text().replace(',', '.'));
                 total += valor;
             });
 
-            $('#total').text(total);
+            $('#total').text(total.toFixed(2).replace('.', ','));
         }
 
+        // Função que roda ao alterar a quantidade
         function somar() {
             const linha = $(this).closest('tr');
-            const preco_unitario = linha.find('span.preco').text();
-            const quantidade = $(this).val();
+            const preco_unitario = parseFloat(linha.find('span.preco').text().replace(',', '.'));
+            const quantidade = parseInt($(this).val());
             const id = $(this).data('id');
 
-            console.log("id é:", id);
+            const total_unitario = preco_unitario * quantidade;
+            linha.find('span.total_unitario').text(total_unitario.toFixed(2).replace('.', ','));
 
-            const total = parseFloat(preco_unitario) * parseInt(quantidade);
-
-            const total_unitario = linha.find('span.total_unitario');
-            total_unitario.text(total);
-
-            /* Atualizar o valor total da compra */
             atualizar_total();
 
-            /* Enviar requição para atualiza_carrinho.php para modificar sessão  */
-            console.log("atualizando...");
-
+            // Atualiza a sessão via fetch
             const dados_enviados = new URLSearchParams();
             dados_enviados.append('id', id);
             dados_enviados.append('quantidade', quantidade);
-
-            console.log("dados:", dados_enviados);
 
             fetch('atualiza_carrinho.php', {
                     method: 'POST',
@@ -101,9 +98,11 @@ require_once "../public/funcoes.php";
                     body: dados_enviados.toString()
                 })
                 .then(response => response.text())
-                .catch(error => console.log('Houve erro:', error));
+                .then(data => console.log("Carrinho atualizado:", data))
+                .catch(error => console.error('Erro ao atualizar:', error));
         }
-        $("input[type='number']").change(somar);
+
+        $("input[type='number']").on('change', somar);
     </script>
 </body>
 
