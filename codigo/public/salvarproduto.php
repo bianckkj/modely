@@ -2,50 +2,113 @@
 require_once "../controle/conexao.php";
 require_once "funcoes.php";
 
-// Dados do formulário
+// --- Captura e valida dados do formulário ---
 $id = $_POST['id'] ?? 0;
 $nome = $_POST['nome'] ?? '';
 $quantidade = $_POST['quantidade'] ?? 0;
 $material = $_POST['material'] ?? '';
-$preco = $_POST['preco'] ?? 0;
+$preco = str_replace(',', '.', $_POST['preco'] ?? 0); // troca vírgula por ponto
+
+// Validação do preço
+if (!is_numeric($preco)) {
+    echo "❌ Erro: o preço deve ser um número válido.";
+    exit;
+}
+
 $modelo = $_POST['modelo'] ?? '';
 $cor = $_POST['cor'] ?? '';
 $tamanho = $_POST['tamanho'] ?? '';
 $marca = $_POST['marca'] ?? '';
-$novo_nome = null;
 
-// Verifica se uma imagem foi enviada
-if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === 0) {
-    $nome_arquivo = $_FILES['imagem']['name'];
-    $caminho_temporario = $_FILES['imagem']['tmp_name'];
+// --- Upload da imagem ---
+$imagem = '';
+if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0) {
 
-    // Gera nome único
-    $extensao = strtolower(pathinfo($nome_arquivo, PATHINFO_EXTENSION));
-    $novo_nome = uniqid() . "." . $extensao;
-
-    // Caminho completo da pasta
-    $pasta = __DIR__ . "/fotos/";
+    // Caminho absoluto da pasta
+    $diretorio = __DIR__ . "/imagens/";
 
     // Cria a pasta se não existir
-    if (!is_dir($pasta)) {
-        mkdir($pasta, 0777, true);
+    if (!is_dir($diretorio)) {
+        mkdir($diretorio, 0777, true);
     }
+
+    // Gera nome único para a imagem
+    $extensao = strtolower(pathinfo($_FILES['imagem']['name'], PATHINFO_EXTENSION));
+    $nomeArquivo = uniqid() . "." . $extensao;
+    $caminhoDestino = $diretorio . $nomeArquivo;
 
     // Move o arquivo
-    if (!move_uploaded_file($caminho_temporario, $pasta . $novo_nome)) {
-        echo "❌ Erro ao mover o arquivo. Verifique as permissões da pasta 'fotos/'.";
+    if (!move_uploaded_file($_FILES['imagem']['tmp_name'], $caminhoDestino)) {
+        echo "❌ Erro ao mover o arquivo. Verifique se a pasta 'imagens/' existe e tem permissão de escrita.";
         exit;
     }
+
+    $imagem = $nomeArquivo;
 }
 
-// Salva ou edita
-if ($id == 0) {
-    salvarProduto($conexao, $nome, $quantidade, $material, $preco, $modelo, $cor, $tamanho, $marca, $novo_nome);
+// --- Salva ou edita produto ---
+if ($id > 0) {
+    editarProduto($conexao, $nome, $quantidade, $material, $preco, $modelo, $cor, $tamanho, $marca, $imagem, $id);
 } else {
-    editarProduto($conexao, $nome, $quantidade, $material, $preco, $modelo, $cor, $tamanho, $marca, $novo_nome, $id);
+    salvarProduto($conexao, $nome, $quantidade, $material, $preco, $modelo, $cor, $tamanho, $marca, $imagem);
 }
 
-// Redireciona
+<?php
+require_once "../controle/conexao.php";
+require_once "funcoes.php";
+
+// --- Captura e valida dados do formulário ---
+$id = $_POST['id'] ?? 0;
+$nome = $_POST['nome'] ?? '';
+$quantidade = $_POST['quantidade'] ?? 0;
+$material = $_POST['material'] ?? '';
+$preco = str_replace(',', '.', $_POST['preco'] ?? 0); // troca vírgula por ponto
+
+// Validação do preço
+if (!is_numeric($preco)) {
+    echo "❌ Erro: o preço deve ser um número válido.";
+    exit;
+}
+
+$modelo = $_POST['modelo'] ?? '';
+$cor = $_POST['cor'] ?? '';
+$tamanho = $_POST['tamanho'] ?? '';
+$marca = $_POST['marca'] ?? '';
+
+// --- Upload da imagem ---
+$imagem = '';
+if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0) {
+
+    // Caminho absoluto da pasta
+    $diretorio = __DIR__ . "/imagens/";
+
+    // Cria a pasta se não existir
+    if (!is_dir($diretorio)) {
+        mkdir($diretorio, 0777, true);
+    }
+
+    // Gera nome único para a imagem
+    $extensao = strtolower(pathinfo($_FILES['imagem']['name'], PATHINFO_EXTENSION));
+    $nomeArquivo = uniqid() . "." . $extensao;
+    $caminhoDestino = $diretorio . $nomeArquivo;
+
+    // Move o arquivo
+    if (!move_uploaded_file($_FILES['imagem']['tmp_name'], $caminhoDestino)) {
+        echo "❌ Erro ao mover o arquivo. Verifique se a pasta 'imagens/' existe e tem permissão de escrita.";
+        exit;
+    }
+
+    $imagem = $nomeArquivo;
+}
+
+// --- Salva ou edita produto ---
+if ($id > 0) {
+    editarProduto($conexao, $nome, $quantidade, $material, $preco, $modelo, $cor, $tamanho, $marca, $imagem, $id);
+} else {
+    salvarProduto($conexao, $nome, $quantidade, $material, $preco, $modelo, $cor, $tamanho, $marca, $imagem);
+}
+
+// --- Redireciona para a lista de produtos ---
 header("Location: listar_produto.php");
 exit;
-?>
+

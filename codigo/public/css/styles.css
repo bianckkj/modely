@@ -420,5 +420,11 @@ h2 {
 
 
 
-/*FORMS NO CENTRO DA TELA */
-
+/* CSS para miniatura das imagens dos produtos */
+.produto {
+    width: 80px;       /* largura desejada */
+    height: 80px;      /* altura desejada */
+    object-fit: cover; /* corta e mantém proporção */
+    border-radius: 5px; /* bordas arredondadas, opcional */
+    border: 1px solid #ccc; /* opcional */
+}

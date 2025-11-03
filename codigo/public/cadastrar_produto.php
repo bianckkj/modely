@@ -63,7 +63,7 @@ if (isset($_GET['id'])) {
         Nome: <br>
         <input type="text" name="nome" value="<?php echo $nome; ?>"> <br><br>
         Quantidade: <br>
-        <input type="text" name="quantidade" value="<?php echo $quantidade; ?>"> <br><br>
+        <input type="number" name="quantidade" value="<?php echo $quantidade; ?>"> <br><br>
         Material: <br>
         <input type="text" name="material" value="<?php echo $material; ?>"> <br><br>
         Preço: <br>
