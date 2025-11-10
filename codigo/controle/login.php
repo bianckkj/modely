@@ -1,27 +1,35 @@
 <?php
-    require_once 'conexao.php';
-    $login = $_POST['email'];
-    $senha = $_POST['senha'];
+require_once 'conexao.php';
 
-    $sql = "SELECT * FROM tb_usuario WHERE email = '$login'";
-    
-    $resultados = mysqli_query($conexao, $sql);
+session_start(); // Inicia a sessão no início do arquivo
 
-    if (mysqli_num_rows($resultados) == 0) {
-        // usuário não cadastrado
-        // ou informou dados errados.
-        echo "nao cadastrar";
-        header("Location: ../public/index.php");
-    } else {
-        $linha = mysqli_fetch_array($resultados);
-        $senhaHash = $linha['senha'];
-        if (password_verify($senha, $senhaHash) == true) {
-            session_start();
-            $_SESSION['logado'] = 1;
-            header("Location: ../public/home.php");
-        } else {
-            header("Location: ../public/index.php");
-        }
-    }
-    
+$login = $_POST['email'] ?? '';
+$senha = $_POST['senha'] ?? '';
+
+if (empty($login) || empty($senha)) {
+    header("Location: ../public/index.php");
+    exit;
+}
+
+$sql = "SELECT * FROM tb_usuario WHERE email = '$login'";
+$resultados = mysqli_query($conexao, $sql);
+
+if (mysqli_num_rows($resultados) == 0) {
+    // Usuário não cadastrado
+    header("Location: ../public/index.php");
+    exit;
+}
+
+$linha = mysqli_fetch_array($resultados);
+$senhaHash = $linha['senha'];
+
+if (password_verify($senha, $senhaHash)) {
+    $_SESSION['logado'] = 1;
+    $_SESSION['email'] = $login; // salva email para perfil
+    header("Location: ../public/home.php");
+    exit;
+} else {
+    header("Location: ../public/index.php");
+    exit;
+}
 ?>
