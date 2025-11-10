@@ -209,93 +209,184 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
 
--- ==============================
--- Tabela: tb_cliente
--- ==============================
+USE modely;
+
+-- =============================
+-- TABELA: tb_cliente
+-- =============================
 INSERT INTO tb_cliente (nome, cpf, telefone, email, endereco) VALUES
-('Bianca Oliveira', '111.111.111-11', '(11) 99999-1111', 'bianca@email.com', 'Rua das Flores, 100'),
-('Marcos Silva', '222.222.222-22', '(11) 98888-2222', 'marcos@email.com', 'Av. Paulista, 200'),
-('Ana Souza', '333.333.333-33', '(21) 97777-3333', 'ana@email.com', 'Rua do Sol, 50'),
-('Carlos Mendes', '444.444.444-44', '(31) 96666-4444', 'carlos@email.com', 'Rua Minas, 123'),
-('Julia Santos', '555.555.555-55', '(41) 95555-5555', 'julia@email.com', 'Av. Brasil, 1500');
+('Ana Silva', '111.111.111-11', '(11)90000-0001', 'ana.silva@email.com', 'Rua das Flores, 123'),
+('Bruno Souza', '222.222.222-22', '(11)90000-0002', 'bruno.souza@email.com', 'Av. Paulista, 456'),
+('Carla Mendes', '333.333.333-33', '(11)90000-0003', 'carla.mendes@email.com', 'Rua Rio Branco, 789'),
+('Diego Castro', '444.444.444-44', '(11)90000-0004', 'diego.castro@email.com', 'Rua da Paz, 12'),
+('Eduarda Lima', '555.555.555-55', '(11)90000-0005', 'eduarda.lima@email.com', 'Rua Afonso Pena, 65'),
+('Felipe Alves', '666.666.666-66', '(11)90000-0006', 'felipe.alves@email.com', 'Av. Brasil, 999'),
+('Giovana Rocha', '777.777.777-77', '(11)90000-0007', 'gi.rocha@email.com', 'Rua das Acácias, 88'),
+('Hugo Santos', '888.888.888-88', '(11)90000-0008', 'hugo.santos@email.com', 'Rua Central, 54'),
+('Isabela Nunes', '999.999.999-99', '(11)90000-0009', 'isa.nunes@email.com', 'Av. Europa, 101'),
+('João Pedro', '101.010.101-01', '(11)90000-0010', 'joao.pedro@email.com', 'Rua das Palmeiras, 22'),
+('Karla Beatriz', '202.020.202-02', '(11)90000-0011', 'karla.b@email.com', 'Rua Marechal, 12'),
+('Lucas Oliveira', '303.030.303-03', '(11)90000-0012', 'lucas.o@email.com', 'Rua Santos Dumont, 98'),
+('Mariana Costa', '404.040.404-04', '(11)90000-0013', 'mariana.costa@email.com', 'Av. Goiás, 303'),
+('Nicolas Faria', '505.050.505-05', '(11)90000-0014', 'nicolas.f@email.com', 'Rua do Sol, 77'),
+('Olivia Ribeiro', '606.060.606-06', '(11)90000-0015', 'olivia.r@email.com', 'Rua Bela Vista, 55');
 
--- ==============================
--- Tabela: tb_funcionario
--- ==============================
+-- =============================
+-- TABELA: tb_funcionario
+-- =============================
 INSERT INTO tb_funcionario (nome, cpf, email, telefone, data_nascimento, carga_horaria, salario, endereco) VALUES
-('Fernanda Lima', '666.666.666-66', 'fernanda@email.com', '(11) 91111-6666', '1990-05-10', '8h', 2500.00, 'Rua Verde, 10'),
-('Rafael Costa', '777.777.777-77', 'rafael@email.com', '(11) 92222-7777', '1985-09-12', '8h', 3000.00, 'Rua Azul, 20'),
-('Luciana Alves', '888.888.888-88', 'luciana@email.com', '(21) 93333-8888', '1992-11-25', '6h', 1800.00, 'Rua Amarela, 30'),
-('Diego Rocha', '999.999.999-99', 'diego@email.com', '(31) 94444-9999', '1995-01-05', '8h', 2200.00, 'Rua Preta, 40'),
-('Patrícia Gomes', '101.010.101-01', 'patricia@email.com', '(41) 95555-1010', '1980-07-18', '4h', 1500.00, 'Rua Branca, 50');
+('Paula Ferreira', '111.222.333-44', 'paula.f@email.com', '(11)91111-1111', '1990-05-14', '44h', 3200.00, 'Rua A, 10'),
+('Rafael Martins', '222.333.444-55', 'rafael.m@email.com', '(11)92222-2222', '1988-09-12', '40h', 2800.00, 'Rua B, 20'),
+('Sandra Dias', '333.444.555-66', 'sandra.d@email.com', '(11)93333-3333', '1992-01-22', '44h', 3100.00, 'Rua C, 30'),
+('Tiago Gomes', '444.555.666-77', 'tiago.g@email.com', '(11)94444-4444', '1995-03-09', '40h', 2900.00, 'Rua D, 40'),
+('Ursula Ramos', '555.666.777-88', 'ursula.r@email.com', '(11)95555-5555', '1991-11-11', '44h', 3050.00, 'Rua E, 50'),
+('Victor Lima', '666.777.888-99', 'victor.l@email.com', '(11)96666-6666', '1989-06-25', '40h', 3150.00, 'Rua F, 60'),
+('Wesley Araújo', '777.888.999-00', 'wesley.a@email.com', '(11)97777-7777', '1993-07-30', '44h', 3300.00, 'Rua G, 70'),
+('Xavier Costa', '888.999.000-11', 'xavier.c@email.com', '(11)98888-8888', '1990-02-18', '40h', 2800.00, 'Rua H, 80'),
+('Yasmin Moreira', '999.000.111-22', 'yasmin.m@email.com', '(11)99999-9999', '1994-04-15', '44h', 3400.00, 'Rua I, 90'),
+('Zeca Souza', '000.111.222-33', 'zeca.s@email.com', '(11)91010-1010', '1987-10-01', '40h', 2950.00, 'Rua J, 100'),
+('Beatriz Melo', '123.456.789-10', 'bia.m@email.com', '(11)92020-2020', '1996-08-08', '44h', 3100.00, 'Rua K, 110'),
+('Caio Rocha', '234.567.890-21', 'caio.r@email.com', '(11)93030-3030', '1991-09-09', '40h', 2800.00, 'Rua L, 120'),
+('Daniela Luz', '345.678.901-32', 'dani.l@email.com', '(11)94040-4040', '1993-03-03', '44h', 3250.00, 'Rua M, 130'),
+('Eduardo Neves', '456.789.012-43', 'edu.n@email.com', '(11)95050-5050', '1990-12-12', '44h', 3500.00, 'Rua N, 140'),
+('Fernanda Reis', '567.890.123-54', 'fer.r@email.com', '(11)96060-6060', '1992-05-05', '40h', 3000.00, 'Rua O, 150');
 
--- ==============================
--- Tabela: tb_usuario
--- ==============================
-INSERT INTO tb_usuario (nome, senha, email, endereco, tipo) VALUES
-('Admin', '123456', 'admin@email.com', 'Av. Central, 1', 'A'),
-('Bianca Oliveira', 'senha1', 'bianca@email.com', 'Rua das Flores, 100', 'C'),
-('Marcos Silva', 'senha2', 'marcos@email.com', 'Av. Paulista, 200', 'C'),
-('Fernanda Lima', 'senha3', 'fernanda@email.com', 'Rua Verde, 10', 'F'),
-('Rafael Costa', 'senha4', 'rafael@email.com', 'Rua Azul, 20', 'F');
-
--- ==============================
--- Tabela: tb_produto
--- ==============================
+-- =============================
+-- TABELA: tb_produto
+-- =============================
 INSERT INTO tb_produto (nome, quantidade, material, preco, modelo, cor, tamanho, marca, imagem) VALUES
-('Camiseta Básica', 50, 'Algodão', 79.90, 'Casual', 'Preta', 'M', 'Modely', 'camiseta_preta.jpg'),
-('Calça Skinny', 30, 'Jeans', 129.90, 'Tradicional', 'Azul', '42', 'Modely', 'calca_jeans.jpg'),
-('Jaqueta de Couro', 20, 'Couro', 199.90, 'Moto', 'Marrom', 'G', 'Modely', 'jaqueta.jpg'),
-('Short Esportivo', 100, 'Poliéster', 59.90, 'Fitness', 'Cinza', 'M', 'Modely', 'short.jpg'),
-('Blusa de Frio', 15, 'Lã', 249.90, 'Inverno', 'Vermelha', 'P', 'Modely', 'blusa_frio.jpg');
+('Camiseta Básica', 50, 'Algodão', 79.90, 'Unissex', 'Branca', 'M', 'Modely', 'camiseta1.jpg'),
+('Calça Jeans Slim', 40, 'Jeans', 149.90, 'Slim', 'Azul Escuro', '42', 'Modely', 'calca1.jpg'),
+('Jaqueta Couro', 20, 'Couro Sintético', 299.90, 'Casual', 'Preta', 'G', 'Modely', 'jaqueta1.jpg'),
+('Vestido Floral', 30, 'Viscose', 189.90, 'Verão', 'Vermelho', 'M', 'Modely', 'vestido1.jpg'),
+('Saia Midi', 25, 'Poliéster', 99.90, 'Clássica', 'Bege', 'P', 'Modely', 'saia1.jpg'),
+('Cropped Liso', 60, 'Algodão', 59.90, 'Casual', 'Rosa', 'M', 'Modely', 'cropped1.jpg'),
+('Bermuda Jeans', 45, 'Jeans', 89.90, 'Casual', 'Azul Claro', '40', 'Modely', 'bermuda1.jpg'),
+('Moletom Capuz', 35, 'Algodão', 159.90, 'Inverno', 'Cinza', 'G', 'Modely', 'moletom1.jpg'),
+('Camisa Social', 55, 'Algodão', 129.90, 'Formal', 'Branca', 'M', 'Modely', 'camisa1.jpg'),
+('Short Saia', 40, 'Jeans', 109.90, 'Verão', 'Azul Claro', 'P', 'Modely', 'short1.jpg'),
+('Top Esportivo', 70, 'Poliamida', 89.90, 'Fitness', 'Preto', 'M', 'Modely', 'top1.jpg'),
+('Legging Compressão', 50, 'Poliamida', 139.90, 'Fitness', 'Rosa', 'G', 'Modely', 'legging1.jpg'),
+('Casaco Tricô', 30, 'Lã', 179.90, 'Inverno', 'Bege', 'M', 'Modely', 'casaco1.jpg'),
+('Blazer Alfaiataria', 20, 'Poliéster', 249.90, 'Formal', 'Preto', 'M', 'Modely', 'blazer1.jpg'),
+('Camisa Estampada', 60, 'Viscose', 119.90, 'Casual', 'Colorida', 'G', 'Modely', 'camisa2.jpg');
 
--- ==============================
--- Tabela: tb_agendamento
--- ==============================
+-- =============================
+-- TABELA: tb_usuario
+-- =============================
+INSERT INTO tb_usuario (nome, senha, email, endereco, tipo) VALUES
+('Admin', '123admin', 'admin@modely.com', 'Sistema', 'A'),
+('Ana Silva', '123ana', 'ana.silva@email.com', 'Rua das Flores, 123', 'C'),
+('Bruno Souza', '123bruno', 'bruno.souza@email.com', 'Av. Paulista, 456', 'C'),
+('Carla Mendes', '123carla', 'carla.mendes@email.com', 'Rua Rio Branco, 789', 'C'),
+('Diego Castro', '123diego', 'diego.castro@email.com', 'Rua da Paz, 12', 'C'),
+('Paula Ferreira', '123paula', 'paula.f@email.com', 'Rua A, 10', 'F'),
+('Rafael Martins', '123rafa', 'rafael.m@email.com', 'Rua B, 20', 'F'),
+('Sandra Dias', '123sandra', 'sandra.d@email.com', 'Rua C, 30', 'F'),
+('Tiago Gomes', '123tiago', 'tiago.g@email.com', 'Rua D, 40', 'F'),
+('Yasmin Moreira', '123yasmin', 'yasmin.m@email.com', 'Rua I, 90', 'F'),
+('Lucas Oliveira', '123lucas', 'lucas.o@email.com', 'Rua Santos Dumont, 98', 'C'),
+('Mariana Costa', '123mari', 'mariana.costa@email.com', 'Av. Goiás, 303', 'C'),
+('Nicolas Faria', '123nico', 'nicolas.f@email.com', 'Rua do Sol, 77', 'C'),
+('Olivia Ribeiro', '123oli', 'olivia.r@email.com', 'Rua Bela Vista, 55', 'C'),
+('Victor Lima', '123vic', 'victor.l@email.com', 'Rua F, 60', 'F');
+
+-- =============================
+-- TABELA: tb_agendamento
+-- =============================
 INSERT INTO tb_agendamento (id_cliente, data, horario, status) VALUES
-(1, '2025-09-20', '10:00:00', 'Confirmado'),
-(2, '2025-09-21', '11:00:00', 'Pendente'),
-(3, '2025-09-22', '15:00:00', 'Cancelado'),
-(4, '2025-09-23', '09:30:00', 'Confirmado'),
-(5, '2025-09-24', '14:00:00', 'Confirmado');
+(1, '2025-10-10', '10:00:00', 'Agendado'),
+(2, '2025-10-11', '11:30:00', 'Agendado'),
+(3, '2025-10-12', '09:00:00', 'Concluído'),
+(4, '2025-10-13', '15:00:00', 'Agendado'),
+(5, '2025-10-14', '16:30:00', 'Cancelado'),
+(6, '2025-10-15', '14:00:00', 'Concluído'),
+(7, '2025-10-16', '10:30:00', 'Agendado'),
+(8, '2025-10-17', '09:30:00', 'Concluído'),
+(9, '2025-10-18', '11:00:00', 'Agendado'),
+(10, '2025-10-19', '13:00:00', 'Agendado'),
+(11, '2025-10-20', '15:30:00', 'Cancelado'),
+(12, '2025-10-21', '10:00:00', 'Concluído'),
+(13, '2025-10-22', '11:00:00', 'Agendado'),
+(14, '2025-10-23', '09:30:00', 'Agendado'),
+(15, '2025-10-24', '14:30:00', 'Concluído');
 
--- ==============================
--- Tabela: tb_carrinho
--- ==============================
+-- =============================
+-- TABELA: tb_carrinho
+-- =============================
 INSERT INTO tb_carrinho (id_cliente, valor_total, valor_entrega, valor_pago) VALUES
-(1, 189.80, 10.00, 199.80),
-(2, 259.80, 15.00, 274.80),
-(3, 199.90, 0.00, 199.90),
-(4, 119.80, 10.00, 129.80),
-(5, 249.90, 20.00, 269.90);
+(1, 229.80, 10.00, 239.80),
+(2, 79.90, 10.00, 89.90),
+(3, 299.90, 15.00, 314.90),
+(4, 149.90, 12.00, 161.90),
+(5, 89.90, 8.00, 97.90),
+(6, 109.90, 10.00, 119.90),
+(7, 189.90, 15.00, 204.90),
+(8, 249.90, 20.00, 269.90),
+(9, 159.90, 10.00, 169.90),
+(10, 99.90, 8.00, 107.90),
+(11, 299.90, 15.00, 314.90),
+(12, 79.90, 10.00, 89.90),
+(13, 189.90, 10.00, 199.90),
+(14, 249.90, 20.00, 269.90),
+(15, 109.90, 8.00, 117.90);
 
--- ==============================
--- Tabela: tb_itens_carrinho
--- ==============================
-INSERT INTO tb_itens_carrinho (id_carrinho, id_produto, quantidade) VALUES
-(1, 1, 2),
-(2, 2, 2),
-(3, 3, 1),
-(4, 4, 2),
-(5, 5, 1);
-
--- ==============================
--- Tabela: tb_vendas
--- ==============================
+-- =============================
+-- TABELA: tb_vendas
+-- =============================
 INSERT INTO tb_vendas (id_cliente, id_funcionario, horario, data, comissao) VALUES
-(1, 1, '14:00:00', '2025-09-10', 50.00),
-(2, 2, '15:30:00', '2025-09-11', 30.00),
-(3, 3, '16:00:00', '2025-09-12', 40.00),
-(4, 4, '17:00:00', '2025-09-13', 25.00),
-(5, 5, '18:00:00', '2025-09-14', 60.00);
+(1, 1, '10:00:00', '2025-10-01', 15.00),
+(2, 2, '11:00:00', '2025-10-02', 20.00),
+(3, 3, '12:00:00', '2025-10-03', 18.00),
+(4, 4, '13:00:00', '2025-10-04', 22.00),
+(5, 5, '14:00:00', '2025-10-05', 19.00),
+(6, 6, '15:00:00', '2025-10-06', 17.00),
+(7, 7, '16:00:00', '2025-10-07', 23.00),
+(8, 8, '17:00:00', '2025-10-08', 21.00),
+(9, 9, '18:00:00', '2025-10-09', 20.00),
+(10, 10, '19:00:00', '2025-10-10', 18.00),
+(11, 11, '10:30:00', '2025-10-11', 19.00),
+(12, 12, '11:45:00', '2025-10-12', 17.00),
+(13, 13, '13:00:00', '2025-10-13', 16.00),
+(14, 14, '14:15:00', '2025-10-14', 20.00),
+(15, 15, '15:30:00', '2025-10-15', 22.00);
 
--- ==============================
--- Tabela: tb_itens_vendas
--- ==============================
+-- =============================
+-- TABELA: tb_itens_vendas
+-- =============================
 INSERT INTO tb_itens_vendas (id_vendas, id_produto, quantidade) VALUES
 (1, 1, 2),
-(1, 2, 1),
 (2, 3, 1),
-(3, 4, 3),
-(4, 5, 1),
-(5, 2, 2);
+(3, 4, 1),
+(4, 5, 2),
+(5, 6, 3),
+(6, 2, 1),
+(7, 8, 1),
+(8, 10, 2),
+(9, 11, 1),
+(10, 12, 1),
+(11, 13, 1),
+(12, 7, 2),
+(13, 9, 1),
+(14, 14, 1),
+(15, 15, 1);
+
+-- =============================
+-- TABELA: tb_itens_carrinho
+-- =============================
+INSERT INTO tb_itens_carrinho (id_carrinho, id_produto, quantidade) VALUES
+(1, 1, 2),
+(2, 2, 1),
+(3, 3, 1),
+(4, 4, 1),
+(5, 5, 1),
+(6, 6, 1),
+(7, 7, 2),
+(8, 8, 1),
+(9, 9, 1),
+(10, 10, 1),
+(11, 11, 1),
+(12, 12, 1),
+(13, 13, 1),
+(14, 14, 1),
+(15, 12,1);
