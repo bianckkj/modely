@@ -1,14 +1,16 @@
 <?php
-    require_once "conexao.php";
-    require_once "../public/funcoes.php";
+ob_start(); // inicia buffer
 
-    $id = $_GET['id'];
+require_once "conexao.php";
+require_once "../public/funcoes.php";
 
-    if (deletarFuncionario($conexao, $id)) {
-        header("Location: ../public/listar_funcionario.php");
-    }
-    else {
-        header("Location: home.php");
-    }
+$id = $_GET['id'];
 
+if (deletarFuncionario($conexao, $id)) {
+    header("Location: ../public/listar_funcionario.php");
+} else {
+    header("Location: ../public/home.php");
+}
+
+ob_end_flush(); // envia o buffer
 ?>

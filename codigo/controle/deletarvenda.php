@@ -1,4 +1,7 @@
 <?php
+// Inicia o buffer de saída
+ob_start();
+
 require_once "conexao.php";
 require_once "../public/funcoes.php";
 
@@ -26,3 +29,7 @@ if (deletarVenda($conexao, $id)) {
     header("Location: ../public/home.php");
     exit;
 }
+
+// Libera o buffer e envia a saída
+ob_end_flush();
+?>
