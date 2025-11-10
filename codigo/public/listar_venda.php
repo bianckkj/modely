@@ -15,17 +15,15 @@
     <link rel="stylesheet" href="../public/css/styles.css">
 </head>
 
-
 <body>
 
     <!-- Logo e cabeçalho -->
     <img src="../public/assets/logo.png" alt="logo do site" id="logo" class="mb-4">
     <?php require_once './templates/header.html'; ?>
 
-
     <h1>Listar Vendas</h1>
 
-  <?php
+    <?php
     require_once "../controle/conexao.php";
     require_once "../public/funcoes.php";
 
@@ -41,6 +39,7 @@
         FROM tb_vendas v
         INNER JOIN tb_cliente c ON v.id_cliente = c.id_cliente
         INNER JOIN tb_funcionario f ON v.id_funcionario = f.id_funcionario
+        ORDER BY v.data ASC, v.horario ASC
     ";
     $result_vendas = $conexao->query($sql_vendas);
 
@@ -101,7 +100,55 @@
 
         echo "</table>";
     }
+
+    // ======================================================
+    // 🔽 MOSTRA AS VENDAS FEITAS PELO CARRINHO (corrigido)
+    // ======================================================
+    echo "<br><hr><h2>Vendas Feitas pelo Carrinho</h2>";
+
+    $sql_carrinho = "
+        SELECT v.id_vendas, v.data, v.comissao
+        FROM tb_vendas v
+        ORDER BY v.data ASC, v.horario ASC
+    ";
+    $result_carrinho = $conexao->query($sql_carrinho);
+
+    if ($result_carrinho && $result_carrinho->num_rows > 0) {
+        echo "<table border='1' cellpadding='5'>";
+        echo "<tr><th>ID</th><th>Data</th><th>Comissão</th><th>Produtos</th></tr>";
+
+        while ($venda = $result_carrinho->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>{$venda['id_vendas']}</td>";
+            echo "<td>{$venda['data']}</td>";
+            echo "<td>R$ " . number_format($venda['comissao'], 2, ',', '.') . "</td>";
+
+            // lista itens dessa venda
+            $sql_itens_carrinho = "
+                SELECT p.nome, iv.quantidade
+                FROM tb_itens_vendas iv
+                JOIN tb_produto p ON iv.id_produto = p.id_produto
+                WHERE iv.id_vendas = {$venda['id_vendas']}
+            ";
+            $result_itens_carrinho = $conexao->query($sql_itens_carrinho);
+
+            echo "<td>";
+            if ($result_itens_carrinho && $result_itens_carrinho->num_rows > 0) {
+                while ($item = $result_itens_carrinho->fetch_assoc()) {
+                    echo "{$item['nome']} (Qtd: {$item['quantidade']})<br>";
+                }
+            } else {
+                echo "Sem itens.";
+            }
+            echo "</td>";
+
+            echo "</tr>";
+        }
+
+        echo "</table>";
+    } else {
+        echo "<p>Nenhuma venda feita pelo carrinho ainda.</p>";
+    }
     ?>
 </body>
-
 </html>

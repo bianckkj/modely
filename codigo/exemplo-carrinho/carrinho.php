@@ -19,9 +19,9 @@ require_once "../public/funcoes.php";
     <!-- ver carrinho atual -->
     <?php
 
-        require_once '../public/templates/header.html'
 
-    if (empty($_SESSION['carrinho'])) {
+
+    if(empty($_SESSION['carrinho'])) {
         echo "carrinho vazio";
     } else {
         $total = 0;

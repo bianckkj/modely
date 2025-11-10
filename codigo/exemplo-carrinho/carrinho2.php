@@ -18,7 +18,7 @@ require_once "../public/funcoes.php";
 <body>
         <?php
 
-        require_once '../public/templates/header.html'
+ 
 
     if (empty($_SESSION['carrinho'])) {
         echo "Carrinho vazio";
