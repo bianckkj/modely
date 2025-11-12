@@ -17,7 +17,7 @@
     
     <?php require_once './templates/header.html'; ?>
     
-    <div class="container mt-4">
+    
         <h1>Lista de Produtos</h1>
 
         <?php
@@ -82,6 +82,6 @@
             echo "</tbody></table>";
         }
         ?>
-    </div>
+
 </body>
 </html>
