@@ -68,12 +68,27 @@
 
             // busca os produtos dessa venda com o nome
             $sql_itens = "
-                SELECT p.nome AS nome_produto, iv.quantidade 
+                SELECT p.nome AS nome_produto, iv.quantidade, p.preco
                 FROM tb_itens_vendas iv
                 INNER JOIN tb_produto p ON iv.id_produto = p.id_produto
                 WHERE iv.id_vendas = $id_vendas
             ";
             $result_itens = $conexao->query($sql_itens);
+
+            // calcula o total da venda para estimar comissão, caso não tenha sido gravada
+            $total_venda = 0;
+            if ($result_itens && $result_itens->num_rows > 0) {
+                while ($item = $result_itens->fetch_assoc()) {
+                    $subtotal = $item['preco'] * $item['quantidade'];
+                    $total_venda += $subtotal;
+                    $itens_lista[] = "Produto: {$item['nome_produto']} (Qtd: {$item['quantidade']})";
+                }
+            }
+
+            // Se comissão estiver vazia ou zero, calcula 10% do total
+            if (empty($comissao) || $comissao == 0) {
+                $comissao = $total_venda * 0.10;
+            }
 
             echo "<tr>";
             echo "<td>$id_vendas</td>";
@@ -81,10 +96,8 @@
             echo "<td>$nome_funcionario</td>";
 
             echo "<td>";
-            if ($result_itens && $result_itens->num_rows > 0) {
-                while ($item = $result_itens->fetch_assoc()) {
-                    echo "Produto: {$item['nome_produto']} (Qtd: {$item['quantidade']})<br>";
-                }
+            if (!empty($itens_lista)) {
+                echo implode('<br>', $itens_lista);
             } else {
                 echo "Nenhum produto vinculado.";
             }
@@ -92,18 +105,20 @@
 
             echo "<td>$horario</td>";
             echo "<td>$data</td>";
-            echo "<td>$comissao</td>";
+            echo "<td>R$ " . number_format($comissao, 2, ',', '.') . "</td>";
             echo "<td><a href='../public/cadastrar_vendas.php?id=$id_vendas'>Editar</a></td>";
             echo "<td><a href='../controle/deletarvenda.php?id=$id_vendas'>Excluir</a></td>";
             echo "</tr>";
+
+            // limpa array de itens antes da próxima venda
+            unset($itens_lista);
         }
 
         echo "</table>";
     }
 
-    // ======================================================
-    // 🔽 MOSTRA AS VENDAS FEITAS PELO CARRINHO (corrigido)
-    // ======================================================
+  
+    // MOSTRA AS VENDAS FEITAS PELO CARRINHO // 
     echo "<br><hr><h2>Vendas Feitas pelo Carrinho</h2>";
 
     $sql_carrinho = "
@@ -118,21 +133,43 @@
         echo "<tr><th>ID</th><th>Data</th><th>Comissão</th><th>Produtos</th></tr>";
 
         while ($venda = $result_carrinho->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td>{$venda['id_vendas']}</td>";
-            echo "<td>{$venda['data']}</td>";
-            echo "<td>R$ " . number_format($venda['comissao'], 2, ',', '.') . "</td>";
+            $id_vendas = $venda['id_vendas'];
+            $comissao = $venda['comissao'];
 
             // lista itens dessa venda
             $sql_itens_carrinho = "
-                SELECT p.nome, iv.quantidade
+                SELECT p.nome, iv.quantidade, p.preco
                 FROM tb_itens_vendas iv
                 JOIN tb_produto p ON iv.id_produto = p.id_produto
-                WHERE iv.id_vendas = {$venda['id_vendas']}
+                WHERE iv.id_vendas = $id_vendas
             ";
             $result_itens_carrinho = $conexao->query($sql_itens_carrinho);
 
+            // calcula total
+            $total_venda = 0;
+            echo "<tr>";
+            echo "<td>$id_vendas</td>";
+            echo "<td>{$venda['data']}</td>";
+
             echo "<td>";
+            if ($result_itens_carrinho && $result_itens_carrinho->num_rows > 0) {
+                while ($item = $result_itens_carrinho->fetch_assoc()) {
+                    $subtotal = $item['preco'] * $item['quantidade'];
+                    $total_venda += $subtotal;
+                }
+            }
+
+            // Se não tiver comissão gravada, calcula 10% do total
+            if (empty($comissao) || $comissao == 0) {
+                $comissao = $total_venda * 0.10;
+            }
+
+            echo "R$ " . number_format($comissao, 2, ',', '.');
+            echo "</td>";
+
+            // lista produtos
+            echo "<td>";
+            $result_itens_carrinho = $conexao->query($sql_itens_carrinho);
             if ($result_itens_carrinho && $result_itens_carrinho->num_rows > 0) {
                 while ($item = $result_itens_carrinho->fetch_assoc()) {
                     echo "{$item['nome']} (Qtd: {$item['quantidade']})<br>";

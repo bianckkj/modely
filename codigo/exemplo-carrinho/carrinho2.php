@@ -61,49 +61,94 @@ require_once "../public/funcoes.php";
     </p>
 
     <script>
-        // Função para atualizar o total geral
-        function atualizar_total() {
-            let total = 0;
+    // converte string no formato "1.234,56" -> número (1234.56)
+    function parseBrNumber(str) {
+        if (!str) return 0;
+        // remove espaços, remove pontos de milhar e troca vírgula por ponto
+        const cleaned = String(str).trim().replace(/\s/g, '').replace(/\./g, '').replace(',', '.');
+        const n = parseFloat(cleaned);
+        return isNaN(n) ? 0 : n;
+    }
 
-            $('span.total_unitario').each(function() {
-                const valor = parseFloat($(this).text().replace(',', '.'));
-                total += valor;
-            });
+    // formata número 1234.56 -> "1.234,56" (sem milhares se < 1000)
+    function formatBrNumber(num) {
+        if (isNaN(num) || num === null) num = 0;
+        // mantemos só duas casas e trocamos ponto por vírgula
+        return num.toFixed(2).replace('.', ',');
+    }
 
-            $('#total').text(total.toFixed(2).replace('.', ','));
+    // atualiza o total geral lendo todos os spans .total_unitario
+    function atualizar_total() {
+        let total = 0;
+        document.querySelectorAll('span.total_unitario').forEach(function(el) {
+            total += parseBrNumber(el.textContent);
+        });
+        const totalEl = document.getElementById('total');
+        if (totalEl) totalEl.textContent = formatBrNumber(total);
+    }
+
+    // handler quando altera uma quantidade
+    function somar() {
+        const linha = this.closest('tr');
+        const precoText = linha.querySelector('span.preco').textContent;
+        const preco_unitario = parseBrNumber(precoText);
+
+        let quantidade = parseInt(this.value, 10);
+        if (isNaN(quantidade) || quantidade < 1) {
+            quantidade = 1;
+            this.value = 1;
         }
 
-        // Função que roda ao alterar a quantidade
-        function somar() {
-            const linha = $(this).closest('tr');
-            const preco_unitario = parseFloat(linha.find('span.preco').text().replace(',', '.'));
-            const quantidade = parseInt($(this).val());
-            const id = $(this).data('id');
+        const total_unitario = preco_unitario * quantidade;
 
-            const total_unitario = preco_unitario * quantidade;
-            linha.find('span.total_unitario').text(total_unitario.toFixed(2).replace('.', ','));
+        // atualiza o span do total unitário (formato BR)
+        const spanTotalUnit = linha.querySelector('span.total_unitario');
+        if (spanTotalUnit) spanTotalUnit.textContent = formatBrNumber(total_unitario);
 
-            atualizar_total();
+        // atualiza o total geral
+        atualizar_total();
 
-            // Atualiza a sessão via fetch
-            const dados_enviados = new URLSearchParams();
-            dados_enviados.append('id', id);
-            dados_enviados.append('quantidade', quantidade);
+        // Atualiza a sessão via POST
+        const dados_enviados = new URLSearchParams();
+        dados_enviados.append('id', this.dataset.id);
+        dados_enviados.append('quantidade', quantidade);
 
-            fetch('atualiza_carrinho.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: dados_enviados.toString()
-                })
-                .then(response => response.text())
-                .then(data => console.log("Carrinho atualizado:", data))
-                .catch(error => console.error('Erro ao atualizar:', error));
+        fetch('atualiza_carrinho.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: dados_enviados.toString()
+        })
+        .then(response => response.text())
+        .then(data => console.log("Carrinho atualizado:", data))
+        .catch(error => console.error('Erro ao atualizar:', error));
+    }
+
+    // usa event delegation: funciona mesmo se inputs forem gerados dinamicamente
+    document.addEventListener('change', function(e) {
+        const target = e.target;
+        if (target && target.matches('input.quantidade, input[type="number"].quantidade')) {
+            somar.call(target, e);
         }
+    });
 
-        $("input[type='number']").on('change', somar);
-    </script>
+    // monta binding também para inputs (caso prefira)
+    document.querySelectorAll('input.quantidade').forEach(function(inp){
+        inp.addEventListener('change', somar);
+    });
+
+    // garante que o total exibido no carregamento está consistente (caso spans tenham formatação diferente)
+    document.addEventListener('DOMContentLoaded', function() {
+        // normalizar os spans de total_unitario, caso server-side deixou com . ou , indevidamente
+        document.querySelectorAll('span.total_unitario').forEach(function(el) {
+            const n = parseBrNumber(el.textContent);
+            el.textContent = formatBrNumber(n);
+        });
+        atualizar_total();
+    });
+</script>
+
 </body>
 
 </html>
