@@ -208,7 +208,6 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
-
 USE modely;
 
 -- =============================
@@ -255,22 +254,23 @@ INSERT INTO tb_funcionario (nome, cpf, email, telefone, data_nascimento, carga_h
 -- TABELA: tb_produto
 -- =============================
 INSERT INTO tb_produto 
-(quantidade, material, preco, modelo, cor, tamanho, marca, imagem) VALUES
-('20', 'Viscose', 129.900, 'Vestido Floral Curto', 'amarelo', 'M', 'Modely', 'img1.png'),
-('15', 'Algodão', 69.900, 'Blusa Cropped Branca', 'Branca', 'P', 'Modely ', 'img2.png.'),
-('18', 'Jeans', 159.900, 'Calça Jeans Skinny', 'Azul Escuro', 'G', 'Modely', 'img3.png'),
-('10', 'Poliéster', 139.900, 'Saia Midi Plissada', 'bege', 'M', 'Modely ', 'img4.png.'),
-('8', 'Couro Sintético', 229.900, 'Jaqueta de Couro', 'Preta', 'M', 'Modely', 'img5.png'),
-('20', 'Algodão', 79.900, 'Camiseta Oversized Feminina', 'Bege', 'G', 'Modely', 'img6.png'),
-('12', 'Jeans', 189.900, 'Macacão Jeans Feminino', 'branco', 'M', 'Modely', 'img7.png'),
-('10', 'Tricô', 149.900, 'Cardigan de Tricô', 'cinza', 'M', 'Modely ', 'img8.png'),
-('14', 'Poliéster', 119.900, 'Short Alfaiataria', 'Preto', 'P', ' Modely', 'img9.png'),
-('9', 'Moletom', 199.900, 'Conjunto Moletom', 'Florido', 'G', 'Modely', 'img10.png'),
-('16', 'Poliamida', 89.900, 'Top Esportivo Feminino', 'laranja', 'M', 'Modely', 'img11.png'),
-('11', 'Malha Fria', 179.900, 'Vestido Longo Liso', 'preto', 'M', 'Modely', 'img12.png'),
-('6', 'Linho', 249.900, 'Blazer Feminino Off White', 'Off White', 'M', 'Modely', 'img13.png'),
-('13', 'Jeans', 119.900, 'Saia Jeans Curta', 'Azul Claro', 'P', 'Modely', 'img14.png'),
-('10', 'Algodão', 139.900, 'Camisa Social Feminina', 'Azul Claro', 'M', 'Modely ', 'img15.png');
+(nome, quantidade, material, preco, modelo, cor, tamanho, marca, imagem) VALUES
+('Vestido Floral Curto', '20', 'Viscose', 129.900, 'VF-001', 'amarelo', 'M', 'Modely', 'img1.png'),
+('Blusa Cropped Branca', '15', 'Algodão', 69.900, 'BC-002', 'Branca', 'P', 'Modely', 'img2.png'),
+('Calça Jeans Skinny', '18', 'Jeans', 159.900, 'CJ-003', 'Azul Escuro', 'G', 'Modely', 'img3.png'),
+('Saia Midi Plissada', '10', 'Poliéster', 139.900, 'SM-004', 'bege', 'M', 'Modely', 'img4.png'),
+('Jaqueta de Couro', '8', 'Couro Sintético', 229.900, 'JC-005', 'Preta', 'M', 'Modely', 'img5.png'),
+('Camiseta Oversized Feminina', '20', 'Algodão', 79.900, 'CO-006', 'Bege', 'G', 'Modely', 'img6.png'),
+('Macacão Jeans Feminino', '12', 'Jeans', 189.900, 'MJ-007', 'branco', 'M', 'Modely', 'img7.png'),
+('Cardigan de Tricô', '10', 'Tricô', 149.900, 'CT-008', 'cinza', 'M', 'Modely', 'img8.png'),
+('Short Alfaiataria', '14', 'Poliéster', 119.900, 'SA-009', 'Preto', 'P', 'Modely', 'img9.png'),
+('Conjunto Moletom', '9', 'Moletom', 199.900, 'CM-010', 'Florido', 'G', 'Modely', 'img10.png'),
+('Top Esportivo Feminino', '16', 'Poliamida', 89.900, 'TE-011', 'laranja', 'M', 'Modely', 'img11.png'),
+('Vestido Longo Liso', '11', 'Malha Fria', 179.900, 'VL-012', 'preto', 'M', 'Modely', 'img12.png'),
+('Blazer Feminino Off White', '6', 'Linho', 249.900, 'BF-013', 'Off White', 'M', 'Modely', 'img13.png'),
+('Saia Jeans Curta', '13', 'Jeans', 119.900, 'SJ-014', 'Azul Claro', 'P', 'Modely', 'img14.png'),
+('Camisa Social Feminina', '10', 'Algodão', 139.900, 'CS-015', 'Azul Claro', 'M', 'Modely', 'img15.png');
+
 
 
 -- =============================
