@@ -1,18 +1,13 @@
 <?php
+require_once "../controle/conexao.php";
+require_once "../public/funcoes.php";
+
 if (isset($_GET['id'])) {
-    // echo "editar";
-
-    require_once "../controle/conexao.php";
-
     $id = $_GET['id'];
-
-    $sql = "SELECT * FROM tb_produto WHERE id_produto = $id";
-
+    $sql = "SELECT * FROM tb_usuario WHERE id_usuario = $id";
     $resultados = mysqli_query($conexao, $sql);
-
     $linha = mysqli_fetch_array($resultados);
 
-    //porque não tem a variável do $id aqui?
     $nome = $linha['nome'];
     $senha = $linha['senha'];
     $email = $linha['email'];
@@ -21,7 +16,6 @@ if (isset($_GET['id'])) {
 
     $botao = "Atualizar";
 } else {
-    // echo "novo";
     $id = 0;
     $nome = "";
     $senha = "";
@@ -34,68 +28,89 @@ if (isset($_GET['id'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listar Usuarios</title>
+    <title>Listar Usuários</title>
 
+    <!-- Bootstrap e Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="../public/css/header.css">
     <link rel="stylesheet" href="../public/css/styles.css">
 </head>
 
-<body>
-    <img src="../public/assets/logo.png" alt="logo do site" id="logo">
-    
+<body class="bg-light">
+
+    <img src="../public/assets/logo.png" alt="Logo do site" id="logo" class="d-block mx-auto my-3" style="max-height:80px;">
+
     <?php require_once './templates/header.html'; ?>
-    
-    <h1>Listar Usuarios</h1>
 
-    <?php
-    require_once "../controle/conexao.php";
-    require_once "../public/funcoes.php";
-
-    $lista_usuarios = listarUsuarios($conexao);
-    
-    //verificar se encontrou clientes antes de imprimir.
-    if (count($lista_usuarios) == 0) {
-        echo "Não existem vendas cadastrados.";
-    } else {
-    ?>
-        <table border="1">
-            <tr>
-                <td>Id</td>
-                <td>Nome</td>
-
-                <td>Email</td>
-                <td>Endereço</td>
-                <td colspan="2">Ação</td>
-            </tr>
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="text-center text-dark mb-0">Listar Usuários</h1>
+            <a href="cadastrar_usuario.php" class="btn btn-dark">
+                <i class="fas fa-user-plus"></i> Novo Usuário
+            </a>
+        </div>
 
         <?php
-        foreach ($lista_usuarios as $usuario) {
-            $id_usuario = $usuario['id_usuario'];
-            $nome = $usuario['nome'];
+        $lista_usuarios = listarUsuarios($conexao);
 
-            $email = $usuario['email'];
-            $endereco = $usuario['endereco'];
-
-            echo "<tr>";
-            echo "<td>$id_usuario</td>";
-            echo "<td>$nome</td>";
-
-            echo "<td>$email</td>";
-            echo "<td>$endereco</td>";
-            echo "<td><a href='cadastrar_usuario.php?id=$id_usuario'>Editar</a></td>";
-            echo "<td><a href='../controle/deletarusuario.php?id=$id_usuario'>Excluir</a></td>";
-            echo "</tr>";
-        }
-    }
+        if (count($lista_usuarios) == 0) {
+            echo "<div class='alert alert-secondary text-center'>Não existem usuários cadastrados.</div>";
+        } else {
         ?>
-        </table>
-</body>
+            <div class="table-responsive shadow-sm rounded">
+                <table class="table table-hover table-striped align-middle text-center">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Endereço</th>
+                            <th colspan="2">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($lista_usuarios as $usuario) {
+                            $id_usuario = $usuario['id_usuario'];
+                            $nome = htmlspecialchars($usuario['nome']);
+                            $email = htmlspecialchars($usuario['email']);
+                            $endereco = htmlspecialchars($usuario['endereco']);
 
+                            echo "
+                            <tr>
+                                <td>$id_usuario</td>
+                                <td class='text-dark font-weight-bold'>$nome</td>
+                                <td>$email</td>
+                                <td>$endereco</td>
+                                <td>
+                                    <a href='cadastrar_usuario.php?id=$id_usuario' class='btn btn-outline-dark btn-sm'>
+                                        <i class='fas fa-edit'></i> Editar
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href='../controle/deletarusuario.php?id=$id_usuario' class='btn btn-dark btn-sm' onclick=\"return confirm('Tem certeza que deseja excluir este usuário?');\">
+                                        <i class='fas fa-trash-alt'></i> Excluir
+                                    </a>
+                                </td>
+                            </tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php
+        }
+        ?>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
 </html>
