@@ -53,7 +53,7 @@
                         <button type="submit" class="btn btn-dark px-4">
                             <i class="fas fa-save"></i> Cadastrar Usuário
                         </button>
-                        <a href="listarusuarios.php" class="btn btn-outline-dark px-4 ml-2">
+                        <a href="index.php" class="btn btn-outline-dark px-4 ml-2">
                             <i class="fas fa-arrow-left"></i> Voltar
                         </a>
                     </div>
