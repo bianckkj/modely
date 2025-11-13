@@ -10,6 +10,7 @@ require_once "../controle/conexao.php";
     <title>MODELY</title>
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="../public/css/header.css">
+    <link rel="stylesheet" href="../public/css/carrinho.css">
     
     
     <!-- Link Animate.css e AOS.css -->
@@ -26,9 +27,9 @@ require_once "../controle/conexao.php";
         require_once '../public/templates/header.html'
     ?>
 
-    <!-- link para destrui o carrinho e simular um novo início -->
-    <a href="destruir_carrinho.php">destruir carrinho</a>
 
+
+    <br><br><br><br><br>
     <!-- ver produtos que podem ser adicionados -->
     <form action="adicionar.php" method="POST">
         <h2>Listagem de Produtos</h2>
@@ -48,10 +49,13 @@ require_once "../controle/conexao.php";
         </ul>
 
         <input type="submit" value="Adicionar selecionados ao carrinho">
-    </form>
 
-    <a href="carrinho.php">Ver carrinho</a> <br>
-    <a href="carrinho2.php">Ver carrinho2</a>
+    </form>
+    
+    <!-- link para destrui o carrinho e simular um novo início -->
+     
+    <a href="destruir_carrinho.php">destruir carrinho</a>
+
 </body>
 
 </html>

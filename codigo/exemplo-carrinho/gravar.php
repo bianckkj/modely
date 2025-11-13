@@ -5,7 +5,7 @@ require_once "../public/funcoes.php";
 
 // Verifica se o carrinho está vazio
 if (empty($_SESSION['carrinho'])) {
-    echo "❌ O carrinho está vazio. Adicione produtos antes de finalizar a compra.";
+    echo "O carrinho está vazio. Adicione produtos antes de finalizar a compra.";
     exit;
 }
 
@@ -59,6 +59,6 @@ foreach ($_SESSION['carrinho'] as $id_produto => $quantidade) {
 // Limpa o carrinho após gravar a venda
 unset($_SESSION['carrinho']);
 
-echo "✅ Venda gravada com sucesso!<br>";
-echo "<a href='index.php'>Voltar à loja</a>";
+echo "Venda gravada com sucesso!<br>";
+echo "<a href='../public/home.php'>Voltar à loja</a>";
 ?>

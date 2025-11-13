@@ -1,122 +1,154 @@
-/* Estilos gerais */
+/* ========================== */
+/*      ESTILOS GERAIS        */
+/* ========================== */
+
+/* Define a cor padrão para todos os ícones Font Awesome (.fa) */
 .fa {
     color: #000000;
 }
 
-/* Sidebar */
+/* ========================== */
+/*         SIDEBAR            */
+/* ========================== */
+
+/* Define o estilo inicial da barra lateral (menu lateral) */
 .sidebar {
-    height: 100%;
-    width: 250px;
-    position: fixed;
-    top: 0;
-    left: -250px;
-    background-color: #e8e7e7;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
-    overflow-x: hidden;
-    transition: 0.3s ease;
-    padding-top: 20px;
-    z-index: 1000000;
+    height: 100%; /* Ocupa toda a altura da tela */
+    width: 250px; /* Largura fixa de 250px */
+    position: fixed; /* Fixa na tela, mesmo com rolagem */
+    top: 0; /* Começa do topo */
+    left: -250px; /* Começa fora da tela (oculta) */
+    background-color: #e8e7e7; /* Cor de fundo cinza clara */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5); /* Sombra na lateral */
+    overflow-x: hidden; /* Impede rolagem horizontal */
+    transition: 0.3s ease; /* Transição suave ao abrir/fechar */
+    padding-top: 20px; /* Espaço no topo */
+    z-index: 1000000; /* Fica sobre outros elementos */
 }
 
+/* Quando o menu tem a classe “active”, ele aparece na tela */
 .sidebar.active {
-    left: 0;
+    left: 0; /* Move o menu para a posição visível */
 }
 
+/* Título dentro da sidebar */
 .sidebar h2 {
-    color: #000000;
-    text-align: center;
-    margin-bottom: 20px;
+    color: #000000; /* Cor do texto preta */
+    text-align: center; /* Centraliza o título */
+    margin-bottom: 20px; /* Espaço abaixo do título */
 }
 
+/* Remove os estilos padrão da lista */
 .sidebar ul {
-    list-style-type: none;
-    padding: 0;
+    list-style-type: none; /* Remove marcadores */
+    padding: 0; /* Remove espaçamento interno */
 }
 
+/* Estilo dos links dentro da lista */
 .sidebar ul li a {
-    padding: 15px 20px;
-    text-decoration: none;
-    font-size: 18px;
-    color: #000000;
-    display: block;
-    transition: 0.3s;
+    padding: 15px 20px; /* Espaçamento interno */
+    text-decoration: none; /* Remove sublinhado */
+    font-size: 18px; /* Tamanho da fonte */
+    color: #000000; /* Cor do texto preta */
+    display: block; /* Ocupa toda a largura do item */
+    transition: 0.3s; /* Transição suave para o hover */
 }
 
+/* Efeito ao passar o mouse sobre os links */
 .sidebar ul li a:hover {
-    background-color: #ffffff;
-    color: #ffffff;
+    background-color: #ffffff; /* Fundo branco ao passar o mouse */
+    color: #ffffff; /* Texto branco (invisível, pode ser ajustado) */
 }
 
-/* Botões */
+/* ========================== */
+/*          BOTÕES            */
+/* ========================== */
+
+/* Botão de fechar o menu lateral */
 .close-btn {
-    background: none;
-    border: none;
-    font-size: 24px;
-    color: #ebd5d5;
-    cursor: pointer;
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    background: none; /* Sem fundo */
+    border: none; /* Sem borda */
+    font-size: 24px; /* Tamanho do ícone */
+    color: #ebd5d5; /* Cor do botão */
+    cursor: pointer; /* Cursor de clique */
+    position: absolute; /* Posição absoluta dentro da sidebar */
+    top: 10px; /* Distância do topo */
+    right: 10px; /* Distância da direita */
 }
 
+/* Botão para abrir o menu lateral (hambúrguer) */
 .off-menu-btn {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    background-color: #ffffff;
-    color: rgb(0, 0, 0);
-    border: none;
-    padding: 12px;
-    font-size: 24px;
-    cursor: pointer;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
-    transition: 0.3s;
+    position: fixed; /* Fixa na tela */
+    top: 20px; /* Distância do topo */
+    left: 20px; /* Distância da esquerda */
+    background-color: #ffffff; /* Fundo branco */
+    color: rgb(0, 0, 0); /* Cor do texto preta */
+    border: none; /* Sem borda */
+    padding: 12px; /* Espaçamento interno */
+    font-size: 24px; /* Tamanho do ícone */
+    cursor: pointer; /* Mostra que é clicável */
+    border-radius: 5px; /* Arredonda as bordas */
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2); /* Sombra leve */
+    transition: 0.3s; /* Transição suave no hover */
 }
 
+/* Efeito hover no botão de abrir o menu */
 .off-menu-btn:hover {
-    background-color: #ffffff;
+    background-color: #ffffff; /* Mantém fundo branco (sem mudança visual) */
 }
 
-/* Header */
+/* ========================== */
+/*           HEADER            */
+/* ========================== */
+
+/* Estilização do cabeçalho principal */
 header {
-    padding: 20px;
-    background-color: rgba(244, 235, 235, 0.1);
-    color: rgb(233, 217, 217);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 20px; /* Espaçamento interno */
+    background-color: rgba(244, 235, 235, 0.1); /* Fundo levemente translúcido */
+    color: rgb(233, 217, 217); /* Cor do texto */
+    display: flex; /* Usa flexbox */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
 }
 
+/* Título principal dentro do header */
 header h1 {
-    font-size: 36px;
-    margin: 0;
-    font-weight: bold;
+    font-size: 36px; /* Tamanho da fonte */
+    margin: 0; /* Remove margens padrão */
+    font-weight: bold; /* Deixa o texto em negrito */
 }
 
+/* Destaque em partes do título com <span> */
 header h1 span {
-    color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255); /* Cor branca */
 }
 
-/* Navegação */
+/* ========================== */
+/*        NAVEGAÇÃO           */
+/* ========================== */
+
+/* Define a disposição dos links de navegação */
 nav {
-    display: flex;
-    gap: 15px;
+    display: flex; /* Usa flexbox */
+    gap: 15px; /* Espaço entre os itens */
 }
 
+/* Estilos dos links de navegação */
 nav a {
-    text-decoration: none !important;
-    color: rgb(255, 255, 255);
-    font-size: 18px;
-    font-weight: bold;
-    display: inline-block;
+    text-decoration: none !important; /* Remove sublinhado (forçado) */
+    color: rgb(255, 255, 255); /* Texto branco */
+    font-size: 18px; /* Tamanho da fonte */
+    font-weight: bold; /* Negrito */
+    display: inline-block; /* Permite margens e padding */
 }
 
+/* Ícones dentro dos links de navegação */
 nav a i {
-    margin-right: 8px;
-    vertical-align: middle;
+    margin-right: 8px; /* Espaço entre ícone e texto */
+    vertical-align: middle; /* Alinha o ícone verticalmente */
 }
 
+/* Efeito visual em todos os links ao passar o mouse */
 a:hover {
-    filter: drop-shadow(10px 10px 15px rgba(255, 255, 255, 0.5));
+    filter: drop-shadow(10px 10px 15px rgba(255, 255, 255, 0.5)); /* Adiciona sombra branca */
 }

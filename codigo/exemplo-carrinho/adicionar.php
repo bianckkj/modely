@@ -28,5 +28,5 @@ if (!empty($_POST['id_produto'])) {
 }
 
 // Redireciona para o carrinho
-header("Location: carrinho.php");
+header("Location: carrinho2.php");
 exit;

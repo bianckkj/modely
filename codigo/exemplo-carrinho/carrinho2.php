@@ -11,8 +11,10 @@ require_once "../public/funcoes.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Carrinho</title>
     <script src="../jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="../public/css/header.css">
+    <link rel="stylesheet" href="../public/css/styles.css">
 </head>
 
 <body>

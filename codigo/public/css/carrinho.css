@@ -1,0 +1,7 @@
+body {
+    font-family: Arial, sans-serif; /* Define a fonte do site */
+    background: linear-gradient(to bottom right, #e8e7e7, #e8e7e7); /* Fundo em tom cinza */
+    margin: 0; /* Remove margens do navegador */
+    padding: 0; /* Remove espaçamento interno */
+    color: #333; /* Cor padrão do texto (cinza escuro) */
+}
