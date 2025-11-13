@@ -121,7 +121,7 @@ if (isset($_GET['id'])) {
                             <i class="fas fa-save"></i>
                             <?php echo $id ? "Salvar Alterações" : "Cadastrar Funcionário"; ?>
                         </button>
-                        <a href="listar_funcionarios.php" class="btn btn-outline-dark px-4 ml-2">
+                        <a href="home.php" class="btn btn-outline-dark px-4 ml-2">
                             <i class="fas fa-arrow-left"></i> Voltar
                         </a>
                     </div>

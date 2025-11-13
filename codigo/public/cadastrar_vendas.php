@@ -165,7 +165,7 @@ $produtos = $conexao->query("SELECT id_produto, nome, preco FROM tb_produto ORDE
                             <i class="fas fa-save"></i>
                             <?php echo $id_vendas ? "Salvar Alterações" : "Cadastrar Venda"; ?>
                         </button>
-                        <a href="listarvendas.php" class="btn btn-outline-dark px-4 ml-2">
+                        <a href="home.php" class="btn btn-outline-dark px-4 ml-2">
                             <i class="fas fa-arrow-left"></i> Voltar
                         </a>
                     </div>
