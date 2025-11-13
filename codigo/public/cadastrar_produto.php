@@ -1,31 +1,35 @@
 <?php
+
+
 if (isset($_GET['id'])) {
-    // echo "editar";
-
-    require_once "../controle/conexao.php";
-
+    // --- Edição de produto existente ---
     $id = $_GET['id'];
 
-    $sql = "SELECT * FROM tb_produto WHERE id_produto = $id";
+    require_once "../controle/conexao.php";
+    $sql = "SELECT * FROM tb_produto WHERE id_produto = ?";
+    $comando = mysqli_prepare($conexao, $sql);
 
-    $resultados = mysqli_query($conexao, $sql);
+    mysqli_stmt_bind_param($comando, "i", $id);
+    mysqli_stmt_execute($comando);
 
-    $linha = mysqli_fetch_array($resultados);
+    $resultados = mysqli_stmt_get_result($comando);
 
-    //porque não tem a variável do $id aqui?
-    $nome = $linha['nome'];
-    $quantidade = $linha['quantidade'];
-    $material = $linha['material'];
-    $preco = $linha['preco'];
-    $modelo = $linha['modelo'];
-    $cor = $linha['cor'];
-    $tamanho = $linha['tamanho'];
-    $marca = $linha['marca'];
-    $imagem = $linha['imagem'];
+    $produto = mysqli_fetch_array($resultados);
 
-    $botao = "Atualizar";
+    // Preenche os campos
+    $nome = $produto['nome'];
+    $quantidade = $produto['quantidade'];
+    $material = $produto['material'];
+    $preco = $produto['preco'];
+    $modelo = $produto['modelo'];
+    $cor = $produto['cor'];
+    $tamanho = $produto['tamanho'];
+    $marca = $produto['marca'];
+    $imagem = $produto['imagem'];
+
+    mysqli_stmt_close($comando);
 } else {
-    // echo "novo";
+    // --- Novo produto ---
     $id = 0;
     $nome = "";
     $quantidade = "";
@@ -37,7 +41,6 @@ if (isset($_GET['id'])) {
     $marca = "";
     $imagem = "";
 
-    $botao = "Cadastrar";
 }
 ?>
 

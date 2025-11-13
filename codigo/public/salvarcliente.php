@@ -1,5 +1,6 @@
 <?php
 require_once "../controle/conexao.php";
+require_once "funcoes.php";
 
 $id = $_GET['id'];
 $nome = $_POST['nome'];

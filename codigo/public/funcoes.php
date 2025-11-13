@@ -183,17 +183,24 @@ function deletarProduto($conexao, $id_produto) {
 
 
 
-function editarProduto($conexao, $quantidade, $material, $preco, $modelo, $cor, $tamanho, $marca, $imagem, $id_produto) {
-    $sql = "UPDATE tb_produto SET quantidade=?, material=?, preco=?, modelo=?, cor=?, tamanho=?, marca=?, imagem=? WHERE id_produto=?";
-    $comando = mysqli_prepare($conexao, $sql);
+function editarProduto($conexao, $nome, $quantidade, $material, $preco, $modelo, $cor, $tamanho, $marca, $imagem, $id_produto) {
+    $sql = "UPDATE tb_produto 
+            SET nome=?, quantidade=?, material=?, preco=?, modelo=?, cor=?, tamanho=?, marca=?, imagem=?
+            WHERE id_produto=?";
     
-    mysqli_stmt_bind_param($comando, 'sssssssbi', $quantidade, $material, $preco, $modelo, $cor, $tamanho, $marca, $imagem, $id_produto);
+    $comando = mysqli_prepare($conexao, $sql);
+
+    // 's' = string, 'i' = inteiro
+    mysqli_stmt_bind_param($comando, 'sssssssssi', 
+        $nome, $quantidade, $material, $preco, $modelo, $cor, $tamanho, $marca, $imagem, $id_produto
+    );
 
     $funcionou = mysqli_stmt_execute($comando);
     
     mysqli_stmt_close($comando);
     return $funcionou;
 }
+
 
 function editarvendas($conexao, $tb_cliente_id_cliente, $tb_funcionario_id_funcionario, $horario, $data, $comissao, $id_vendas) {
     $sql = "UPDATE tb_vendas SET tb_cliente_id_cliente=?, tb_funcionario_id_funcionario=?, horario=?, data=?, comissao=? WHERE id_vendas=?";
@@ -385,7 +392,7 @@ function pesquisarFuncionario($conexao, $id_funcionario) {
 }
 
 
-function agendarvenda($conexao, $id_cliente, $data, $horario, $status) {
+/*function agendarvenda($conexao, $id_cliente, $data, $horario, $status) {
     $sql = "UPDATE tb_agendamento SET id_cliente=?, data=?, horario=?, status=?";
     $comando = mysqli_prepare($conexao, $sql);
     
@@ -409,7 +416,7 @@ function loginUsuario($conexao, $email, $senha) {
     mysqli_stmt_close($stmt);
 
     return password_verify($senha, $senhaHash);
-}
+} */
 
 function pegarDadosUsuario($conexao, $id_usuario) {
     $sql = "SELECT nome FROM tb_usuario WHERE id_usuario = ?";
@@ -574,12 +581,6 @@ if (!function_exists('pesquisarProdutoId')) {
         return null;
     }
 }
-
-
-
-?>
-
-
 
 
 
