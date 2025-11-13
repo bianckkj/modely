@@ -1,8 +1,9 @@
 <?php
+    require_once "../controle/conexao.php";
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    require_once "../controle/conexao.php";
+
     $sql = "SELECT * FROM tb_funcionario WHERE id_funcionario = ?";
     $comando = mysqli_prepare($conexao, $sql);
     mysqli_stmt_bind_param($comando, "i", $id);

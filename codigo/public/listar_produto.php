@@ -14,9 +14,9 @@
 
 <body class="bg-light">
     <img src="../public/assets/logo.png" alt="logo do site" id="logo" class="d-block mx-auto my-3" style="max-height:80px;">
-    
+
     <?php require_once './templates/header.html'; ?>
-    
+
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="text-dark mb-0">Lista de Produtos</h1>
@@ -72,7 +72,7 @@
                 echo "<td>$cor</td>";
                 echo "<td>$tamanho</td>";
                 echo "<td>$marca</td>";
-                
+
                 // Mostra a imagem se existir
                 if (!empty($imagem) && file_exists(__DIR__ . "/imagens/" . $imagem)) {
                     echo "<td><img src='imagens/$imagem' alt='$modelo' width='80'></td>";
@@ -100,4 +100,5 @@
         ?>
     </div>
 </body>
+
 </html>
